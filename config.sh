@@ -2,9 +2,15 @@
 
 function pre_build
 {
-  # I have no idea what we'll need here yet...
-  pwd
-  ls
+  # Let's go ahead and build mlpack.
+  cd mlpack/
+  mkdir build
+  cd build/
+  cmake ../
+  make -j2 python
+  cd src/mlpack/bindings/python/
+
+  # Maybe just leaving it in this directory is ok?
 }
 
 function run_test
