@@ -6,8 +6,9 @@ function pre_build
   # this is RHEL5.
   yum install -y wget cmake make gcc-c++ boost-devel openblas
 
-  # Now download Armadillo and install that.
-  wget http://sourceforge.net/projects/arma/files/armadillo-9.400.4.tar.xz
+  # Now download Armadillo and install that from a known non-HTTPS source
+  # (because we don't have working HTTPS).
+  wget http://www.ratml.org/misc/armadillo-9.400.4.tar.xz
   tar -xvpf armadillo-9.400.4.tar.xz
   cd armadillo-9.400.4
   cmake .
