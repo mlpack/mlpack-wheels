@@ -25,6 +25,14 @@ function pre_build
   make
   cd ../
 
+  # We also need to download boost.
+  wget http://www.ratml.org/misc/boost_1_70_0.tar.gz
+  tar -xzpf boost_1_70_0.tar.gz
+  cd boost_1_70_0/
+  ./bootstrap.sh --with-libraries=serialization,program_options,test
+  ./b2 -j4 install
+  cd ../
+
   # Finally let's go ahead and build mlpack.
   cd mlpack/
   mkdir build
