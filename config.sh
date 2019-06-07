@@ -8,7 +8,7 @@ function pre_build
 
   # Now download Armadillo and install that from a known non-HTTPS source
   # (because we don't have working HTTPS).
-  wget http://www.ratml.org/misc/armadillo-9.400.4.tar.xz
+  wget http://www.ratml.org/misc/armadillo-9.400.4.tar.gz
   tar -xvpf armadillo-9.400.4.tar.xz
   cd armadillo-9.400.4
   cmake .
