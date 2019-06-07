@@ -6,8 +6,9 @@ function pre_build
   # this is RHEL5.
   yum install -y wget make gcc-c++ boost-devel openblas
 
-  # We need to get Cython using the desired pip version. (hardcoded for now)
-  /opt/python/cp27-cp27m/bin/pip install Cython
+  # We need to get our Python dependencies using the desired pip version.
+  # (hardcoded for now)
+  /opt/python/cp27-cp27m/bin/pip install Cython numpy pandas
 
   # Ha, because RHEL5 is so old we have to build CMake from source.  But we have
   # to use an older CMake version because new CMake versions don't build right.
