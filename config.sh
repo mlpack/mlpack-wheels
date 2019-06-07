@@ -4,7 +4,7 @@ function pre_build
 {
   # We need to get mlpack dependencies.  We are root inside the container, and
   # this is RHEL5.
-  yum install -y wget cmake make gcc-c++ boost-devel openblas
+  yum install -y wget cmake28 make gcc-c++ boost-devel openblas
 
   # Now download Armadillo and install that from a known non-HTTPS source
   # (because we don't have working HTTPS).
