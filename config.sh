@@ -6,6 +6,9 @@ function pre_build
   # this is RHEL5.
   yum install -y wget make gcc-c++ boost-devel openblas
 
+  # We need to get Cython using the desired pip version. (hardcoded for now)
+  /opt/python/cp27-cp27m/bin/pip install Cython
+
   # Ha, because RHEL5 is so old we have to build CMake from source.  But we have
   # to use an older CMake version because new CMake versions don't build right.
   wget http://www.ratml.org/misc/cmake-3.13.5.tar.gz
@@ -40,7 +43,7 @@ function pre_build
   cmake \
       -DARMADILLO_INCLUDE_DIR=../../armadillo-9.400.4/tmp/include/ \
       -DARMADILLO_LIBRARY=../../armadillo-9.400.4/libarmadillo.so \
-      -DPYTHON=/opt/python/cp27-cp27m \
+      -DPYTHON=/opt/python/cp27-cp27m/bin/python \
       ../
   make -j2 python
   cd src/mlpack/bindings/python/
