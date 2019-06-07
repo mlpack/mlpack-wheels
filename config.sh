@@ -9,16 +9,17 @@ function pre_build
   # Ha, because RHEL5 is so old we have to build CMake from source.  But we have
   # to use an older CMake version because new CMake versions don't build right.
   wget http://www.ratml.org/misc/cmake-3.13.5.tar.gz
-  tar -xvzpf cmake-3.13.5.tar.gz
+  tar -xzpf cmake-3.13.5.tar.gz
   cd cmake-3.13.5/
   ./configure
   gmake -j4
   make install
+  cd ../
 
   # Now download Armadillo and install that from a known non-HTTPS source
   # (because we don't have working HTTPS).
   wget http://www.ratml.org/misc/armadillo-9.400.4.tar.gz
-  tar -xvzpf armadillo-9.400.4.tar.gz
+  tar -xzpf armadillo-9.400.4.tar.gz
   cd armadillo-9.400.4
   cmake .
   make
