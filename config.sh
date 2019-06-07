@@ -11,7 +11,7 @@ function pre_build
   wget http://www.ratml.org/misc/armadillo-9.400.4.tar.gz
   tar -xvpf armadillo-9.400.4.tar.gz
   cd armadillo-9.400.4
-  cmake .
+  cmake28 .
   make
   cd ../
 
@@ -19,7 +19,7 @@ function pre_build
   cd mlpack/
   mkdir build
   cd build/
-  cmake \
+  cmake28 \
       -DARMADILLO_INCLUDE_DIR=../../armadillo-9.400.4/tmp/include/ \
       -DARMADILLO_LIBRARY=../../armadillo-9.400.4/libarmadillo.so \
       ../
