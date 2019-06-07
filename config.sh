@@ -43,7 +43,7 @@ function pre_build
   cmake \
       -DARMADILLO_INCLUDE_DIR=../../armadillo-9.400.4/tmp/include/ \
       -DARMADILLO_LIBRARY=../../armadillo-9.400.4/libarmadillo.so \
-      -DPYTHON=/opt/python/cp27-cp27m/bin/python \
+      -DPYTHON_EXECUTABLE=/opt/python/cp27-cp27m/bin/python \
       ../
   make -j2 python
   cd src/mlpack/bindings/python/
