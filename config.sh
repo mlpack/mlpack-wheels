@@ -51,8 +51,8 @@ function pre_build
       ../
   make -j2 python
 
-  rm -rf /mlpack-python-build/
-  ln -s $PWD/src/mlpack/bindings/python/ /mlpack-python-build/
+  rm -rf /io/mlpack-python-build/
+  ln -s $PWD/src/mlpack/bindings/python/ /io/mlpack-python-build/
 }
 
 function run_test
