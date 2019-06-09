@@ -29,7 +29,7 @@ function pre_build
   tar -xzpf armadillo-9.400.4.tar.gz
   cd armadillo-9.400.4
   cmake .
-  make
+  make install
   cd ../
 
   # We also need to download boost.
@@ -45,11 +45,10 @@ function pre_build
   mkdir build
   cd build/
   cmake \
-      -DARMADILLO_INCLUDE_DIR=../../armadillo-9.400.4/tmp/include/ \
-      -DARMADILLO_LIBRARY=../../armadillo-9.400.4/libarmadillo.so \
       -DPYTHON_EXECUTABLE=/opt/python/cp27-cp27m/bin/python \
       ../
   make -j2 python
+  make install
 }
 
 function run_test
