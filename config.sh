@@ -50,9 +50,6 @@ function pre_build
       -DPYTHON_EXECUTABLE=/opt/python/cp27-cp27m/bin/python \
       ../
   make -j2 python
-
-  rm -rf /io/mlpack-python-build/
-  ln -s $PWD/src/mlpack/bindings/python/ /io/mlpack-python-build/
 }
 
 function run_test
