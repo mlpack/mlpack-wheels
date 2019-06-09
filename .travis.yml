@@ -111,6 +111,7 @@ matrix:
 #        - MB_PYTHON_VERSION=pypy-5.7
 
 before_install:
+  - ./pre_pre_build.sh
   - source multibuild/common_utils.sh
   - source multibuild/travis_steps.sh
   - before_install
