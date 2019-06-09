@@ -1,6 +1,6 @@
 env:
   global:
-    - REPO_DIR=mlpack/build/src/mlpack/bindings/python/
+    - REPO_DIR=mlpack-python-build
     - BUILD_COMMIT=mlpack-3.1.1
     - BUILD_DEPENDS="Cython numpy pandas"
     - TEST_DEPENDS="Cython numpy pandas" # Not sure, but probably ok.
