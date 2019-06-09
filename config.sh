@@ -46,6 +46,9 @@ function pre_build
   cd build/
   cmake \
       -DPYTHON_EXECUTABLE=/opt/python/cp27-cp27m/bin/python \
+      -DBUILD_TESTS=OFF \
+      -DBUILD_CLI_EXECUTABLES=OFF \
+      -DBUILD_PYTHON_BINDINGS=ON \
       ../
   make -j2 python
   make install
