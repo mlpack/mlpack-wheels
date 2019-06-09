@@ -116,10 +116,6 @@ before_install:
 
 install:
   - clean_code mlpack $BUILD_COMMIT
-  - ls /io/
-  - ls /io/mlpack/
-  - ls /io/mlpack/build/
-  - ls /io/mlpack/build/src/mlpack/bindings/python/
   - build_wheel /io/mlpack/build/src/mlpack/bindings/python $PLAT
 
 script:
