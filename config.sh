@@ -54,8 +54,9 @@ function pre_build
   make install
 }
 
-function run_test
+function run_tests
 {
-  # I also have no idea what we should do here yet...
+  # Let's just make sure mlpack loads.  TODO: maybe run the tests?
   python --version
+  python -c 'import sys; import mlpack;'
 }
