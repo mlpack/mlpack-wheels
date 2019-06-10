@@ -56,7 +56,7 @@ function pre_build
 
 function run_tests
 {
-  # Let's just make sure mlpack loads.  TODO: maybe run the tests?
-  /opt/python/cp27-cp27m/bin/python --version
-  /opt/python/cp27-cp27m/bin/python -c 'import sys; import mlpack;'
+  # Let's just make sure mlpack loads.  TODO: maybe run the tests.
+  python --version
+  python -c 'import sys; import mlpack;'
 }
