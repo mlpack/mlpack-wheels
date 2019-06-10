@@ -7,7 +7,7 @@ function pre_build
 
   # We need to get mlpack dependencies.  We are root inside the container, and
   # this is RHEL5.
-  yum install -y wget make gcc-c++ boost-devel openblas
+  yum install -y wget make gcc-c++ openblas
 
   # We need to get our Python dependencies using the desired pip version.
   # (hardcoded for now)
@@ -18,7 +18,7 @@ function pre_build
   wget http://www.ratml.org/misc/cmake-3.13.5.tar.gz
   tar -xzpf cmake-3.13.5.tar.gz
   cd cmake-3.13.5/
-  ./configure
+  ./configure --prefix=/usr
   gmake -j4
   make install
   cd ../
@@ -28,7 +28,7 @@ function pre_build
   wget http://www.ratml.org/misc/armadillo-9.400.4.tar.gz
   tar -xzpf armadillo-9.400.4.tar.gz
   cd armadillo-9.400.4
-  cmake .
+  cmake -DCMAKE_INSTALL_PREFIX=/usr .
   make install
   cd ../
 
@@ -37,7 +37,7 @@ function pre_build
   tar -xzpf boost_1_70_0.tar.gz
   cd boost_1_70_0/
   ./bootstrap.sh --with-libraries=serialization,program_options,test
-  ./b2 -j4 install
+  ./b2 -j4 install --prefix=/usr
   cd ../
 
   # Finally let's go ahead and build mlpack.
