@@ -7,7 +7,7 @@ function pre_build
 
   # We need to get mlpack dependencies.  We are root inside the container, and
   # this is RHEL5.
-  yum install -y wget make gcc-c++ openblas
+  yum install -y wget make gcc-c++ openblas-devel
 
   # Install RPMs that were manually made for this image.
   wget http://www.ratml.org/misc/cmake-3.13.5-1.x86_64.rpm
