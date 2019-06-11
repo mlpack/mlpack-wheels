@@ -17,6 +17,9 @@ function pre_build
   wget http://www.ratml.org/misc/boost-1.70.0-1.x86_64.rpm
   rpm -ivh boost-1.70.0-1.x86_64.rpm
 
+  # Install Python dependencies.
+  /opt/python/cp27-cp27m/bin/pip install setuptools numpy pandas Cython
+
   # Finally let's go ahead and build mlpack.
   cd mlpack/
   mkdir build
