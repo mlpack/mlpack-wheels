@@ -20,10 +20,17 @@ function pre_build
   # Install RPMs that were manually made for this image.
   wget http://www.ratml.org/misc/cmake-3.13.5-1.x86_64.rpm
   rpm -ivh cmake-3.13.5-1.x86_64.rpm
-  wget http://www.ratml.org/misc/armadillo-9.400.4-1.x86_64.rpm
-  rpm -ivh armadillo-9.400.4-1.x86_64.rpm
   wget http://www.ratml.org/misc/boost-1.70.0-1.x86_64.rpm
   rpm -ivh boost-1.70.0-1.x86_64.rpm
+
+  # Build and install Armadillo.
+  wget http://www.ratml.org/misc/armadillo-9.400.4.tar.gz
+  tar -xzpf armadillo-9.400.4.tar.gz
+  cd armadillo-9.400.4/
+  cmake -DCMAKE_INSTALL_PREFIX=/usr .
+  make
+  make install
+  cd ../
 
   # Install Python dependencies.
   /opt/python/cp27-cp27m/bin/pip install setuptools numpy pandas Cython
