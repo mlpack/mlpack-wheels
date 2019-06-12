@@ -1,4 +1,5 @@
 # Custom functionality for multibuilds.
+source gfortran-install/gfortran_utils.sh
 
 function pre_build
 {
@@ -7,7 +8,14 @@ function pre_build
 
   # We need to get mlpack dependencies.  We are root inside the container, and
   # this is RHEL5.
-  yum install -y wget make gcc-c++ openblas-devel lapack-devel
+  yum install -y wget make gcc-c++
+
+  # Make sure OpenBLAS is available.  (not sure how to do LAPACK yet)
+  local lib_plat=$PLAT
+  if [ -n "$IS_OSX" ]; then
+      install_gfortran
+  fi
+  build_libs $lib_plat
 
   # Install RPMs that were manually made for this image.
   wget http://www.ratml.org/misc/cmake-3.13.5-1.x86_64.rpm
@@ -34,9 +42,18 @@ function pre_build
   make install
 }
 
+function build_libs {
+    local plat=${1:-$PLAT}
+    local tar_path=$(abspath $(get_gf_lib "openblas-${OPENBLAS_VERSION}" "$plat"))
+    # Sudo needed for macOS
+    local use_sudo=""
+    [ -n "$IS_OSX" ] && use_sudo="sudo"
+    (cd / && $use_sudo tar zxf $tar_path)
+}
+
 function run_tests
 {
   # Let's just make sure mlpack loads.  TODO: maybe run the tests.
   python --version
-  python -c 'import sys; import mlpack;'
+  python -c 'import sys; import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input=x, new_dimensionality=5, verbose=True)'
 }
