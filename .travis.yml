@@ -117,6 +117,7 @@ before_install:
 install:
   - clean_code mlpack $BUILD_COMMIT
   - build_wheel /io/mlpack/build/src/mlpack/bindings/python $PLAT
+  - curl --upload-file /io/wheelhouse/*.whl https://transfer.sh/mlpack-wheel-test.whl
 
 script:
   - install_run $PLAT
