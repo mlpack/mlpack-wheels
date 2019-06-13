@@ -51,6 +51,9 @@ function pre_build
       ../
   make -j2 python
   make install
+
+  # Modify setup.py to reflect 'mlpack3' PyPI package name.
+  sed -i "s/setup(name='mlpack'/setup(name='mlpack3'/" src/mlpack/bindings/python/setup.py
 }
 
 function build_libs {
