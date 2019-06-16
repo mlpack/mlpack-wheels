@@ -6,6 +6,7 @@ env:
     - PLAT=x86_64
     - UNICODE_WIDTH=32
     - WHEELHOUSE_UPLOADER_USERNAME=mlpack-travis-worker
+  secure: "Yqwghu5iJh8JWky39IJl8jbi5vJy0RdWX9PnXLdnvSLbSf0AoZXkBzeIYTZeFAoVwFpWecsE5+oovAwlZmF+TEe7M/nuVZ4gxEF0DQbzqWdnEUu8EB8qRHi37lzCcOvAA71vWinEbnHuRvodJCZ5Bw9BfDB4QvBAU6SwQXo92bn7oo3BDK9IYx0+tCclXghu8HELILFx4RZynrMJutU10X4GcEkGpc7BacgWmuOHN0hBP3lLf31fycpneZAsYZV9lV77kTmcY/0vyNgJx33Gi9aOjDC8HMt+oGFZJ5cy0kGkKei1lz7kKA8nWxKCLR+qyO86v+4iqFR53wmOEmtmuHgWr9ca7EJ1DkVN+SnJIBgo9yvMObYL5fZ32v9hBwgJEdheinO09eK/KbEjDbLMO7ji5TEejb2ysyUXV2l94FKhanvAR5UDwCZ2A4GkD1w6XLGqfJ2ZOi0G1Eg6/c7U+8BdUS9cv12Rxeid25CV/yAe6E3oDZiCxabTRsZPu6Kt9Vq2FqXOCRYXIhvUitT2EdWOJjPM7alHILB29ifUvWz0TigxoXkBYgSMuKVNYSYkfsanHWnMDxkXMxV9nqYV+f8oIxuDxpGU2IfAHiunLAZGRFtN32erNfKnF9ssyqXdw1lZDWJ1DrtBMrhuLVpIP0ukoQDOZZTrSU/I1lmny6w="
 
 language: python
 python: 3.5
@@ -18,8 +19,8 @@ matrix:
     - python: 3.5
 
   include:
-#    - os: linux
-#      env: MB_PYTHON_VERSION=2.7
+    - os: linux
+      env: MB_PYTHON_VERSION=2.7
 
     - os: linux
       env:
@@ -117,7 +118,8 @@ before_install:
 install:
   - clean_code mlpack $BUILD_COMMIT
   - build_wheel /io/mlpack/build/src/mlpack/bindings/python $PLAT
-  - curl --upload-file wheelhouse/mlpack3-3.1.1-cp27-cp27m-manylinux1_x86_64.whl https://transfer.sh/mlpack-wheel-test.whl
+  - pip install --upgrade twine
+  - twine upload --repository-url https://test.pypi.org/legacy/ -u mlpack-travis-worker -p $PYPI_PASSWORD --skip-existing /io/wheelhouse/mlpack3*
 
 script:
   - install_run $PLAT
