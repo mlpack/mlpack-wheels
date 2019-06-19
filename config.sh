@@ -79,7 +79,6 @@ function build_libs {
     echo "plat $plat tar_path $tar_path use_sudo $use_sudo";
     ls -lh $(dirname $tar_path)
     file $tar_path
-    cat $tar_path
     (cd / && $use_sudo tar zxf $tar_path)
 }
 
