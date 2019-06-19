@@ -55,6 +55,7 @@ function pre_build
   cmake -DCMAKE_INSTALL_PREFIX=/usr .
   make
   echo "need sudo $need_sudo";
+  cat cmake_install.cmake
   $need_sudo make install
   cd ../
 
@@ -83,9 +84,6 @@ function build_libs {
     # Sudo needed for macOS
     local use_sudo=""
     [ -n "$IS_OSX" ] && use_sudo="sudo"
-    echo "plat $plat tar_path $tar_path use_sudo $use_sudo";
-    ls -lh $(dirname $tar_path)
-    file $tar_path
     (cd / && $use_sudo tar zxf $tar_path)
 }
 
