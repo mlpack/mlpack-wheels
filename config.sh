@@ -76,6 +76,8 @@ function build_libs {
     # Sudo needed for macOS
     local use_sudo=""
     [ -n "$IS_OSX" ] && use_sudo="sudo"
+    echo "plat $plat tar_path $tar_path use_sudo $use_sudo";
+    ls -l $tar_path
     (cd / && $use_sudo tar zxf $tar_path)
 }
 
