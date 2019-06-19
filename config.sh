@@ -11,6 +11,10 @@ function pre_build
     # We need to get mlpack dependencies.  We are root inside the container, and
     # this is RHEL5.
     yum install -y wget make gcc-c++
+  else
+    echo "use brew to get deps";
+    # This is OS X, so use brew to get dependencies.
+    brew install gcc make wget cmake boost
   fi
 
   # Make sure OpenBLAS is available.  (not sure how to do LAPACK yet)
@@ -35,10 +39,6 @@ function pre_build
     # Install precompiled LAPACK (this is specific to this image).
     wget http://www.ratml.org/misc/lapack-3.8.0.el5.x86_64.tar.gz
     tar -xzpf lapack-3.8.0.el5.x86_64.tar.gz -C /
-  else
-    echo "use brew to get deps";
-    # This is OS X, so use brew to get dependencies.
-    brew install gcc make wget cmake boost
   fi
 
   echo "get and install armadillo";
