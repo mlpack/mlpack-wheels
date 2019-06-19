@@ -36,15 +36,19 @@ function pre_build
   make install
   cd ../
 
+  # Debug: print Python info.
+  which pip
+  which python
+  python --version
+
   # Install Python dependencies.
-  /opt/python/cp27-cp27m/bin/pip install setuptools numpy pandas Cython
+  pip install setuptools numpy pandas Cython
 
   # Finally let's go ahead and build mlpack.
   cd mlpack/
   mkdir build
   cd build/
   cmake \
-      -DPYTHON_EXECUTABLE=/opt/python/cp27-cp27m/bin/python \
       -DBUILD_TESTS=OFF \
       -DBUILD_CLI_EXECUTABLES=OFF \
       -DBUILD_PYTHON_BINDINGS=ON \
