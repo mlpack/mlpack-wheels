@@ -7,9 +7,11 @@ function pre_build
   # starts.
 
   need_sudo="";
+  install_prefix="/usr";
   if [ -n "$IS_OSX" ];
   then
     need_sudo="sudo";
+    install_prefix="/usr/local";
   fi
 
   if [ ! -n "$IS_OSX" ];
@@ -52,10 +54,8 @@ function pre_build
   wget http://www.ratml.org/misc/armadillo-9.400.4.tar.gz
   tar -xzpf armadillo-9.400.4.tar.gz
   cd armadillo-9.400.4/
-  cmake -DCMAKE_INSTALL_PREFIX=/usr .
+  cmake -DCMAKE_INSTALL_PREFIX=$install_prefix .
   make
-  echo "need sudo $need_sudo";
-  cat cmake_install.cmake
   $need_sudo make install
   cd ../
 
