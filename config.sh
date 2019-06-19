@@ -6,6 +6,12 @@ function pre_build
   # Do the mlpack build so the Python package is ready before the multibuild
   # starts.
 
+  need_sudo="";
+  if [ -n "$IS_OSX" ];
+  then
+    need_sudo="sudo";
+  fi
+
   if [ ! -n "$IS_OSX" ];
   then
     # We need to get mlpack dependencies.  We are root inside the container, and
@@ -48,7 +54,7 @@ function pre_build
   cd armadillo-9.400.4/
   cmake -DCMAKE_INSTALL_PREFIX=/usr .
   make
-  make install
+  $need_sudo make install
   cd ../
 
   # Install Python dependencies.
@@ -64,7 +70,7 @@ function pre_build
       -DBUILD_PYTHON_BINDINGS=ON \
       ../
   make -j2 python
-  make install
+  $need_sudo make install
 
   # Modify setup.py to reflect 'mlpack3' PyPI package name.
   sed -i "s/setup(name='mlpack'/setup(name='mlpack3'/" src/mlpack/bindings/python/setup.py
