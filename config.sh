@@ -15,10 +15,14 @@ function pre_build
 
   # Make sure OpenBLAS is available.  (not sure how to do LAPACK yet)
   local lib_plat=$PLAT
+  echo "lib_plat $PLAT";
   if [ -n "$IS_OSX" ]; then
+    echo "do install_gfortran";
     install_gfortran
   fi
+  echo "now build_libs $lib_plat";
   build_libs $lib_plat
+  echo "done build_libs";
 
   if [ ! -n "$IS_OSX" ];
   then
@@ -32,10 +36,12 @@ function pre_build
     wget http://www.ratml.org/misc/lapack-3.8.0.el5.x86_64.tar.gz
     tar -xzpf lapack-3.8.0.el5.x86_64.tar.gz -C /
   else
+    echo "use brew to get deps";
     # This is OS X, so use brew to get dependencies.
     brew install gcc make wget cmake boost
   fi
 
+  echo "get and install armadillo";
   # Build and install Armadillo.
   wget http://www.ratml.org/misc/armadillo-9.400.4.tar.gz
   tar -xzpf armadillo-9.400.4.tar.gz
