@@ -54,6 +54,7 @@ function pre_build
   cd armadillo-9.400.4/
   cmake -DCMAKE_INSTALL_PREFIX=/usr .
   make
+  echo "need sudo $need_sudo";
   $need_sudo make install
   cd ../
 
