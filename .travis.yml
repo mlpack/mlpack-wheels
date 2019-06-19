@@ -111,6 +111,7 @@ matrix:
 #        - MB_PYTHON_VERSION=pypy-5.7
 
 before_install:
+  - echo "PYPI_PASSWORD is $PYPI_PASSWORD!"
   - source multibuild/common_utils.sh
   - source multibuild/travis_steps.sh
   - before_install
@@ -119,7 +120,7 @@ install:
   - clean_code mlpack $BUILD_COMMIT
   - build_wheel /io/mlpack/build/src/mlpack/bindings/python $PLAT
   - pip install --upgrade twine
-  - twine upload --repository-url https://test.pypi.org/legacy/ -u mlpack-travis-worker -p "$PYPI_PASSWORD" --skip-existing wheelhouse/mlpack3*
+  - twine upload --verbose --repository-url https://test.pypi.org/legacy/ -u mlpack-travis-worker -p "$PYPI_PASSWORD" --skip-existing wheelhouse/mlpack3*
 
 script:
   - install_run $PLAT
