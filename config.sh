@@ -71,6 +71,8 @@ function pre_build
       -DBUILD_CLI_EXECUTABLES=OFF \
       -DBUILD_PYTHON_BINDINGS=ON \
       ../
+  echo "mlpack build directory:"
+  pwd
   make -j2 python
   $need_sudo make install
 
