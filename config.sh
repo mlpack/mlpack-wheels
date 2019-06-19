@@ -6,26 +6,35 @@ function pre_build
   # Do the mlpack build so the Python package is ready before the multibuild
   # starts.
 
-  # We need to get mlpack dependencies.  We are root inside the container, and
-  # this is RHEL5.
-  yum install -y wget make gcc-c++
+  if [ ! -n "$IS_OSX" ];
+  then
+    # We need to get mlpack dependencies.  We are root inside the container, and
+    # this is RHEL5.
+    yum install -y wget make gcc-c++
+  fi
 
   # Make sure OpenBLAS is available.  (not sure how to do LAPACK yet)
   local lib_plat=$PLAT
   if [ -n "$IS_OSX" ]; then
-      install_gfortran
+    install_gfortran
   fi
   build_libs $lib_plat
 
-  # Install RPMs that were manually made for this image.
-  wget http://www.ratml.org/misc/cmake-3.13.5-1.x86_64.rpm
-  rpm -ivh cmake-3.13.5-1.x86_64.rpm
-  wget http://www.ratml.org/misc/boost-1.70.0-1.x86_64.rpm
-  rpm -ivh boost-1.70.0-1.x86_64.rpm
+  if [ ! -n "$IS_OSX" ];
+  then
+    # Install RPMs that were manually made for this image.
+    wget http://www.ratml.org/misc/cmake-3.13.5-1.x86_64.rpm
+    rpm -ivh cmake-3.13.5-1.x86_64.rpm
+    wget http://www.ratml.org/misc/boost-1.70.0-1.x86_64.rpm
+    rpm -ivh boost-1.70.0-1.x86_64.rpm
 
-  # Install precompiled LAPACK (this is specific to this image).
-  wget http://www.ratml.org/misc/lapack-3.8.0.el5.x86_64.tar.gz
-  tar -xzpf lapack-3.8.0.el5.x86_64.tar.gz -C /
+    # Install precompiled LAPACK (this is specific to this image).
+    wget http://www.ratml.org/misc/lapack-3.8.0.el5.x86_64.tar.gz
+    tar -xzpf lapack-3.8.0.el5.x86_64.tar.gz -C /
+  else
+    # This is OS X, so use brew to get dependencies.
+    brew install gcc make wget cmake boost
+  fi
 
   # Build and install Armadillo.
   wget http://www.ratml.org/misc/armadillo-9.400.4.tar.gz
@@ -35,11 +44,6 @@ function pre_build
   make
   make install
   cd ../
-
-  # Debug: print Python info.
-  which pip
-  which python
-  python --version
 
   # Install Python dependencies.
   pip install setuptools numpy pandas Cython
