@@ -78,6 +78,7 @@ function pre_build
   echo "mlpack build directory:"
   pwd
   make -j2 python
+  echo "done building, now install";
   $need_sudo make install
 
   # Modify setup.py to reflect 'mlpack3' PyPI package name.
