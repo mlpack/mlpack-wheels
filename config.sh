@@ -22,7 +22,7 @@ function pre_build
   else
     echo "use brew to get deps";
     # This is OS X, so use brew to get dependencies.
-    brew install gcc make wget cmake boost
+    brew install gcc make wget cmake boost ccache
   fi
 
   # Make sure OpenBLAS is available.  (not sure how to do LAPACK yet)
@@ -74,6 +74,7 @@ function pre_build
       -DBUILD_TESTS=OFF \
       -DBUILD_CLI_EXECUTABLES=OFF \
       -DBUILD_PYTHON_BINDINGS=ON \
+      -DCMAKE_CXX_COMPILER_LAUNCHER=`which ccache` \
       ../
   echo "mlpack build directory:"
   pwd
