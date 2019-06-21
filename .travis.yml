@@ -84,36 +84,44 @@ matrix:
         - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
         - WHEELHOUSE_DIR=/Users/travis/build/mlpack/mlpack-wheels/wheelhouse/
 
-#    - os: osx
-#      env:
-#        - MB_PYTHON_VERSION=2.7
 
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.4
+        - MB_PYTHON_OSX_VER=10.9
+        - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
+        - WHEELHOUSE_DIR=/Users/travis/build/mlpack/mlpack-wheels/wheelhouse/
 
-#    - os: osx
-#      language: generic
-#      env:
-#        - MB_PYTHON_VERSION=3.4
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.5
+        - MB_PYTHON_OSX_VER=10.9
+        - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
+        - WHEELHOUSE_DIR=/Users/travis/build/mlpack/mlpack-wheels/wheelhouse/
 
-#    - os: osx
-#      language: generic
-#      env:
-#        - MB_PYTHON_VERSION=3.5
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.6
+        - MB_PYTHON_OSX_VER=10.9
+        - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
+        - WHEELHOUSE_DIR=/Users/travis/build/mlpack/mlpack-wheels/wheelhouse/
 
-#    - os: osx
-#      language: generic
-#      env:
-#        - MB_PYTHON_VERSION=3.6
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.7
+        - MB_PYTHON_OSX_VER=10.9
 
-#    - os: osx
-#      language: generic
-#      env:
-#        - MB_PYTHON_VERSION=3.7
-#        - MB_PYTHON_OSX_VER=10.9
-
-#    - os: osx
-#      language: generic
-#      env:
-#        - MB_PYTHON_VERSION=pypy-5.7
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=pypy-5.7
+        - MB_PYTHON_OSX_VER=10.9
+        - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
+        - WHEELHOUSE_DIR=/Users/travis/build/mlpack/mlpack-wheels/wheelhouse/
 
 before_install:
   - source multibuild/common_utils.sh
