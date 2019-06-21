@@ -122,6 +122,10 @@ install:
   - clean_code mlpack $BUILD_COMMIT
   - echo "$PLAT"
   - build_wheel $BUILD_DIR $PLAT
+  - cd ~
+  - ls
+  - find / -iname 'wheelhouse'
+  - ls wheelhouse/
   - pip install --upgrade twine
   - twine upload --verbose --repository-url https://test.pypi.org/legacy/ -u mlpack-travis-worker -p "$PYPI_PASSWORD" --skip-existing wheelhouse/mlpack3*
 
