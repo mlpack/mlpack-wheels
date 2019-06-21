@@ -114,6 +114,8 @@ matrix:
       env:
         - MB_PYTHON_VERSION=3.7
         - MB_PYTHON_OSX_VER=10.9
+        - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
+        - WHEELHOUSE_DIR=/Users/travis/build/mlpack/mlpack-wheels/wheelhouse/
 
     - os: osx
       language: generic
