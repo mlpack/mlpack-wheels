@@ -120,7 +120,7 @@ install:
   - build_wheel $BUILD_DIR $PLAT
   - pwd
   - pip install --upgrade twine
-  - twine upload --verbose --repository-url https://test.pypi.org/legacy/ -u mlpack-travis-worker -p "$PYPI_PASSWORD" --skip-existing $WHEELHOUSE_DIR/mlpack3*
+  - twine upload --verbose --repository-url -u mlpack-travis-worker -p "$PYPI_PASSWORD" --skip-existing $WHEELHOUSE_DIR/mlpack3*
 
 script:
   - cd $WHEELHOUSE_DIR/../
