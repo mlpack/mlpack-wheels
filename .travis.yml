@@ -7,7 +7,6 @@ env:
     - UNICODE_WIDTH=32
     - WHEELHOUSE_UPLOADER_USERNAME=mlpack-travis-worker
     - BUILD_DIR=/io/mlpack/build/src/mlpack/bindings/python/
-    - WHEELHOUSE_DIR=/home/travis/build/mlpack/mlpack-wheels/wheelhouse
     - secure: "k0mPQqseoLGpzDT03iMVw8m6noOKALGoZRLW4GKSeG4N4Jbx6YKP7VXpnbEixf0dbB8QzDoEWgmFbAhe16S7fSD5Oqn6edo+TouE9//691pQbzbxguaaGByibjjTweIWYvBBxQP/fCPFfegFnMaRI2HxzSbiBornN2PzpUT76pvKXKzT3UqP1ZGD0Fg3fhWOGcawJZA5HVUG+lKnmfBMUIfu/+u7SsYggEsEgq0be3PoxUuyz3tCBh++jntjN0jFLA5nO2+Y2O/fYdPoA0XHcXpQoWZg4v+NLwEMPFkolEWbFG0JXNlQktDOXrq/fXN6Z5KY2rfGC71PmqlAsgGIEasvCsFiZycuUNcwmVltHeOWZv0+EJBXXHIx9IbE/8XrzB89BYUGEquAbpTNjJJ4hzgId0nwVaCSU74SH6tJGU41gZsWVXUsiiy1oMBqrrQ/CWZWYeWfIPVgRCyX2O5faD/Kc3tvO7oCPuOEKgggJcA3FCu7itqXkT7p3dfGAixASH0LBizmEoAYISb6PY1UcTjOWo4XDSudbbwnrLMzt0UuO4zqa6h2yXnfShjE9p63ATqNy3OrWKz8H68nnJGV1bUyKpqWyJ1P1IakibaIwuCCn74fcmlfccKOYyt/ByS2hQyZtsYJWFJOr1IdKjLTAxEiWlMLUko1TxRH3Sp0UJ0="
 
 language: python
@@ -82,7 +81,6 @@ matrix:
         - MB_PYTHON_VERSION=2.7
         - MB_PYTHON_OSX_VER=10.9
         - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
-        - WHEELHOUSE_DIR=/Users/travis/build/mlpack/mlpack-wheels/wheelhouse/
 
 
     - os: osx
@@ -91,7 +89,6 @@ matrix:
         - MB_PYTHON_VERSION=3.6
         - MB_PYTHON_OSX_VER=10.9
         - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
-        - WHEELHOUSE_DIR=/Users/travis/build/mlpack/mlpack-wheels/wheelhouse/
 
     - os: osx
       language: generic
@@ -99,7 +96,6 @@ matrix:
         - MB_PYTHON_VERSION=3.7
         - MB_PYTHON_OSX_VER=10.9
         - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
-        - WHEELHOUSE_DIR=/Users/travis/build/mlpack/mlpack-wheels/wheelhouse/
 
 #    - os: osx
 #      language: generic
@@ -107,7 +103,6 @@ matrix:
 #        - MB_PYTHON_VERSION=pypy-5.7
 #        - MB_PYTHON_OSX_VER=10.9
 #        - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
-#        - WHEELHOUSE_DIR=/Users/travis/build/mlpack/mlpack-wheels/wheelhouse/
 
 before_install:
   - source multibuild/common_utils.sh
@@ -120,10 +115,10 @@ install:
   - build_wheel $BUILD_DIR $PLAT
   - pwd
   - pip install --upgrade twine
-  - twine upload --verbose --repository-url -u mlpack-travis-worker -p "$PYPI_PASSWORD" --skip-existing $WHEELHOUSE_DIR/mlpack3*
+  - twine upload --verbose -u mlpack-travis-worker -p "$PYPI_PASSWORD" --skip-existing ~/build/mlpack/mlpack-wheels//mlpack3*
 
 script:
-  - cd $WHEELHOUSE_DIR/../
+  - cd ~/build/mlpack/mlpack-wheels/
   - install_run $PLAT
 
 after_success:
