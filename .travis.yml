@@ -115,7 +115,7 @@ install:
   - build_wheel $BUILD_DIR $PLAT
   - pwd
   - pip install --upgrade twine
-  - twine upload --verbose -u mlpack-travis-worker -p "$PYPI_PASSWORD" --skip-existing ~/build/mlpack/mlpack-wheels//mlpack3*
+  - twine upload --verbose -u mlpack-travis-worker -p "$PYPI_PASSWORD" --skip-existing ~/build/mlpack/mlpack-wheels/wheelhouse/mlpack3*
 
 script:
   - cd ~/build/mlpack/mlpack-wheels/
