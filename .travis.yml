@@ -39,9 +39,9 @@ matrix:
 #        - PLAT=i686
 #        - UNICODE_WIDTH=16
 
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.4
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.4
 
 #    - os: linux
 #      env:
