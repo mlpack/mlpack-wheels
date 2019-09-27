@@ -83,7 +83,11 @@ function pre_build
   $need_sudo make install
 
   # Modify setup.py to reflect 'mlpack3' PyPI package name.
-  sed -i -e "s/setup(name='mlpack'/setup(name='mlpack3'/" src/mlpack/bindings/python/setup.py
+  if [ "a$PATCH" != "a1" ];
+  then
+    echo "patching name to mlpack3 (patch is $patch)"
+    sed -i -e "s/setup(name='mlpack'/setup(name='mlpack3'/" src/mlpack/bindings/python/setup.py
+  fi
 }
 
 function build_libs {
