@@ -85,9 +85,15 @@ function pre_build
   # Modify setup.py to reflect 'mlpack3' PyPI package name.
   if [ "a$PATCH" == "a1" ];
   then
-    echo "patching name to mlpack3 (patch is $patch)"
+    echo "patching name to mlpack3 (patch is $PATCH)"
     sed -i -e "s/setup(name='mlpack'/setup(name='mlpack3'/" src/mlpack/bindings/python/setup.py
+  else
+    echo "not patching name; patch is $PATCH"
   fi
+
+  # Make sure the directory is right to work around possible bdist_egg
+  # permission failure.
+  $use_sudo chmod -R 777 src/mlpack/bindings/python/
 }
 
 function build_libs {
