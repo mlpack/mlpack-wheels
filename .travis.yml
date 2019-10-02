@@ -115,6 +115,7 @@ before_install:
 
 install:
   - clean_code mlpack $BUILD_COMMIT
+  - chmod -R 777 $BUILD_DIR
   - PATCH=$PATCH && build_wheel $BUILD_DIR $PLAT
   - pwd
   - pip install --upgrade twine
