@@ -94,7 +94,7 @@ function pre_build
 
   # Make sure the directory is right to work around possible bdist_egg
   # permission failure.
-  $use_sudo chmod -R 777 src/mlpack/bindings/python/
+  $need_sudo chmod -R 777 src/mlpack/bindings/python/
 }
 
 function build_libs {
