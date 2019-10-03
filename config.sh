@@ -64,6 +64,7 @@ function pre_build
 
   # Finally let's go ahead and build mlpack.
   cd mlpack/
+  source patch-info.sh
   # Hacky patch: use cmake -E copy_if_different not cmake -E copy for Python
   # files, so it doesn't recompile with different options during the install.
   sed -i -e "s/-E copy/-E copy_if_different/g" \
