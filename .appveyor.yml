@@ -1,0 +1,118 @@
+# This is based on the NumPy AppVeyor config for multibuild.  Thanks, NumPy
+# maintainers!
+
+environment:
+  global:
+      MINGW_32: C:\mingw-w64\i686-6.3.0-posix-dwarf-rt_v5-rev1\mingw32\bin
+      MINGW_64: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin
+      OPENBLAS_32: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win32-gcc_7_1_0.zip"
+      OPENBLAS_64: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win_amd64-gcc_7_1_0.zip"
+
+      CYTHON_BUILD_DEP: Cython
+      TEST_MODE: fast
+      APPVEYOR_SAVE_CACHE_ON_ERROR: true
+      APPVEYOR_SKIP_FINALIZE_ON_EXIT: true
+      WHEELHOUSE_UPLOADER_USERNAME: travis-worker
+      WHEELHOUSE_UPLOADER_SECRET:
+        secure:
+            9s0gdDGnNnTt7hvyNpn0/ZzOMGPdwPp2SewFTfGzYk7uI+rdAN9rFq2D1gAP4NQh
+      BUILD_COMMIT: ff3df08438d570b0ccdda3f8a008278d8a4ad394
+      DAILY_COMMIT: master
+
+  matrix:
+    - PYTHON: C:\Python36
+      PYTHON_VERSION: 3.6
+      PYTHON_ARCH: 32
+
+    - PYTHON: C:\Python36-x64
+      PYTHON_VERSION: 3.6
+      PYTHON_ARCH: 64
+
+    - PYTHON: C:\Python37
+      PYTHON_VERSION: 3.7
+      PYTHON_ARCH: 32
+
+    - PYTHON: C:\Python37-x64
+      PYTHON_VERSION: 3.7
+      PYTHON_ARCH: 64
+
+    - PYTHON: C:\Python38
+      PYTHON_VERSION: 3.8
+      PYTHON_ARCH: 32
+
+    - PYTHON: C:\Python38-x64
+      PYTHON_VERSION: 3.8
+      PYTHON_ARCH: 64
+
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+  - "ECHO \"%APPVEYOR_SCHEDULED_BUILD%\""
+  # TODO: I bet this can be removed because we only build for releases
+  - ps: >-
+      if ($env:APPVEYOR_REPO_BRANCH -eq "master") {
+        $env:CONTAINER = "pre-release"
+        if ($env:DAILY_COMMIT) { $env:BUILD_COMMIT = $env:DAILY_COMMIT }
+      } else {
+        $env:CONTAINER = "wheels"
+        $env:UPLOAD_ARGS = "--no-update-index"
+      }
+
+install:
+  - cmd: echo "Filesystem root:"
+  - dir C:\
+
+  - echo "Installed SDKs:"
+  - dir "C:/Program Files/Microsoft SDKs/Windows"
+
+  # Get needed submodules
+  - git submodule update --init
+
+  # Install new Python if necessary
+  - ps: .\multibuild\install_python.ps1
+
+  # Prepend required Python to the PATH of this build (this cannot be
+  # done from inside the powershell script as it would require to restart
+  # the parent CMD process).
+  - SET PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
+
+  # Check that we have the expected version and architecture for Python
+  - python --version
+  - >-
+     python -c "import sys,platform,struct;
+     print(sys.platform, platform.machine(), struct.calcsize('P') * 8, )"
+  # Download and install static "openblas.a" to PYTHON\lib
+  - ps: |
+      $PYTHON_ARCH = $env:PYTHON_ARCH
+      $PYTHON = $env:PYTHON
+      If ($PYTHON_ARCH -eq 32) {
+          $OPENBLAS = $env:OPENBLAS_32
+      } Else {
+          $OPENBLAS = $env:OPENBLAS_64
+      }
+      $clnt = new-object System.Net.WebClient
+      $file = "$(New-TemporaryFile).zip"
+      $tmpdir = New-TemporaryFile | %{ rm $_; mkdir $_ }
+      $destination = "$PYTHON\lib\openblas.a"
+      echo $file
+      echo $tmpdir
+      echo $OPENBLAS
+      $clnt.DownloadFile($OPENBLAS,$file)
+      Expand-Archive $file $tmpdir
+      rm $tmpdir\$PYTHON_ARCH\lib\*.dll.a
+      $lib = ls $tmpdir\$PYTHON_ARCH\lib\*.a | ForEach { ls $_ } | Select-Object -first 1
+      echo $lib
+      cp $lib $destination
+      ls $destination
+  # Upgrade to the latest pip, setuptools, and wheel.
+  - python -m pip install -U pip setuptools wheel
+
+  # Install build requirements.
+  - pip install "%CYTHON_BUILD_DEP%" --install-option="--no-cython-compile"
+  - pip install numpy pandas
+
+build_script:
+  - cd mlpack/
+  - git checkout %BUILD_COMMIT%
+  - mkdir build/
+  - cmake -DDEBUG=OFF -DPROFILE=OFF -DBUILD_PYTHON_BINDINGS=ON -DPYTHON_EXECUTABLE=%PYTHON%/python.exe ../
+  - make -j4
