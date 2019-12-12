@@ -111,8 +111,10 @@ install:
   - pip install numpy pandas
 
 build_script:
-  - cd mlpack/
-  - git checkout %BUILD_COMMIT%
-  - mkdir build/
-  - cmake -DDEBUG=OFF -DPROFILE=OFF -DBUILD_PYTHON_BINDINGS=ON -DPYTHON_EXECUTABLE=%PYTHON%/python.exe ../
-  - make -j4
+  - ps: |
+      cd mlpack/
+      git checkout %BUILD_COMMIT%
+      md -Name build/
+      cd build
+      cmake -DDEBUG=OFF -DPROFILE=OFF -DBUILD_PYTHON_BINDINGS=ON -DPYTHON_EXECUTABLE=%PYTHON%/python.exe ../
+      make -j4
