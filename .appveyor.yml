@@ -7,6 +7,7 @@ environment:
       MINGW_64: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin
       OPENBLAS_32: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win32-gcc_7_1_0.zip"
       OPENBLAS_64: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win_amd64-gcc_7_1_0.zip"
+      ARMADILLO_SRC: "https://sourceforge.net/projects/arma/files/armadillo-9.800.3.tar.xz"
 
       CYTHON_BUILD_DEP: Cython
       TEST_MODE: fast
@@ -110,7 +111,41 @@ install:
   - pip install "%CYTHON_BUILD_DEP%" --install-option="--no-cython-compile"
   - pip install numpy pandas
 
+  - ps: nuget install boost -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+  - ps: >
+      nuget install boost_unit_test_framework-vc140
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+  - ps: >
+      nuget install boost_program_options-vc140
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+  - ps: >
+      nuget install boost_random-vc140
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+  - ps: >
+      nuget install boost_serialization-vc140
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+  - ps: >
+      nuget install boost_math_c99-vc140
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+
 build_script:
+  - >
+    appveyor DownloadFile %ARMADILLO_SRC%
+    -FileName armadillo.tar.xz
+  - 7z x armadillo.tar.xz -so -txz | 7z x -si -ttar > nul
+  - cd armadillo-8.400.0 && mkdir build && cd build
+  - >
+    cmake -G "%VSVER%"
+    -DBLAS_LIBRARY:FILEPATH=%BLAS_LIBRARY%
+    -DLAPACK_LIBRARY:FILEPATH=%BLAS_LIBRARY%
+    -DCMAKE_PREFIX:FILEPATH="%APPVEYOR_BUILD_FOLDER%/armadillo"
+    -DBUILD_SHARED_LIBS=OFF
+    -DCMAKE_BUILD_TYPE=Release ..
+  - >
+    "%MSBUILD%" "C:\projects\mlpack\armadillo-8.400.0\build\armadillo.sln"
+    /m /verbosity:quiet /p:Configuration=Release;Platform=x64
+  - cd ../..
+
   - ps: |
       cd mlpack/
       git checkout %BUILD_COMMIT%
