@@ -136,13 +136,15 @@ build_script:
   - cd armadillo-9.800.3 && mkdir build && cd build
   - >
     cmake
-    -DBLAS_LIBRARY:FILEPATH="$PYTHON/lib/openblas.a"
-    -DLAPACK_LIBRARY:FILEPATH="$PYTHON/lib/openblas.a"
+    -DBLAS_LIBRARY:FILEPATH="%PYTHON%/lib/openblas.a"
+    -DLAPACK_LIBRARY:FILEPATH="%PYTHON%/lib/openblas.a"
     -DBUILD_SHARED_LIBS=OFF
-    -DCMAKE_BUILD_TYPE=Release ..
+    -DCMAKE_BUILD_TYPE=Release
+    -G "Unix Makefiles"
+    ..
   - make
   - dir
-  - copy libarmadillo.a "$PYTHON/lib/"
+  - copy libarmadillo.a "%PYTHON%/lib/"
   - cd ../..
 
   - ps: |
