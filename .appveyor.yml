@@ -143,6 +143,8 @@ build_script:
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_CXX_COMPILER="%MINGW_64%/g++.exe"
     -DCMAKE_C_COMPILER="%MINGW_64%/gcc.exe"
+    -DCMAKE_MAKE_PROGRAM="%MINGW_64%/mingw32-make.exe"
+    -DCMAKE_AR="%MINGW_64%/ar.exe"
     -G "MSYS Makefiles"
     ..
   - "%MINGW_64%/mingw32-make.exe"
