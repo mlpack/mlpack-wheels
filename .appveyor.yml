@@ -135,15 +135,14 @@ build_script:
   - 7z x armadillo.tar.xz -so -txz | 7z x -si -ttar > nul
   - cd armadillo-9.800.3 && mkdir build && cd build
   - >
-    cmake -G "%VSVER%"
-    -DBLAS_LIBRARY:FILEPATH=%BLAS_LIBRARY%
-    -DLAPACK_LIBRARY:FILEPATH=%BLAS_LIBRARY%
-    -DCMAKE_PREFIX:FILEPATH="%APPVEYOR_BUILD_FOLDER%/armadillo"
+    cmake
+    -DBLAS_LIBRARY:FILEPATH="$PYTHON/lib/openblas.a"
+    -DLAPACK_LIBRARY:FILEPATH="$PYTHON/lib/openblas.a"
     -DBUILD_SHARED_LIBS=OFF
     -DCMAKE_BUILD_TYPE=Release ..
-  - >
-    "%MSBUILD%" "C:\projects\mlpack\armadillo-8.400.0\build\armadillo.sln"
-    /m /verbosity:quiet /p:Configuration=Release;Platform=x64
+  - make
+  - dir
+  - copy libarmadillo.a "$PYTHON/lib/"
   - cd ../..
 
   - ps: |
