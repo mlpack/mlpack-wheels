@@ -60,7 +60,7 @@ init:
 
 install:
   - cmd: echo "Filesystem root:"
-  - dir C:/
+  - dir C:\
 
   - echo "Installed SDKs:"
   - dir "C:/Program Files/Microsoft SDKs/Windows"
