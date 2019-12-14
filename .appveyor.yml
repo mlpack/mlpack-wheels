@@ -134,7 +134,6 @@ build_script:
     -FileName armadillo.tar.xz
   - 7z x armadillo.tar.xz -so -txz | 7z x -si -ttar > nul
   - cd armadillo-9.800.3 && mkdir build && cd build
-  - dir %MINGW_64%
   - >
     cmake
     -DBLAS_LIBRARY:FILEPATH="%PYTHON%/lib/openblas.a"
