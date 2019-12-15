@@ -146,8 +146,8 @@ build_script:
     -DCMAKE_AR="%MINGW_64%/ar.exe"
     -G "MSYS Makefiles"
     .. & exit 0
-  - type CMakeError.log
-  - type CMakeOutput.log
+  - type CMakeFiles\CMakeError.log
+  - type CMakeFiles\CMakeOutput.log
   - exit 1
   - "%MINGW_64%/mingw32-make.exe"
   - dir
