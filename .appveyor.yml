@@ -157,7 +157,7 @@ build_script:
     -DPROFILE=OFF
     -DBUILD_PYTHON_BINDINGS=ON
     -DPYTHON_EXECUTABLE=%PYTHON%/python.exe
-    -DARMADILLO_INCLUDE_DIR=../../armadillo-9.800.3/build/tmp/include/
+    -DARMADILLO_INCLUDE_DIR=../../armadillo-9.800.3/include/
     -DARMADILLO_LIBRARY=%PYTHON%/lib/libarmadillo.a
     ../
   - "%MINGW_64%/mingw32-make.exe"
