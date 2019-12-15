@@ -8,8 +8,7 @@ environment:
       OPENBLAS_32: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win32-gcc_7_1_0.zip"
       OPENBLAS_64: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win_amd64-gcc_7_1_0.zip"
       ARMADILLO_SRC: "https://sourceforge.net/projects/arma/files/armadillo-9.800.3.tar.xz"
-      BOOST_SRC: "https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_60_0.7z"
-
+      BOOST_SRC: "http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.7z"
       CYTHON_BUILD_DEP: Cython
       TEST_MODE: fast
       APPVEYOR_SAVE_CACHE_ON_ERROR: true
