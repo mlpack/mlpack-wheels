@@ -134,16 +134,21 @@ build_script:
     -FileName armadillo.tar.xz
   - 7z x armadillo.tar.xz -so -txz | 7z x -si -ttar > nul
   - cd armadillo-9.800.3 && mkdir build && cd build
+  - ps: |
+      $PYTHON_ARCH = $env:PYTHON_ARCH
+      If ($PYTHON_ARCH -eq 32) {
+          $MINGW = $env:MINGW_32
+      } Else {
+          $MINGW = $env:MINGW_64
+      }
+      $env:Path += ";$MINGW"
+      $env:NPY_NUM_BUILD_JOBS = "4"
   - >
     cmake
     -DBLAS_LIBRARY:FILEPATH="%PYTHON%/lib/openblas.a"
     -DLAPACK_LIBRARY:FILEPATH="%PYTHON%/lib/openblas.a"
     -DBUILD_SHARED_LIBS=OFF
     -DCMAKE_BUILD_TYPE=Release
-    -DCMAKE_CXX_COMPILER="%MINGW_64%/g++.exe"
-    -DCMAKE_C_COMPILER="%MINGW_64%/gcc.exe"
-    -DCMAKE_MAKE_PROGRAM="%MINGW_64%/mingw32-make.exe"
-    -DCMAKE_AR="%MINGW_64%/ar.exe"
     -G "MSYS Makefiles"
     .. & exit 0
   - type CMakeFiles\CMakeError.log
