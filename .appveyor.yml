@@ -147,9 +147,9 @@ build_script:
   - cd ../
 
   # Finally build mlpack.
-  - cd mlpack/
+  - cd mlpack
   - git checkout %BUILD_COMMIT%
-  - mkdir build/
+  - mkdir build
   - cd build
   - >
     cmake
@@ -161,6 +161,7 @@ build_script:
     -DARMADILLO_LIBRARY=%PYTHON%/lib/libarmadillo.a
     -DLAPACK_LIBRARY=%PYTHON%/lib/openblas.a
     -DBLAS_LIBRARY=%PYTHON%/lib/openblas.a
+    -DBOOST_ROOT=../boost_1_72_0/
     -G "MinGW Makefiles"
     ../
   - "%MINGW_64%/mingw32-make.exe"
