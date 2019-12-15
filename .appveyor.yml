@@ -8,6 +8,7 @@ environment:
       OPENBLAS_32: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win32-gcc_7_1_0.zip"
       OPENBLAS_64: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win_amd64-gcc_7_1_0.zip"
       ARMADILLO_SRC: "https://sourceforge.net/projects/arma/files/armadillo-9.800.3.tar.xz"
+      BOOST_SRC: "https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.7z"
 
       CYTHON_BUILD_DEP: Cython
       TEST_MODE: fast
@@ -110,29 +111,15 @@ install:
   - pip install "%CYTHON_BUILD_DEP%" --install-option="--no-cython-compile"
   - pip install numpy pandas
 
-  - ps: nuget install boost -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
-  - ps: >
-      nuget install boost_unit_test_framework-vc140
-      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
-  - ps: >
-      nuget install boost_program_options-vc140
-      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
-  - ps: >
-      nuget install boost_random-vc140
-      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
-  - ps: >
-      nuget install boost_serialization-vc140
-      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
-  - ps: >
-      nuget install boost_math_c99-vc140
-      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
-
 build_script:
+  # Build Armadillo.
   - >
     appveyor DownloadFile %ARMADILLO_SRC%
     -FileName armadillo.tar.xz
   - 7z x armadillo.tar.xz -so -txz | 7z x -si -ttar > nul
-  - cd armadillo-9.800.3 && mkdir build && cd build
+  - cd armadillo-9.800.3
+  - mkdir build
+  - cd build
   - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
   - set PATH=%MINGW_64%;%PATH%
   - >
@@ -147,9 +134,22 @@ build_script:
   - dir
   - copy libarmadillo.a "%PYTHON%/lib/"
   - cd ../..
+
+  # Build boost.
+  - >
+    appveyor DownloadFile %BOOST_SRC%
+    -FileName boost.tar.7z
+  - 7z x boost.tar.7z -t7z
+  - cd boost_1_72_0
+  - bootstrap.bat mingw -with-libraries=math,program_options,serialization,test
+  - b2 toolset=gcc
+  - dir
+  - cd ../
+
+  # Finally build mlpack.
   - cd mlpack/
   - git checkout %BUILD_COMMIT%
-  - ps: md -Name build/
+  - mkdir build/
   - cd build
   - >
     cmake
