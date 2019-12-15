@@ -144,9 +144,6 @@ build_script:
     -DCMAKE_BUILD_TYPE=Release
     -G "MinGW Makefiles"
     .. & exit 0
-  - type CMakeFiles\CMakeError.log
-  - type CMakeFiles\CMakeOutput.log
-  - exit 1
   - "%MINGW_64%/mingw32-make.exe"
   - dir
   - copy libarmadillo.a "%PYTHON%/lib/"
