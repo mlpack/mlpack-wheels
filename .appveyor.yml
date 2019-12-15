@@ -134,7 +134,7 @@ build_script:
     -FileName armadillo.tar.xz
   - 7z x armadillo.tar.xz -so -txz | 7z x -si -ttar > nul
   - cd armadillo-9.800.3 && mkdir build && cd build
-  - set PATH=%PATH:C:\Program Files (x86)\Git\bin;=%
+  - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
   - set PATH=%MINGW_64%;%PATH%
   - >
     cmake
