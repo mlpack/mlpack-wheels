@@ -145,7 +145,10 @@ build_script:
     -DCMAKE_MAKE_PROGRAM="%MINGW_64%/mingw32-make.exe"
     -DCMAKE_AR="%MINGW_64%/ar.exe"
     -G "MSYS Makefiles"
-    ..
+    .. && exit 0
+  - type CMakeError.log
+  - type CMakeOutput.log
+  - exit 1
   - "%MINGW_64%/mingw32-make.exe"
   - dir
   - copy libarmadillo.a "%PYTHON%/lib/"
