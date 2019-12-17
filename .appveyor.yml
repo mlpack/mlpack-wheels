@@ -141,8 +141,8 @@ build_script:
   - 7z x boost.tar.7z -t7z
   - cd boost_1_60_0
   - bootstrap.bat mingw
-  - b2 --help
-  - b2 toolset=gcc -with-libraries=math,program_options,serialization,test
+  - b2 toolset=gcc --with-math --with-program_options --with-serialization
+    --with-test
   - dir
   - cd ../
 
