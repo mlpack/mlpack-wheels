@@ -144,7 +144,9 @@ build_script:
   - b2 toolset=gcc --with-math --with-program_options --with-serialization
     --with-test
   - cd stage
+  - cd lib
   - dir
+  - cd ..
   - cd ..
   - cd ../
 
