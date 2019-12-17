@@ -143,7 +143,9 @@ build_script:
   - bootstrap.bat mingw
   - b2 toolset=gcc --with-math --with-program_options --with-serialization
     --with-test
+  - cd libs
   - dir
+  - cd ..
   - cd ../
 
   # Finally build mlpack.
