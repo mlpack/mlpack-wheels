@@ -110,6 +110,24 @@ install:
   - pip install "%CYTHON_BUILD_DEP%" --install-option="--no-cython-compile"
   - pip install numpy pandas
 
+  # Download boost for Visual Studio.
+  - ps: nuget install boost -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+  - ps: >
+      nuget install boost_unit_test_framework-vc140
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+  - ps: >
+      nuget install boost_program_options-vc140
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+  - ps: >
+      nuget install boost_random-vc140
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+  - ps: >
+      nuget install boost_serialization-vc140
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+  - ps: >
+      nuget install boost_math_c99-vc140
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+
 build_script:
   # Build Armadillo.
   - >
@@ -133,22 +151,6 @@ build_script:
   - dir
   - copy libarmadillo.a "%PYTHON%/lib/"
   - cd ../..
-
-  # Build boost.
-  - >
-    appveyor DownloadFile %BOOST_SRC%
-    -FileName boost.tar.7z
-  - 7z x boost.tar.7z -t7z
-  - cd boost_1_60_0
-  - bootstrap.bat
-  - b2 toolset=gcc --with-math --with-program_options --with-serialization
-    --with-test
-  - cd stage
-  - cd lib
-  - dir
-  - cd ..
-  - cd ..
-  - cd ../
 
   # Finally build mlpack.
   - cd mlpack
