@@ -195,6 +195,6 @@ build_script:
     -DBOOST_ROOT=../boost_1_60_0/
     ../
   - >
-    "%MSBUILD%" "mlpack.sln"
+    MSBuild mlpack.sln
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release;Platform=x64
