@@ -194,6 +194,7 @@ build_script:
     -DBLAS_LIBRARY=%PYTHON%/lib/openblas.a
     -DBOOST_ROOT=../boost_1_60_0/
     ../
-  - "%MSBUILD%" "mlpack.sln"
+  - >
+    "%MSBUILD%" "mlpack.sln"
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release;Platform=x64
