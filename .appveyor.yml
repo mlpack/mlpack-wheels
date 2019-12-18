@@ -183,6 +183,8 @@ build_script:
     -DDEBUG=OFF
     -DPROFILE=OFF
     -DBUILD_PYTHON_BINDINGS=ON
+    -DBUILD_CLI_EXECUTABLES=OFF
+    -DBUILD_TESTS=OFF
     -DPYTHON_EXECUTABLE=%PYTHON%/python.exe
     -DARMADILLO_INCLUDE_DIR=../../armadillo-9.800.3/include/
     -DARMADILLO_LIBRARY=%PYTHON%/lib/libarmadillo.a
@@ -191,6 +193,7 @@ build_script:
     -DLAPACK_LIBRARY=%PYTHON%/lib/openblas.a
     -DBLAS_LIBRARY=%PYTHON%/lib/openblas.a
     -DBOOST_ROOT=../boost_1_60_0/
-    -G "MinGW Makefiles"
     ../
-  - "%MINGW_64%/mingw32-make.exe"
+  - "%MSBUILD%" "mlpack.sln"
+    /m /verbosity:minimal /nologo /p:BuildInParallel=true
+    /p:Configuration=Release;Platform=x64
