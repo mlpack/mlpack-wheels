@@ -8,7 +8,16 @@ environment:
       OPENBLAS_32: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win32-gcc_7_1_0.zip"
       OPENBLAS_64: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win_amd64-gcc_7_1_0.zip"
       ARMADILLO_SRC: "https://sourceforge.net/projects/arma/files/armadillo-9.800.3.tar.xz"
-      BOOST_SRC: "http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.7z"
+      BOOST_PROG_OPTION : "C:/projects/mlpack-wheels/\
+      boost_program_options-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
+      BOOST_MATH : "C:/projects/mlpack-wheels/\
+      boost_math_c99-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
+      BOOST_RANDOM : "C:/projects/mlpack-wheels/\
+      boost_random-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
+      BOOST_SERIALIZATION : "C:/projects/mlpack-wheels/\
+      boost_serialization-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
+      BOOST_UNIT_TEST : "C:/projects/mlpack-wheels/\
+      boost_unit_test_framework-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
       CYTHON_BUILD_DEP: Cython
       TEST_MODE: fast
       APPVEYOR_SAVE_CACHE_ON_ERROR: true
@@ -128,6 +137,14 @@ install:
       nuget install boost_math_c99-vc140
       -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
 
+  - mkdir boost_libs
+  - ps: cp ${env:BOOST_PROG_OPTION} boost_libs\
+  - ps: cp ${env:BOOST_MATH} boost_libs\
+  - ps: cp ${env:BOOST_RANDOM} boost_libs\
+  - ps: cp ${env:BOOST_SERIALIZATION} boost_libs\
+  - ps: cp ${env:BOOST_UNIT_TEST} boost_libs\
+
+
 build_script:
   # Build Armadillo.
   - >
@@ -165,6 +182,8 @@ build_script:
     -DPYTHON_EXECUTABLE=%PYTHON%/python.exe
     -DARMADILLO_INCLUDE_DIR=../../armadillo-9.800.3/include/
     -DARMADILLO_LIBRARY=%PYTHON%/lib/libarmadillo.a
+    -DBOOST_INCLUDEDIR=%APPVEYOR_BUILD_FOLDER%/boost.1.60.0.0/lib/native/include/
+    -DBOOST_LIBRARYDIR=%APPVEYOR_BUILD_FOLDER%/boost_libs/
     -DLAPACK_LIBRARY=%PYTHON%/lib/openblas.a
     -DBLAS_LIBRARY=%PYTHON%/lib/openblas.a
     -DBOOST_ROOT=../boost_1_60_0/
