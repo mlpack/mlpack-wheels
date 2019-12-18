@@ -169,7 +169,6 @@ build_script:
     -G "MinGW Makefiles"
     ..
   - "%MINGW_64%/mingw32-make.exe"
-  - dir
   - copy libarmadillo.a "%PYTHON%/lib/"
   - cd ../..
 
