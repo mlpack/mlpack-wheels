@@ -143,6 +143,10 @@ install:
   - ps: cp ${env:BOOST_RANDOM} boost_libs\
   - ps: cp ${env:BOOST_SERIALIZATION} boost_libs\
   - ps: cp ${env:BOOST_UNIT_TEST} boost_libs\
+  - cd boost_libs
+  - dir
+  - pwd
+  - cd ..
 
 
 build_script:
