@@ -197,4 +197,4 @@ build_script:
   - >
     MSBuild mlpack.sln
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
-    /p:Configuration=Release;Platform=x64
+    /p:Configuration=Release;Platform=x86
