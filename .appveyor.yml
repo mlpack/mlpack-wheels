@@ -27,6 +27,7 @@ environment:
         secure:
             9s0gdDGnNnTt7hvyNpn0/ZzOMGPdwPp2SewFTfGzYk7uI+rdAN9rFq2D1gAP4NQh
       BUILD_COMMIT: 3.2.2
+      BLAS_LIBRARY : "%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a"
 
   matrix:
     - PYTHON: C:/Python36
@@ -137,6 +138,8 @@ install:
       nuget install boost_math_c99-vc140
       -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
 
+  - ps: nuget install OpenBLAS -o "${env:APPVEYOR_BUILD_FOLDER}"
+
   - mkdir boost_libs
   - ps: cp ${env:BOOST_PROG_OPTION} boost_libs\
   - ps: cp ${env:BOOST_MATH} boost_libs\
@@ -162,14 +165,17 @@ build_script:
   - set PATH=%MINGW_64%;%PATH%
   - >
     cmake
-    -DBLAS_LIBRARY:FILEPATH="%PYTHON%/lib/openblas.a"
-    -DLAPACK_LIBRARY:FILEPATH="%PYTHON%/lib/openblas.a"
+    -DBLAS_LIBRARY:FILEPATH="%BLAS_LIBRARY%"
+    -DLAPACK_LIBRARY:FILEPATH="%BLAS_LIBRARY%"
     -DBUILD_SHARED_LIBS=OFF
     -DCMAKE_BUILD_TYPE=Release
-    -G "MinGW Makefiles"
     ..
-  - "%MINGW_64%/mingw32-make.exe"
-  - copy libarmadillo.a "%PYTHON%/lib/"
+#    -G "MinGW Makefiles"
+#  - "%MINGW_64%/mingw32-make.exe"
+  - >
+    "%MSBUILD%" "armadillo.sln" /m /verbosity:quiet
+    /p:Configuration=Release;Platform=x64
+  - copy Release/libarmadillo.a "%PYTHON%/lib/"
   - cd ../..
 
   # Finally build mlpack.
@@ -189,8 +195,8 @@ build_script:
     -DARMADILLO_LIBRARY=%PYTHON%/lib/libarmadillo.a
     -DBOOST_INCLUDEDIR=%APPVEYOR_BUILD_FOLDER%/boost.1.60.0.0/lib/native/include/
     -DBOOST_LIBRARYDIR=%APPVEYOR_BUILD_FOLDER%/boost_libs/
-    -DLAPACK_LIBRARY=%PYTHON%/lib/openblas.a
-    -DBLAS_LIBRARY=%PYTHON%/lib/openblas.a
+    -DLAPACK_LIBRARY=%BLAS_LIBRARY%
+    -DBLAS_LIBRARY=%BLAS_LIBRARY%
     -DBOOST_ROOT=../boost_1_60_0/
     -DUSE_OPENMP=OFF
     ../
