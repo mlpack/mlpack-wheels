@@ -167,7 +167,6 @@ build_script:
     cmake
     -DBLAS_LIBRARY:FILEPATH="%BLAS_LIBRARY%"
     -DLAPACK_LIBRARY:FILEPATH="%BLAS_LIBRARY%"
-    -DBUILD_SHARED_LIBS=OFF
     -DCMAKE_BUILD_TYPE=Release
     ..
 #    -G "MinGW Makefiles"
@@ -175,7 +174,7 @@ build_script:
   - >
     MSBuild armadillo.sln /m /verbosity:quiet
     /p:Configuration=Release
-  - copy Release/libarmadillo.a "%PYTHON%/lib/"
+  - copy Release/armadillo.lib "%PYTHON%/lib/"
   - cd ../..
 
   # Finally build mlpack.
@@ -189,11 +188,10 @@ build_script:
     -DPROFILE=OFF
     -DBUILD_PYTHON_BINDINGS=ON
     -DBUILD_CLI_EXECUTABLES=OFF
-    -DBUILD_SHARED_LIBS=OFF
     -DBUILD_TESTS=OFF
     -DPYTHON_EXECUTABLE=%PYTHON%/python.exe
     -DARMADILLO_INCLUDE_DIR=../../armadillo-9.800.3/include/
-    -DARMADILLO_LIBRARY=%PYTHON%/lib/libarmadillo.a
+    -DARMADILLO_LIBRARY=%PYTHON%/lib/armadillo.lib
     -DBOOST_INCLUDEDIR=%APPVEYOR_BUILD_FOLDER%/boost.1.60.0.0/lib/native/include/
     -DBOOST_LIBRARYDIR=%APPVEYOR_BUILD_FOLDER%/boost_libs/
     -DLAPACK_LIBRARY=%BLAS_LIBRARY%
