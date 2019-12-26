@@ -173,7 +173,7 @@ build_script:
 #    -G "MinGW Makefiles"
 #  - "%MINGW_64%/mingw32-make.exe"
   - >
-    "%MSBUILD%" "armadillo.sln" /m /verbosity:quiet
+    MSBuild armadillo.sln /m /verbosity:quiet
     /p:Configuration=Release;Platform=x64
   - copy Release/libarmadillo.a "%PYTHON%/lib/"
   - cd ../..
