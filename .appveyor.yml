@@ -174,7 +174,7 @@ build_script:
 #  - "%MINGW_64%/mingw32-make.exe"
   - >
     MSBuild armadillo.sln /m /verbosity:quiet
-    /p:Configuration=Release;Platform=x64
+    /p:Configuration=Release
   - copy Release/libarmadillo.a "%PYTHON%/lib/"
   - cd ../..
 
