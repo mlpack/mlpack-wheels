@@ -25,7 +25,7 @@ environment:
       BLAS_LIBRARY : "%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a"
 
   matrix:
-    - PYTHON: C:/Python36
+    - PYTHON: C:/Python36-x64
       PYTHON_VERSION: 3.6
       PYTHON_ARCH: 64
 
@@ -157,7 +157,7 @@ build_script:
   - mkdir build
   - cd build
   - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
-  - set PATH=%MINGW_64%;%PATH%
+#  - set PATH=%MINGW_64%;%PATH%
   - >
     cmake
     -DBLAS_LIBRARY:FILEPATH="%BLAS_LIBRARY%"
