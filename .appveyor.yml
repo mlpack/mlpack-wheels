@@ -194,6 +194,7 @@ build_script:
     -DBLAS_LIBRARY=%BLAS_LIBRARY%
     -DBOOST_ROOT=../boost_1_60_0/
     -DUSE_OPENMP=OFF
+    -DBUILD_TESTS=ON
     -G "Visual Studio 14 2015 Win64"
     ../
   - >
