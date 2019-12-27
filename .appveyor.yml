@@ -202,4 +202,4 @@ build_script:
     /p:Configuration=Release
 
   # Now attempt to run Python tests...
-  - ctest .
+  - ctest -C Release .
