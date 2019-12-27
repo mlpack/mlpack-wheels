@@ -200,3 +200,6 @@ build_script:
     MSBuild mlpack.sln
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release
+
+  # Now attempt to run Python tests...
+  - ctest .
