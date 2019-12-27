@@ -202,5 +202,5 @@ build_script:
     /p:Configuration=Release
 
   - cd src/mlpack/bindings/python/
-  - %PYTHON% setup.py bdist_wheel
+  - ps: ${env:PYTHON} setup.py bdist_wheel
 
