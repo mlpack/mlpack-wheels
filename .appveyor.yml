@@ -163,6 +163,7 @@ build_script:
     -DBLAS_LIBRARY:FILEPATH="%BLAS_LIBRARY%"
     -DLAPACK_LIBRARY:FILEPATH="%BLAS_LIBRARY%"
     -DCMAKE_BUILD_TYPE=Release
+    -G "Visual Studio 14 2015 Win64"
     ..
 #    -G "MinGW Makefiles"
 #  - "%MINGW_64%/mingw32-make.exe"
@@ -193,6 +194,7 @@ build_script:
     -DBLAS_LIBRARY=%BLAS_LIBRARY%
     -DBOOST_ROOT=../boost_1_60_0/
     -DUSE_OPENMP=OFF
+    -G "Visual Studio 14 2015 Win64"
     ../
   - >
     MSBuild mlpack.sln
