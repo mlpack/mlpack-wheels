@@ -194,7 +194,6 @@ build_script:
     -DBLAS_LIBRARY=%BLAS_LIBRARY%
     -DBOOST_ROOT=../boost_1_60_0/
     -DUSE_OPENMP=OFF
-    -DBUILD_TESTS=ON
     -G "Visual Studio 14 2015 Win64"
     ../
   - >
@@ -202,5 +201,5 @@ build_script:
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release
 
-  # Now attempt to run Python tests...
-  - ctest -C Release --output-on-failure .
+  - cd src/mlpack/bindings/python/
+  - %PYTHON% setup.py bdist_wheel
