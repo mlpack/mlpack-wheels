@@ -202,4 +202,4 @@ build_script:
     /p:Configuration=Release
 
   # Now attempt to run Python tests...
-  - sh: CTEST_OUTPUT_ON_FAILURE=1 ctest -C Release .
+  - CTEST_OUTPUT_ON_FAILURE=1 ctest -C Release .
