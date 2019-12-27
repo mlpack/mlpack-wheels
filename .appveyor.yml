@@ -201,6 +201,7 @@ build_script:
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release
 
-  - cd src/mlpack/bindings/python/
+  - ps: cd mlpack/build/src/mlpack/bindings/python/
+  - ps: pwd
   - ps: ${env:PYTHON} setup.py bdist_wheel
 
