@@ -204,4 +204,3 @@ build_script:
   - ps: cd src/mlpack/bindings/python/
   - ps: pwd
   - ps: ${env:PYTHON} setup.py bdist_wheel
-
