@@ -3,8 +3,6 @@
 
 environment:
   global:
-      MINGW_32: C:/mingw-w64/i686-6.3.0-posix-dwarf-rt_v5-rev1/mingw32/bin
-      MINGW_64: C:/mingw-w64/x86_64-6.3.0-posix-seh-rt_v5-rev1/mingw64/bin
       OPENBLAS_32: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win32-gcc_7_1_0.zip"
       OPENBLAS_64: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win_amd64-gcc_7_1_0.zip"
       ARMADILLO_SRC: "https://sourceforge.net/projects/arma/files/armadillo-9.800.3.tar.xz"
@@ -157,16 +155,13 @@ build_script:
   - mkdir build
   - cd build
   - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
-#  - set PATH=%MINGW_64%;%PATH%
   - >
     cmake
-    -DBLAS_LIBRARY:FILEPATH="%BLAS_LIBRARY%"
-    -DLAPACK_LIBRARY:FILEPATH="%BLAS_LIBRARY%"
+    -DBLAS_LIBRARY:FILEPATH="$PYTHON/lib/openblas.a"
+    -DLAPACK_LIBRARY:FILEPATH="$PYTHON/lib/openblas.a"
     -DCMAKE_BUILD_TYPE=Release
     -G "Visual Studio 14 2015 Win64"
     ..
-#    -G "MinGW Makefiles"
-#  - "%MINGW_64%/mingw32-make.exe"
   - >
     MSBuild armadillo.sln /m /verbosity:quiet
     /p:Configuration=Release
@@ -190,8 +185,8 @@ build_script:
     -DARMADILLO_LIBRARY=%PYTHON%/lib/armadillo.lib
     -DBOOST_INCLUDEDIR=%APPVEYOR_BUILD_FOLDER%/boost.1.60.0.0/lib/native/include/
     -DBOOST_LIBRARYDIR=%APPVEYOR_BUILD_FOLDER%/boost_libs/
-    -DLAPACK_LIBRARY=%BLAS_LIBRARY%
-    -DBLAS_LIBRARY=%BLAS_LIBRARY%
+    -DLAPACK_LIBRARY="$PYTHON/lib/openblas.a"
+    -DBLAS_LIBRARY="$PYTHON/lib/openblas.a"
     -DBOOST_ROOT=../boost_1_60_0/
     -DUSE_OPENMP=OFF
     -G "Visual Studio 14 2015 Win64"
