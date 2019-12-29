@@ -157,14 +157,18 @@ build_script:
   - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
   - >
     cmake
-    -DBLAS_LIBRARY:FILEPATH="%PYTHON%/lib/openblas.a"
-    -DLAPACK_LIBRARY:FILEPATH="%PYTHON%/lib/openblas.a"
+    -DBLAS_LIBRARY:FILEPATH=%BLAS_LIBRARY%
+    -DLAPACK_LIBRARY:FILEPATH=%BLAS_LIBRARY%
     -DCMAKE_BUILD_TYPE=Release
+    -DBUILD_SHARED_LIBS=OFF
     -G "Visual Studio 14 2015 Win64"
     ..
   - >
     MSBuild armadillo.sln /m /verbosity:quiet
     /p:Configuration=Release
+  - cd Release
+  - dir
+  - cd ..
   - copy Release/armadillo.lib "%PYTHON%/lib/"
   - cd ../..
 
@@ -180,13 +184,14 @@ build_script:
     -DBUILD_PYTHON_BINDINGS=ON
     -DBUILD_CLI_EXECUTABLES=OFF
     -DBUILD_TESTS=OFF
+    -DBUILD_SHARED_LIBS=OFF
     -DPYTHON_EXECUTABLE=%PYTHON%/python.exe
     -DARMADILLO_INCLUDE_DIR=../../armadillo-9.800.3/include/
     -DARMADILLO_LIBRARY=%PYTHON%/lib/armadillo.lib
     -DBOOST_INCLUDEDIR=%APPVEYOR_BUILD_FOLDER%/boost.1.60.0.0/lib/native/include/
     -DBOOST_LIBRARYDIR=%APPVEYOR_BUILD_FOLDER%/boost_libs/
-    -DLAPACK_LIBRARY="%PYTHON%/lib/openblas.a"
-    -DBLAS_LIBRARY="%PYTHON%/lib/openblas.a"
+    -DLAPACK_LIBRARY=%BLAS_LIBRARY%
+    -DBLAS_LIBRARY=%BLAS_LIBRARY%
     -DBOOST_ROOT=../boost_1_60_0/
     -DUSE_OPENMP=OFF
     -G "Visual Studio 14 2015 Win64"
