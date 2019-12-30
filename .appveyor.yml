@@ -202,5 +202,7 @@ build_script:
     /p:Configuration=Release
 
   - cd src/mlpack/bindings/python/
+  - sh: PYTHONPATH=. LD_LIBRARY_PATH=../../../../lib/ python -c 'import sys; import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input=x, new_dimensionality=5,
+verbose=True)'
   - python setup.py bdist_wheel
 
