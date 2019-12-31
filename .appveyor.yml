@@ -146,7 +146,7 @@ build_script:
   - git checkout %BUILD_COMMIT%
   - mkdir build
   - cd build
-  - cd C:\projects\mlpack-wheels\boost_serialization-vc140.1.71.0.0\
+  - cd C:\projects\mlpack-wheels\boost_serialization-vc140.1.71.0.0\lib\
   - dir
   - >
     cmake
