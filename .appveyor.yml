@@ -116,17 +116,6 @@ install:
 
   - ps: nuget install OpenBLAS -o "${env:APPVEYOR_BUILD_FOLDER}"
 
-  - mkdir boost_libs
-  - ps: cp ${env:BOOST_PROG_OPTION} boost_libs\
-  - ps: cp ${env:BOOST_MATH} boost_libs\
-  - ps: cp ${env:BOOST_RANDOM} boost_libs\
-  - ps: cp ${env:BOOST_SERIALIZATION} boost_libs\
-  - ps: cp ${env:BOOST_UNIT_TEST} boost_libs\
-  - cd boost_libs
-  - dir
-  - pwd
-  - cd ..
-
 
 build_script:
   # Build Armadillo.
