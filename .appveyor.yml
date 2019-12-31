@@ -6,11 +6,6 @@ environment:
       OPENBLAS_32: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win32-gcc_7_1_0.zip"
       OPENBLAS_64: "https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/openblas-v0.3.7-win_amd64-gcc_7_1_0.zip"
       ARMADILLO_SRC: "https://sourceforge.net/projects/arma/files/armadillo-9.800.3.tar.xz"
-      BOOST_PROG_OPTION : "C:/projects/mlpack-wheels/boost_program_options-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
-      BOOST_MATH : "C:/projects/mlpack-wheels/boost_math_c99-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
-      BOOST_RANDOM : "C:/projects/mlpack-wheels/boost_random-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
-      BOOST_SERIALIZATION : "C:/projects/mlpack-wheels/boost_serialization-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
-      BOOST_UNIT_TEST : "C:/projects/mlpack-wheels/boost_unit_test_framework-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
       CYTHON_BUILD_DEP: Cython
       TEST_MODE: fast
       APPVEYOR_SAVE_CACHE_ON_ERROR: true
@@ -23,9 +18,9 @@ environment:
       BLAS_LIBRARY : "%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a"
 
   matrix:
-#    - PYTHON: C:/Python36
-#      PYTHON_VERSION: 3.6
-#      PYTHON_ARCH: 32
+    - PYTHON: C:/Python36
+      PYTHON_VERSION: 3.6
+      PYTHON_ARCH: 32
 
     - PYTHON: C:/Python36-x64
       PYTHON_VERSION: 3.6
@@ -116,20 +111,8 @@ install:
   # Download boost for Visual Studio.
   - ps: nuget install boost -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
   - ps: >
-      nuget install boost_unit_test_framework-vc140
-      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
-  - ps: >
-      nuget install boost_program_options-vc140
-      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
-  - ps: >
-      nuget install boost_random-vc140
-      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
-  - ps: >
-      nuget install boost_serialization-vc140
-      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
-  - ps: >
-      nuget install boost_math_c99-vc140
-      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
+      nuget install boost
+      -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.71.0
 
   - ps: nuget install OpenBLAS -o "${env:APPVEYOR_BUILD_FOLDER}"
 
@@ -177,6 +160,8 @@ build_script:
   - git checkout %BUILD_COMMIT%
   - mkdir build
   - cd build
+  - cd C:\projects\mlpack-wheels\
+  - dir
   - >
     cmake
     -DDEBUG=OFF
