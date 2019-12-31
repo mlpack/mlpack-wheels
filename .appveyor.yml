@@ -111,6 +111,8 @@ install:
   # Download boost for Visual Studio.
   - ps: nuget install boost -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.71.0
   - ps: nuget install boost-vc140 -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.71.0
+  # Copy boost libraries out of strange directory structure.
+#  - copy %APPVEYOR_BUILD_FOLDER%/boost_serialization-vc140.1.71.0.0/
 
 build_script:
   # Build Armadillo.
@@ -144,7 +146,7 @@ build_script:
   - git checkout %BUILD_COMMIT%
   - mkdir build
   - cd build
-  - cd C:\projects\mlpack-wheels\
+  - cd C:\projects\mlpack-wheels\boost_serialization-vc140.1.71.0.0\
   - dir
   - >
     cmake
