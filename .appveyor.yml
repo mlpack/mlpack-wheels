@@ -110,6 +110,7 @@ install:
 
   # Download boost for Visual Studio.
   - ps: nuget install boost -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.71.0
+  - ps: nuget install boost-vc140 -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.71.0
 
 build_script:
   # Build Armadillo.
@@ -143,7 +144,7 @@ build_script:
   - git checkout %BUILD_COMMIT%
   - mkdir build
   - cd build
-  - cd C:\projects\mlpack-wheels\boost.1.71.0.0\lib\native\
+  - cd C:\projects\mlpack-wheels\boost-vc140.1.71.0.0\lib\native\
   - dir
   - >
     cmake
