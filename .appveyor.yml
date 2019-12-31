@@ -143,7 +143,7 @@ build_script:
   - git checkout %BUILD_COMMIT%
   - mkdir build
   - cd build
-  - cd C:\projects\mlpack-wheels\boost.1.71.0.0\lib\
+  - cd C:\projects\mlpack-wheels\boost.1.71.0.0\lib\native\
   - dir
   - >
     cmake
