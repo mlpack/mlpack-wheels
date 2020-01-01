@@ -113,6 +113,8 @@ install:
   - ps: nuget install boost-vc140 -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.71.0
   # Copy boost libraries out of strange directory structure.
   - mkdir boost_libs
+  - cd %APPVEYOR_BUILD_FOLDER%/boost_serialization-vc140.1.71.0.0/lib/native
+  - dir
   - sh: cp $APPVEYOR_BUILD_FOLDER}/boost_serialization-vc140.1.71.0.0/lib/native/* boost_libs/
   - sh: cp $APPVEYOR_BUILD_FOLDER}/boost_program_options-vc140.1.71.0.0/lib/native/* boost_libs/
   - sh: cp $APPVEYOR_BUILD_FOLDER}/boost_unit_test_framework-vc140.1.71.0.0/lib/native/* boost_libs/
