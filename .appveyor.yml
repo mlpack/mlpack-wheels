@@ -116,6 +116,9 @@ install:
   - sh: cp $APPVEYOR_BUILD_FOLDER}/boost_serialization-vc140.1.71.0.0/lib/native/* boost_libs/
   - sh: cp $APPVEYOR_BUILD_FOLDER}/boost_program_options-vc140.1.71.0.0/lib/native/* boost_libs/
   - sh: cp $APPVEYOR_BUILD_FOLDER}/boost_unit_test_framework-vc140.1.71.0.0/lib/native/* boost_libs/
+  - cd boost_libs/
+  - dir
+  - cd ..
 
 build_script:
   # Build Armadillo.
