@@ -15,7 +15,6 @@ environment:
         secure:
             9s0gdDGnNnTt7hvyNpn0/ZzOMGPdwPp2SewFTfGzYk7uI+rdAN9rFq2D1gAP4NQh
       BUILD_COMMIT: 3.2.2
-      BLAS_LIBRARY : "%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a"
 
   matrix:
     - PYTHON: C:/Python36
@@ -165,9 +164,8 @@ build_script:
     -DARMADILLO_LIBRARY=%PYTHON%/lib/armadillo.lib
     -DBOOST_INCLUDEDIR=%APPVEYOR_BUILD_FOLDER%/boost.1.71.0.0/lib/native/include/
     -DBOOST_LIBRARYDIR=%APPVEYOR_BUILD_FOLDER%/boost_libs/
-    -DLAPACK_LIBRARY=%BLAS_LIBRARY%
-    -DBLAS_LIBRARY=%BLAS_LIBRARY%
-    -DBOOST_ROOT=../boost_1_60_0/
+    -DLAPACK_LIBRARY=%OPENBLAS%
+    -DBLAS_LIBRARY=%OPENBLAS%
     -DUSE_OPENMP=OFF
     -G "Visual Studio 14 2015 Win64"
     ../
