@@ -131,8 +131,8 @@ build_script:
   - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
   - >
     cmake
-    -DBLAS_LIBRARY:FILEPATH=%OPENBLAS%
-    -DLAPACK_LIBRARY:FILEPATH=%OPENBLAS%
+    -DBLAS_LIBRARY:FILEPATH=$PYTHON/lib/openblas.a
+    -DLAPACK_LIBRARY:FILEPATH=$PYTHON/lib/openblas.a
     -DCMAKE_BUILD_TYPE=Release
     -DBUILD_SHARED_LIBS=OFF
     -G "Visual Studio 14 2015 Win64"
@@ -164,8 +164,8 @@ build_script:
     -DARMADILLO_LIBRARY=%PYTHON%/lib/armadillo.lib
     -DBOOST_INCLUDEDIR=%APPVEYOR_BUILD_FOLDER%/boost.1.71.0.0/lib/native/include/
     -DBOOST_LIBRARYDIR=%APPVEYOR_BUILD_FOLDER%/boost_libs/
-    -DLAPACK_LIBRARY=%OPENBLAS%
-    -DBLAS_LIBRARY=%OPENBLAS%
+    -DBLAS_LIBRARY:FILEPATH=$PYTHON/lib/openblas.a
+    -DLAPACK_LIBRARY:FILEPATH=$PYTHON/lib/openblas.a
     -DUSE_OPENMP=OFF
     -G "Visual Studio 14 2015 Win64"
     ../
