@@ -120,7 +120,7 @@ build_script:
   - cd Release
   - dir
   - cd ..
-  - copy Release/armadillo.lib "%PYTHON%/lib/"
+  - copy Release/armadillo.lib "%APPVEYOR_BUILD_FOLDER%/link_libs/"
   - cd ../..
 
   # Finally build mlpack.
@@ -138,7 +138,7 @@ build_script:
     -DBUILD_SHARED_LIBS=OFF
     -DPYTHON_EXECUTABLE=%PYTHON%/python.exe
     -DARMADILLO_INCLUDE_DIR=../../armadillo-9.800.3/include/
-    -DARMADILLO_LIBRARY=%PYTHON%/lib/armadillo.lib
+    -DARMADILLO_LIBRARY=%APPVEYOR_BUILD_FOLDER%/link_libs/armadillo.lib
     -DBOOST_INCLUDEDIR=%APPVEYOR_BUILD_FOLDER%/boost.1.71.0.0/lib/native/include/
     -DBOOST_LIBRARYDIR=%APPVEYOR_BUILD_FOLDER%/link_libs/
     -DBLAS_LIBRARY:FILEPATH=%APPVEYOR_BUILD_FOLDER%/link_libs/libopenblas.dll.a
@@ -151,7 +151,12 @@ build_script:
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release
 
+  - dir
   - cd src/mlpack/bindings/python/
+  - dir
+  - cd mlpack/
+  - dir
+  - cd ..
   - "SET PYTHONPATH=."
   - python -c "import sys; import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input=x, new_dimensionality=5, verbose=True)"
   - python setup.py bdist_wheel
