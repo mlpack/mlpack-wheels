@@ -151,6 +151,9 @@ build_script:
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release
 
+  - cd Release/
+  - dir
+  - cd ..
   - dir
   - cd src/mlpack/bindings/python/
   - dir
