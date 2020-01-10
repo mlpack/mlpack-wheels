@@ -160,7 +160,7 @@ build_script:
   - cd mlpack/
   - dir
   - cd ..
-  - cd x64/
+  - cd x64/Release/
   - dir
   - cd ..
   - "SET PYTHONPATH=."
