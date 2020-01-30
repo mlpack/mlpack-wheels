@@ -162,7 +162,7 @@ build_script:
   - cd ..
   - cd x64/Release/
   - dir
-  - cd ..
+  - cd ../..
   - "SET PYTHONPATH=."
   - python -c "import sys; print(sys.path); import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input=x, new_dimensionality=5, verbose=True)"
   - python setup.py bdist_wheel
