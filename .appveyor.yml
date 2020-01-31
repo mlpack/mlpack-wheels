@@ -151,19 +151,8 @@ build_script:
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release
 
-  - dir /s
-  - cd Release/
-  - dir
-  - cd ..
-  - dir
   - cd src/mlpack/bindings/python/
-  - dir
-  - cd mlpack/
-  - dir
-  - cd ..
-  - cd x64/Release/python/
-  - dir
-  - cd ../../..
+  - sh: cp mlpack/*.pyd .
   - "SET PYTHONPATH=."
   - python -c "import sys; print(sys.path); import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input=x, new_dimensionality=5, verbose=True)"
   - python setup.py bdist_wheel
