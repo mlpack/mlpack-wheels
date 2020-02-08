@@ -24,12 +24,12 @@ environment:
     - PYTHON: C:/Python36
       PYTHON_VERSION: 3.6
       PYTHON_ARCH: 32
-      GENERATOR: "Visual Studio 14 2015"
+      GENERATOR: "Visual Studio 15 2017"
 
     - PYTHON: C:/Python36-x64
       PYTHON_VERSION: 3.6
       PYTHON_ARCH: 64
-      GENERATOR: "Visual Studio 14 2015 Win64"
+      GENERATOR: "Visual Studio 15 2017 Win64"
 
 #    - PYTHON: C:/Python37
 #      PYTHON_VERSION: 3.7
@@ -172,7 +172,7 @@ build_script:
     -DBLAS_LIBRARY=%BLAS_LIBRARY%
     -DBOOST_ROOT=../boost_1_60_0/
     -DUSE_OPENMP=OFF
-    -G %GENERATOR%
+    -G "%GENERATOR%"
     ../
   - >
     MSBuild mlpack.sln
