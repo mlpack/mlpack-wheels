@@ -24,10 +24,12 @@ environment:
     - PYTHON: C:/Python36
       PYTHON_VERSION: 3.6
       PYTHON_ARCH: 32
+      GENERATOR: "Visual Studio 14 2015"
 
     - PYTHON: C:/Python36-x64
       PYTHON_VERSION: 3.6
       PYTHON_ARCH: 64
+      GENERATOR: "Visual Studio 14 2015 Win64"
 
 #    - PYTHON: C:/Python37
 #      PYTHON_VERSION: 3.7
@@ -137,7 +139,7 @@ build_script:
     -DLAPACK_LIBRARY:FILEPATH=%BLAS_LIBRARY%
     -DCMAKE_BUILD_TYPE=Release
     -DBUILD_SHARED_LIBS=OFF
-    -G "Visual Studio 14 2015 Win64"
+    -G %GENERATOR%
     ..
   - >
     MSBuild armadillo.sln /m /verbosity:quiet
@@ -170,7 +172,7 @@ build_script:
     -DBLAS_LIBRARY=%BLAS_LIBRARY%
     -DBOOST_ROOT=../boost_1_60_0/
     -DUSE_OPENMP=OFF
-    -G "Visual Studio 14 2015 Win64"
+    -G %GENERATOR%
     ../
   - >
     MSBuild mlpack.sln
