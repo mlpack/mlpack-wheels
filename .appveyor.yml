@@ -139,7 +139,7 @@ build_script:
     -DLAPACK_LIBRARY:FILEPATH=%BLAS_LIBRARY%
     -DCMAKE_BUILD_TYPE=Release
     -DBUILD_SHARED_LIBS=OFF
-    -G %GENERATOR%
+    -G "%GENERATOR%"
     ..
   - >
     MSBuild armadillo.sln /m /verbosity:quiet
