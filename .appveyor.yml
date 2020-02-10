@@ -18,18 +18,19 @@ environment:
         secure:
             9s0gdDGnNnTt7hvyNpn0/ZzOMGPdwPp2SewFTfGzYk7uI+rdAN9rFq2D1gAP4NQh
       BUILD_COMMIT: 3.2.2
-      BLAS_LIBRARY : "%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a"
 
   matrix:
     - PYTHON: C:/Python36
       PYTHON_VERSION: 3.6
       PYTHON_ARCH: 32
       GENERATOR: "Visual Studio 14 2015"
+      BLAS_LIBRARY: "%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/Win32/libopenblas.dll.a"
 
     - PYTHON: C:/Python36-x64
       PYTHON_VERSION: 3.6
       PYTHON_ARCH: 64
       GENERATOR: "Visual Studio 14 2015 Win64"
+      BLAS_LIBRARY: "%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a"
 
 #    - PYTHON: C:/Python37
 #      PYTHON_VERSION: 3.7
@@ -110,6 +111,13 @@ install:
       -o "${env:APPVEYOR_BUILD_FOLDER}" -Version 1.60.0
 
   - ps: nuget install OpenBLAS -o "${env:APPVEYOR_BUILD_FOLDER}"
+
+  - cd %APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/
+  - dir /s
+  - cd -
+  - cd %APPVEYOR_BUILD_FOLDER%/boost_math_c99-vc140.1.60.0.0/
+  - dir /s
+  - cd -
 
   - mkdir boost_libs
   - ps: cp ${env:BOOST_PROG_OPTION} boost_libs\
