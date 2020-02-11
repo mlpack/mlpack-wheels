@@ -24,13 +24,13 @@ environment:
       PYTHON_VERSION: 3.6
       PYTHON_ARCH: 32
       GENERATOR: "Visual Studio 14 2015"
-      BLAS_LIBRARY: "%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/Win32/libopenblas.dll.a"
+      ARCH_DIR: win32
 
     - PYTHON: C:/Python36-x64
       PYTHON_VERSION: 3.6
       PYTHON_ARCH: 64
       GENERATOR: "Visual Studio 14 2015 Win64"
-      BLAS_LIBRARY: "%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a"
+      ARCH_DIR: x64
 
 #    - PYTHON: C:/Python37
 #      PYTHON_VERSION: 3.7
@@ -112,9 +112,6 @@ install:
 
   - ps: nuget install OpenBLAS -o "${env:APPVEYOR_BUILD_FOLDER}"
 
-  - cd %APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/
-  - dir /s
-  - cd -
   - cd %APPVEYOR_BUILD_FOLDER%/boost_math_c99-vc140.1.60.0.0/
   - dir /s
   - cd -
@@ -143,8 +140,8 @@ build_script:
   - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
   - >
     cmake
-    -DBLAS_LIBRARY:FILEPATH=%BLAS_LIBRARY%
-    -DLAPACK_LIBRARY:FILEPATH=%BLAS_LIBRARY%
+    -DBLAS_LIBRARY:FILEPATH="%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/%ARCH_DIR%/libopenblas.dll.a"
+    -DLAPACK_LIBRARY:FILEPATH="%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/%ARCH_DIR%/libopenblas.dll.a"
     -DCMAKE_BUILD_TYPE=Release
     -DBUILD_SHARED_LIBS=OFF
     -G "%GENERATOR%"
@@ -152,9 +149,6 @@ build_script:
   - >
     MSBuild armadillo.sln /m /verbosity:quiet
     /p:Configuration=Release
-  - cd Release
-  - dir
-  - cd ..
   - copy Release/armadillo.lib "%PYTHON%/lib/"
   - cd ../..
 
@@ -176,8 +170,8 @@ build_script:
     -DARMADILLO_LIBRARY=%PYTHON%/lib/armadillo.lib
     -DBOOST_INCLUDEDIR=%APPVEYOR_BUILD_FOLDER%/boost.1.60.0.0/lib/native/include/
     -DBOOST_LIBRARYDIR=%APPVEYOR_BUILD_FOLDER%/boost_libs/
-    -DLAPACK_LIBRARY=%BLAS_LIBRARY%
-    -DBLAS_LIBRARY=%BLAS_LIBRARY%
+    -DBLAS_LIBRARY:FILEPATH="%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/%ARCH_DIR%/libopenblas.dll.a"
+    -DLAPACK_LIBRARY:FILEPATH="%APPVEYOR_BUILD_FOLDER%/OpenBLAS.0.2.14.1/lib/native/lib/%ARCH_DIR%/libopenblas.dll.a"
     -DBOOST_ROOT=../boost_1_60_0/
     -DUSE_OPENMP=OFF
     -G "%GENERATOR%"
