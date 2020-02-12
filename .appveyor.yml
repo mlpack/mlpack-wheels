@@ -4,11 +4,6 @@
 environment:
   global:
       ARMADILLO_SRC: "https://sourceforge.net/projects/arma/files/armadillo-9.800.3.tar.xz"
-      BOOST_PROG_OPTION : "C:/projects/mlpack-wheels/boost_program_options-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
-      BOOST_MATH : "C:/projects/mlpack-wheels/boost_math_c99-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
-      BOOST_RANDOM : "C:/projects/mlpack-wheels/boost_random-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
-      BOOST_SERIALIZATION : "C:/projects/mlpack-wheels/boost_serialization-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
-      BOOST_UNIT_TEST : "C:/projects/mlpack-wheels/boost_unit_test_framework-vc140.1.60.0.0/lib/native/address-model-64/lib/*.*"
       CYTHON_BUILD_DEP: Cython
       TEST_MODE: fast
       APPVEYOR_SAVE_CACHE_ON_ERROR: true
@@ -24,7 +19,7 @@ environment:
       PYTHON_VERSION: 3.6
       PYTHON_ARCH: 32
       GENERATOR: "Visual Studio 14 2015"
-      ARCH_DIR: win32
+      ARCH_DIR: win32 # For OpenBLAS location.
 
     - PYTHON: C:/Python36-x64
       PYTHON_VERSION: 3.6
@@ -112,16 +107,12 @@ install:
 
   - ps: nuget install OpenBLAS -o "${env:APPVEYOR_BUILD_FOLDER}"
 
-  - cd %APPVEYOR_BUILD_FOLDER%/boost_math_c99-vc140.1.60.0.0/
-  - dir /s
-  - cd -
-
   - mkdir boost_libs
-  - ps: cp ${env:BOOST_PROG_OPTION} boost_libs\
-  - ps: cp ${env:BOOST_MATH} boost_libs\
-  - ps: cp ${env:BOOST_RANDOM} boost_libs\
-  - ps: cp ${env:BOOST_SERIALIZATION} boost_libs\
-  - ps: cp ${env:BOOST_UNIT_TEST} boost_libs\
+  - ps: cp "%APPVEYOR_BUILD_FOLDER%/boost_math_c99-vc140.1.60.0.0/lib/native/address-model-%PYTHON_ARCH%/lib/*.*" boost_libs\
+  - ps: cp "%APPVEYOR_BUILD_FOLDER%/boost_program_options-vc140.1.60.0.0/lib/native/address-model-%PYTHON_ARCH%/lib/*.*" boost_libs\
+  - ps: cp "%APPVEYOR_BUILD_FOLDER%/boost_random-vc140.1.60.0.0/lib/native/address-model-%PYTHON_ARCH%/lib/*.*" boost_libs\
+  - ps: cp "%APPVEYOR_BUILD_FOLDER%/boost_serialization-vc140.1.60.0.0/lib/native/address-model-%PYTHON_ARCH%/lib/*.*" boost_libs\
+  - ps: cp "%APPVEYOR_BUILD_FOLDER%/boost_unit_test_framework-vc140.1.60.0.0/lib/native/address-model-%PYTHON_ARCH%/lib/*.*" boost_libs\
   - cd boost_libs
   - dir
   - pwd
