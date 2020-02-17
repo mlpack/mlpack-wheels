@@ -179,7 +179,7 @@ build_script:
   - cd "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin/"
   - dir
   - cd "%APPVEYOR_BUILD_FOLDER%/build/src/mlpack/bindings/python/"
-  - sh: %DUMPBIN% /dependents adaboost*
+  - "%DUMPBIN%" /dependents adaboost*
   - cd ..
   - "SET PYTHONPATH=."
   - python -c "import sys; import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input=x, new_dimensionality=5, verbose=True)"
