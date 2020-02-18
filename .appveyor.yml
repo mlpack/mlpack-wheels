@@ -173,6 +173,8 @@ build_script:
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release
 
+  - Release\generate_pyx_cf.exe
+
   - cd src/mlpack/bindings/python/
   - cd mlpack
   - dir
