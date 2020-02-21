@@ -14,8 +14,7 @@ environment:
             9s0gdDGnNnTt7hvyNpn0/ZzOMGPdwPp2SewFTfGzYk7uI+rdAN9rFq2D1gAP4NQh
       BUILD_COMMIT: 3.2.2
       DUMPBIN: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\dumpbin.exe
-      APPVEYOR_SSH_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDL1y+IoZWfLGInpJqre4aYpy/rZkrRU0NzfDj0fPyFUY+vzYE8GI5iFhjJVSmcLwGz7ukQEXwkSSssstctNFlk2yLisPlBvvHVouzCzQItseX48dfHjdzEXs+zohZw0+EeEEEtUtr7jGeo65QCBfECDZhbgRvHgkfSVPmGKpPgKE5cFy/ftIEAg8h3Nz0rLcOhJ3OPP6CkV+FLL5QpRT2JXGOk8p9tr5QVmipw8TY+Jb40Wx3RnaskVtEXvKA62vLxW9z0fs9NzUoXHbYBHksKCj40TIjcznHxT8v68nioDqfxLCTxhZ0tXGuZ6ClBHUkMtuJRMgXB4r721qbgWlkP ryan@knife
-
+      APPVEYOR_RDP_PASSWORD: Debugging1 # Heh, will this work?
 
   matrix:
     - PYTHON: C:/Python36
@@ -174,9 +173,8 @@ build_script:
     MSBuild mlpack.sln
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release
-  # Enable SSH access and try to manually debug...
-  - curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
 
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - Release\generate_pyx_cf.exe
 
   - cd src/mlpack/bindings/python/
@@ -190,4 +188,4 @@ build_script:
   - python setup.py bdist_wheel
 
 on_finish:
-  - sh: export APPVEYOR_SSH_BLOCK=true
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
