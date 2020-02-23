@@ -14,7 +14,7 @@ environment:
             9s0gdDGnNnTt7hvyNpn0/ZzOMGPdwPp2SewFTfGzYk7uI+rdAN9rFq2D1gAP4NQh
       BUILD_COMMIT: 3.2.2
       DUMPBIN: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\dumpbin.exe
-      APPVEYOR_RDP_PASSWORD: Debugging2 # Heh, will this work?
+      APPVEYOR_RDP_PASSWORD: Debugging3 # Heh, will this work?
 
   matrix:
     - PYTHON: C:/Python36
