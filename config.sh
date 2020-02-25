@@ -22,7 +22,7 @@ function pre_build
   else
     echo "use brew to get deps";
     # This is OS X, so use brew to get dependencies.
-    brew install gcc make wget cmake boost ccache
+    brew install gcc make wget ccache
   fi
 
   # Make sure OpenBLAS is available.  (not sure how to do LAPACK yet)
