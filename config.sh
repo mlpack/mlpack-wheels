@@ -18,11 +18,11 @@ function pre_build
   then
     # We need to get mlpack dependencies.  We are root inside the container, and
     # this is RHEL5.
-    yum install -y wget make
+    yum install -y wget make gcc-c++
   else
     echo "use brew to get deps";
     # This is OS X, so use brew to get dependencies.
-    brew install gcc make wget ccache
+    brew install make wget ccache
   fi
 
   # Make sure OpenBLAS is available.  (not sure how to do LAPACK yet)
