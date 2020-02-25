@@ -18,7 +18,7 @@ function pre_build
   then
     # We need to get mlpack dependencies.  We are root inside the container, and
     # this is RHEL5.
-    yum install -y wget make gcc-c++
+    yum install -y wget make
   else
     echo "use brew to get deps";
     # This is OS X, so use brew to get dependencies.
