@@ -115,7 +115,6 @@ install:
   - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_random-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.*" boost_libs\
   - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_serialization-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.*" boost_libs\
   - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_unit_test_framework-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.*" boost_libs\
-  - cd boost_libs
 
 build_script:
   # Build Armadillo.
