@@ -13,8 +13,7 @@ environment:
         secure:
             9s0gdDGnNnTt7hvyNpn0/ZzOMGPdwPp2SewFTfGzYk7uI+rdAN9rFq2D1gAP4NQh
       BUILD_COMMIT: 3.2.2
-      DUMPBIN: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\dumpbin.exe
-      APPVEYOR_RDP_PASSWORD: Debugging4 # Heh, will this work?
+#      APPVEYOR_RDP_PASSWORD: Debugging4 # Heh, will this work?
 
   matrix:
     - PYTHON: C:/Python36
@@ -182,8 +181,8 @@ build_script:
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
     /p:Configuration=Release
 
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - Release\generate_pyx_cf.exe
+#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#  - Release\generate_pyx_cf.exe
 
   - cd src/mlpack/bindings/python/
   - dir
@@ -194,5 +193,5 @@ build_script:
   - python -c "import sys; import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input=x, new_dimensionality=5, verbose=True)"
   - python setup.py bdist_wheel
 
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
