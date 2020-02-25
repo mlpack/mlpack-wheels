@@ -116,10 +116,6 @@ install:
   - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_serialization-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.*" boost_libs\
   - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_unit_test_framework-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.*" boost_libs\
   - cd boost_libs
-  - dir
-  - pwd
-  - cd ..
-
 
 build_script:
   # Build Armadillo.
@@ -169,6 +165,19 @@ build_script:
     -DUSE_OPENMP=OFF
     -G "%GENERATOR%"
     ../
+
+  # Copy all runtime DLLs to build directory and src/mlpack/bindings/python/
+  # before build.
+  - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/OpenBLAS.0.2.14.1/lib/native/bin/%ARCH_DIR%/*.dll" .
+  - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_math_c99-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.dll" .
+  - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_program_options-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.dll" .
+  - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_random-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.dll" .
+  - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_serialization-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.dll" .
+  - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_unit_test_framework-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.dll" .
+  - sh: mkdir -p src/mlpack/bindings/python/
+  - sh: cp *.dll src/mlpack/bindings/python/
+  - dir
+
   - >
     MSBuild mlpack.sln
     /m /verbosity:minimal /nologo /p:BuildInParallel=true
@@ -178,10 +187,9 @@ build_script:
   - Release\generate_pyx_cf.exe
 
   - cd src/mlpack/bindings/python/
+  - dir
   - cd mlpack
   - dir
-  - >
-    "%DUMPBIN%" /dependents adaboost.cp36-win32.pyd
   - cd ..
   - "SET PYTHONPATH=."
   - python -c "import sys; import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input=x, new_dimensionality=5, verbose=True)"
