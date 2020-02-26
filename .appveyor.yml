@@ -164,6 +164,11 @@ build_script:
     -G "%GENERATOR%"
     ../
 
+  # Manual patch: force WORKING_DIRECTORY to be ${CMAKE_BINARY_DIR} when
+  # generating pyx files.
+  - sh: sed -i 's/ERROR_VARIABLE err/WORKING_DIRECTORY \$\{CMAKE_BINARY_DIR\} ERROR_VARIABLE err/' ../CMake/RunProgram.cmake
+  - sh: cat ../CMake/RunProgram.cmake
+
   # Copy all runtime DLLs to build directory and src/mlpack/bindings/python/
   # before build.
   - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/OpenBLAS.0.2.14.1/lib/native/bin/${env:ARCH_DIR}/*.dll" .
