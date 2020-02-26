@@ -166,7 +166,7 @@ build_script:
 
   # Copy all runtime DLLs to build directory and src/mlpack/bindings/python/
   # before build.
-  - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/OpenBLAS.0.2.14.1/lib/native/bin/%ARCH_DIR%/*.dll" .
+  - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/OpenBLAS.0.2.14.1/lib/native/bin/${env:ARCH_DIR}/*.dll" .
   - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_math_c99-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.dll" .
   - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_program_options-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.dll" .
   - ps: cp "${env:APPVEYOR_BUILD_FOLDER}/boost_random-vc140.1.60.0.0/lib/native/address-model-${env:PYTHON_ARCH}/lib/*.dll" .
