@@ -167,7 +167,7 @@ build_script:
   # Manual patch: force WORKING_DIRECTORY to be ${CMAKE_BINARY_DIR} when
   # generating pyx files.
   - sh: sed -i 's/ERROR_VARIABLE err/WORKING_DIRECTORY \$\{CMAKE_BINARY_DIR\} ERROR_VARIABLE err/' ../CMake/RunProgram.cmake
-  - sh: cat ../CMake/RunProgram.cmake
+  - ps: type ../CMake/RunProgram.cmake
 
   # Copy all runtime DLLs to build directory and src/mlpack/bindings/python/
   # before build.
