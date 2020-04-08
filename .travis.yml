@@ -1,6 +1,6 @@
 env:
   global:
-    - BUILD_COMMIT=3.2.2
+    - BUILD_COMMIT=3.3.0
     - BUILD_DEPENDS="Cython numpy pandas"
     - TEST_DEPENDS="Cython numpy pandas" # Not sure, but probably ok.
     - PLAT=x86_64
