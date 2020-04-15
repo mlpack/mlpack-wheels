@@ -10,15 +10,11 @@ env:
     - secure: "k0mPQqseoLGpzDT03iMVw8m6noOKALGoZRLW4GKSeG4N4Jbx6YKP7VXpnbEixf0dbB8QzDoEWgmFbAhe16S7fSD5Oqn6edo+TouE9//691pQbzbxguaaGByibjjTweIWYvBBxQP/fCPFfegFnMaRI2HxzSbiBornN2PzpUT76pvKXKzT3UqP1ZGD0Fg3fhWOGcawJZA5HVUG+lKnmfBMUIfu/+u7SsYggEsEgq0be3PoxUuyz3tCBh++jntjN0jFLA5nO2+Y2O/fYdPoA0XHcXpQoWZg4v+NLwEMPFkolEWbFG0JXNlQktDOXrq/fXN6Z5KY2rfGC71PmqlAsgGIEasvCsFiZycuUNcwmVltHeOWZv0+EJBXXHIx9IbE/8XrzB89BYUGEquAbpTNjJJ4hzgId0nwVaCSU74SH6tJGU41gZsWVXUsiiy1oMBqrrQ/CWZWYeWfIPVgRCyX2O5faD/Kc3tvO7oCPuOEKgggJcA3FCu7itqXkT7p3dfGAixASH0LBizmEoAYISb6PY1UcTjOWo4XDSudbbwnrLMzt0UuO4zqa6h2yXnfShjE9p63ATqNy3OrWKz8H68nnJGV1bUyKpqWyJ1P1IakibaIwuCCn74fcmlfccKOYyt/ByS2hQyZtsYJWFJOr1IdKjLTAxEiWlMLUko1TxRH3Sp0UJ0="
 
 language: python
-python: 3.5
+python: 3.7
 dist: trusty
 services: docker
 
 matrix:
-  exclude:
-    # Exclude the default Python 3.5 build.
-    - python: 3.5
-
   include:
     - os: linux
       env:
@@ -28,16 +24,6 @@ matrix:
     - os: linux
       env:
         - MB_PYTHON_VERSION=2.7
-        - PATCH=1
-
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.5
-        - PATCH=0
-
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.5
         - PATCH=1
 
     - os: linux
