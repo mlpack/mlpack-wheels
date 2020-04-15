@@ -140,4 +140,4 @@ script:
   - install_run $PLAT
 
 after_success:
-  - echo "hooray!"
+  - echo "hooray!!"
