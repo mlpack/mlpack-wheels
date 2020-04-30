@@ -12,7 +12,7 @@ environment:
       WHEELHOUSE_UPLOADER_SECRET:
         secure:
             9s0gdDGnNnTt7hvyNpn0/ZzOMGPdwPp2SewFTfGzYk7uI+rdAN9rFq2D1gAP4NQh
-      BUILD_COMMIT: 3.3.0
+      BUILD_COMMIT: 3.3.1
 #      APPVEYOR_RDP_PASSWORD: Debugging4 # Heh, will this work?
 
   matrix:
