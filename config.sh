@@ -80,7 +80,7 @@ function pre_build
       ../
   echo "mlpack build directory:"
   pwd
-  make -j1 python
+  make -j2 python
   echo "done building, now install";
   $need_sudo make install
 
