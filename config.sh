@@ -101,6 +101,7 @@ function pre_build
 function build_libs {
     local plat=${1:-$PLAT}
     local tar_path=$(abspath $(get_gf_lib "openblas-${OPENBLAS_VERSION}" "$plat"))
+    echo "tar path $tar_path";
     # Sudo needed for macOS
     local use_sudo=""
     [ -n "$IS_OSX" ] && use_sudo="sudo"
