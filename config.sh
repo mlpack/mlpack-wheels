@@ -99,13 +99,16 @@ function pre_build
 }
 
 function build_libs {
-    local plat=${1:-$PLAT}
-    local tar_path=$(abspath $(get_gf_lib "openblas-${OPENBLAS_VERSION}" "$plat"))
-    echo "tar path $tar_path";
+    python -c "import platform; print('platform.uname().machine', platform.uname().machine)"
+
     # Sudo needed for macOS
     local use_sudo=""
     [ -n "$IS_OSX" ] && use_sudo="sudo"
+
     (cd / && $use_sudo tar zxf $tar_path)
+    basedir=$(python numpy/tools/openblas_support.py)
+    $use_sudo cp -r $basedir/lib/* /usr/local/lib
+    $use_sudo cp $basedir/include/* /usr/local/include
 }
 
 function run_tests
