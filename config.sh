@@ -105,7 +105,6 @@ function build_libs {
     local use_sudo=""
     [ -n "$IS_OSX" ] && use_sudo="sudo"
 
-    (cd / && $use_sudo tar zxf $tar_path)
     basedir=$(python numpy/tools/openblas_support.py)
     $use_sudo cp -r $basedir/lib/* /usr/local/lib
     $use_sudo cp $basedir/include/* /usr/local/include
