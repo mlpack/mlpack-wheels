@@ -76,6 +76,7 @@ function pre_build
       -DBUILD_CLI_EXECUTABLES=OFF \
       -DBUILD_PYTHON_BINDINGS=ON \
       -DBoost_NO_BOOST_CMAKE=ON \
+      -DUSE_OPENMP=OFF \
       -DCMAKE_CXX_COMPILER_LAUNCHER=`which ccache` \
       ../
   echo "mlpack build directory:"
