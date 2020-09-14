@@ -9,9 +9,8 @@ env:
     - BUILD_DIR=/io/mlpack/build/src/mlpack/bindings/python/
     - secure: "k0mPQqseoLGpzDT03iMVw8m6noOKALGoZRLW4GKSeG4N4Jbx6YKP7VXpnbEixf0dbB8QzDoEWgmFbAhe16S7fSD5Oqn6edo+TouE9//691pQbzbxguaaGByibjjTweIWYvBBxQP/fCPFfegFnMaRI2HxzSbiBornN2PzpUT76pvKXKzT3UqP1ZGD0Fg3fhWOGcawJZA5HVUG+lKnmfBMUIfu/+u7SsYggEsEgq0be3PoxUuyz3tCBh++jntjN0jFLA5nO2+Y2O/fYdPoA0XHcXpQoWZg4v+NLwEMPFkolEWbFG0JXNlQktDOXrq/fXN6Z5KY2rfGC71PmqlAsgGIEasvCsFiZycuUNcwmVltHeOWZv0+EJBXXHIx9IbE/8XrzB89BYUGEquAbpTNjJJ4hzgId0nwVaCSU74SH6tJGU41gZsWVXUsiiy1oMBqrrQ/CWZWYeWfIPVgRCyX2O5faD/Kc3tvO7oCPuOEKgggJcA3FCu7itqXkT7p3dfGAixASH0LBizmEoAYISb6PY1UcTjOWo4XDSudbbwnrLMzt0UuO4zqa6h2yXnfShjE9p63ATqNy3OrWKz8H68nnJGV1bUyKpqWyJ1P1IakibaIwuCCn74fcmlfccKOYyt/ByS2hQyZtsYJWFJOr1IdKjLTAxEiWlMLUko1TxRH3Sp0UJ0="
 
-language: python
-python: 3.8
-dist: trusty
+language: generic
+dist: xenial
 services: docker
 
 matrix:
