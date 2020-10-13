@@ -74,6 +74,10 @@ function pre_build
       ../
   pwd
   make -j2 python
+  ls src/mlpack/bindings/python/build/
+  ls src/mlpack/bindings/python/build/*/
+  ls src/mlpack/bindings/python/build/*/mlpack/
+  otool -l src/mlpack/bindings/python/build/*/mlpack/*adaboost*
   $need_sudo make install
 
   # Modify setup.py to reflect 'mlpack3' PyPI package name.
@@ -85,6 +89,10 @@ function pre_build
   # Make sure the directory is right to work around possible bdist_egg
   # permission failure.
   $need_sudo chmod -R 777 src/mlpack/bindings/python/
+
+  # Check to see what the rpaths we are looking for even are...
+
+  env
 }
 
 function build_libs {
@@ -97,6 +105,8 @@ function build_libs {
     basedir=$(python numpy/tools/openblas_support.py)
     $use_sudo cp -r $basedir/lib/* /usr/local/lib
     $use_sudo cp $basedir/include/* /usr/local/include
+
+    env
 }
 
 function run_tests
