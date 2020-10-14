@@ -106,7 +106,7 @@ function build_libs {
     $use_sudo cp -r $basedir/lib/* /usr/local/lib
     $use_sudo cp $basedir/include/* /usr/local/include
 
-    export DYLD_LIBRARY_PATH=/usr/local/lib/
+    #export DYLD_LIBRARY_PATH=/usr/local/lib/
     env
 }
 
