@@ -77,7 +77,6 @@ function pre_build
   ls src/mlpack/bindings/python/build/
   ls src/mlpack/bindings/python/build/*/
   ls src/mlpack/bindings/python/build/*/mlpack/
-  otool -l src/mlpack/bindings/python/build/*/mlpack/*adaboost*
   $need_sudo make install
 
   # Modify setup.py to reflect 'mlpack3' PyPI package name.
