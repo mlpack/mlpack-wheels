@@ -35,12 +35,17 @@ matrix:
         - MB_PYTHON_VERSION=3.7
         - PATCH=1
 
-    # Don't upload mlpack3 for python 3.8, just mlpack.
+    # Don't upload mlpack3 for python 3.8+, just mlpack.
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.8
         - PATCH=0
 
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.9
+        - PATCH=0
+
     - os: osx
       language: generic
       env:
@@ -73,11 +78,19 @@ matrix:
         - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
         - PATCH=1
 
-    # Don't upload mlpack3 for python 3.8, just mlpack.
+    # Don't upload mlpack3 for python 3.8+, just mlpack.
     - os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.8
+        - MB_PYTHON_OSX_VER=10.9
+        - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
+        - PATCH=0
+
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.9
         - MB_PYTHON_OSX_VER=10.9
         - BUILD_DIR=/Users/travis/build/mlpack/mlpack-wheels/mlpack/build/src/mlpack/bindings/python/
         - PATCH=0
