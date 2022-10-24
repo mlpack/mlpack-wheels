@@ -36,8 +36,6 @@ function pre_build
     # Install RPMs that were manually made for this image.
     wget http://www.ratml.org/misc/cmake-3.13.5-1.x86_64.rpm
     rpm -ivh cmake-3.13.5-1.x86_64.rpm
-    wget http://www.ratml.org/misc/boost-1.70.0-1.x86_64.rpm
-    rpm -ivh boost-1.70.0-1.x86_64.rpm
 
     # Install precompiled LAPACK (this is specific to this image).
     wget http://www.ratml.org/misc/lapack-3.8.0.el5.x86_64.tar.gz
@@ -45,9 +43,18 @@ function pre_build
   fi
 
   # Build and install Armadillo.
-  wget http://www.ratml.org/misc/armadillo-9.400.4.tar.gz
-  tar -xzpf armadillo-9.400.4.tar.gz
-  cd armadillo-9.400.4/
+  wget http://files.mlpack.org/armadillo-9.800.1.tar.gz
+  tar -xzpf armadillo-9.800.1.tar.gz
+  cd armadillo-9.800.1/
+  cmake -DCMAKE_INSTALL_PREFIX=$install_prefix .
+  make
+  $need_sudo make install
+  cd ../
+
+  # Build and install cereal.
+  wget http://files.mlpack.org/cereal-1.3.0.tar.gz
+  tar -xvzpf cereal-1.3.0.tar.gz
+  cd cereal-1.3.0/
   cmake -DCMAKE_INSTALL_PREFIX=$install_prefix .
   make
   $need_sudo make install
@@ -69,7 +76,6 @@ function pre_build
       -DBUILD_TESTS=OFF \
       -DBUILD_CLI_EXECUTABLES=OFF \
       -DBUILD_PYTHON_BINDINGS=ON \
-      -DBoost_NO_BOOST_CMAKE=ON \
       -DCMAKE_CXX_COMPILER_LAUNCHER=`which ccache` \
       ../
   pwd
@@ -78,12 +84,6 @@ function pre_build
   ls src/mlpack/bindings/python/build/*/
   ls src/mlpack/bindings/python/build/*/mlpack/
   $need_sudo make install
-
-  # Modify setup.py to reflect 'mlpack3' PyPI package name.
-  if [ "a$PATCH" == "a1" ];
-  then
-    sed -i -e "s/setup(name='mlpack'/setup(name='mlpack3'/" src/mlpack/bindings/python/setup.py
-  fi
 
   # Make sure the directory is right to work around possible bdist_egg
   # permission failure.
