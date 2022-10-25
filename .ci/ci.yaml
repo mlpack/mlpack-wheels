@@ -8,7 +8,17 @@ jobs:
         python3 -m pip install --upgrade pip
         pip3 install cibuildwheel
       displayName: Install dependencies
+
+    - bash: |
+        git clone https://github.com/mlpack/mlpack 4.0.0
+      displayName: Clone mlpack
+
     - bash: cibuildwheel --output-dir wheelhouse .
       displayName: Build wheels
+
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: 'wheelhouse'}
+
+env:
+  global:
+    - CIBW_BEFORE_BUILD="./build_mlpack.sh"
