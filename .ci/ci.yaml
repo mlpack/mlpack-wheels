@@ -1,6 +1,9 @@
 jobs:
 - job: linux
   pool: {vmImage: 'Ubuntu-20.04'}
+  variables:
+    CIBW_BEFORE_BUILD: "./build_mlpack.sh"
+    MLPACK_VERSION: 4.0.0
   steps:
     - task: UsePythonVersion@0
     - bash: |
@@ -10,11 +13,13 @@ jobs:
       displayName: Install dependencies
 
     - bash: |
-        git clone https://github.com/mlpack/mlpack 4.0.0
+        git clone https://github.com/mlpack/mlpack
+        cd mlpack
+        git checkout $(MLPACK_VERSION)
+        cd ..
       displayName: Clone mlpack
 
     - bash: |
-        export CIBW_BEFORE_BUILD="./build_mlpack.sh"
         cibuildwheel --output-dir wheelhouse .
       displayName: Build wheels
 
