@@ -14,11 +14,8 @@ jobs:
       displayName: Clone mlpack
 
     - bash: cibuildwheel --output-dir wheelhouse .
+      env: CIBW_BEFORE_BUILD="./build_mlpack.sh"
       displayName: Build wheels
 
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: 'wheelhouse'}
-
-env:
-  global:
-    - CIBW_BEFORE_BUILD="./build_mlpack.sh"
