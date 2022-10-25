@@ -13,8 +13,9 @@ jobs:
         git clone https://github.com/mlpack/mlpack 4.0.0
       displayName: Clone mlpack
 
-    - bash: cibuildwheel --output-dir wheelhouse .
-      env: CIBW_BEFORE_BUILD="./build_mlpack.sh"
+    - bash: |
+        export CIBW_BEFORE_BUILD="./build_mlpack.sh"
+        cibuildwheel --output-dir wheelhouse .
       displayName: Build wheels
 
     - task: PublishBuildArtifacts@1
