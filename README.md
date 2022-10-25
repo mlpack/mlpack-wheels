@@ -1,6 +1,10 @@
-This repository contains scripts based on
-https://github.com/matthew-brett/multibuild and is intended to build releases of
-mlpack for PyPI for manylinux systems, OS X, and hopefully Windows too.
+## mlpack-wheels
 
-See the original multibuild repository for more information on what this is and
-how it works.
+This repository contains CI scripts that use the [cibuildwheel
+project](https://github.com/pypa/cibuildwheel) to build compiled wheels for
+upload to PyPI, for a variety of Python versions, operating systems, and
+architectures.
+
+In general, this repository does not need to be touched except for when there is
+a release; and then, only the environment variables in .ci/ci.yaml will need to
+be updated.
