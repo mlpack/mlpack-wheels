@@ -16,7 +16,12 @@ jobs:
         git clone https://github.com/mlpack/mlpack
         cd mlpack
         git checkout $(MLPACK_VERSION)
-        cd ..
+        mkdir build
+        cd build
+        cmake -DBUILD_PYTHON_BINDINGS=ON ../
+        make -j2 python
+        cd src/mlpack/bindings/python/mlpack/
+        ls
       displayName: Clone mlpack
 
     - bash: |
