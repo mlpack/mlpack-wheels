@@ -2,7 +2,7 @@ jobs:
 - job: linux
   pool: {vmImage: 'Ubuntu-20.04'}
   variables:
-    CIBW_BEFORE_BUILD: "./build_mlpack.sh"
+    CIBW_BEFORE_ALL: "./build_mlpack.sh"
     MLPACK_VERSION: 4.0.0
   steps:
     - task: UsePythonVersion@0
@@ -20,7 +20,7 @@ jobs:
       displayName: Clone mlpack
 
     - bash: |
-        CIBW_BEFORE_BUILD="./build_mlpack.sh" cibuildwheel --output-dir wheelhouse .
+        CIBW_BEFORE_ALL="./build_mlpack.sh" cibuildwheel --output-dir wheelhouse .
       displayName: Build wheels
 
     - task: PublishBuildArtifacts@1
