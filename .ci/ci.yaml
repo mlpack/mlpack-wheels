@@ -10,8 +10,8 @@ jobs:
         set -o errexit
         python3 -m pip install --upgrade pip
         pip3 install cibuildwheel
-        apt-get update
-        apt-get install libarmadillo-dev libcereal-dev g++ cmake
+        sudo apt-get update
+        sudo apt-get install libarmadillo-dev libcereal-dev g++ cmake
       displayName: Install dependencies
 
     - bash: |
