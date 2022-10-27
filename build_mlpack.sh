@@ -2,7 +2,7 @@
 #
 # Build mlpack's Python bindings inside the cibuildwheel environment.
 
-apt-get install libopenblas-dev libarmadillo-dev libcereal-dev libensmallen-dev
+yum install openblas-devel armadillo-devel cereal-devel ensmallen-devel
 
 cd mlpack/build/
 rm -rf *

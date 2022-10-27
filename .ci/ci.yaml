@@ -27,7 +27,7 @@ jobs:
       displayName: Generate setup.py
 
     - bash: |
-        export CIBW_BEFORE_ALL="pwd && ls && ./build_mlpack.sh"
+        export CIBW_BEFORE_BUILD="pwd && ls && ./build_mlpack.sh"
         cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
       displayName: Build wheels
 
