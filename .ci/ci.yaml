@@ -22,12 +22,12 @@ jobs:
         cd build
         cmake -DBUILD_PYTHON_BINDINGS=ON ../
         make -j2 python
-        cd src/mlpack/bindings/python/mlpack/
+        cd src/mlpack/bindings/python/
         ls
       displayName: Clone mlpack
 
     - bash: |
-        CIBW_BEFORE_ALL="./build_mlpack.sh" cibuildwheel --output-dir wheelhouse build/src/mlpack/bindings/python/
+        CIBW_BEFORE_ALL="./build_mlpack.sh" ls && cibuildwheel --output-dir wheelhouse build/src/mlpack/bindings/python/
       displayName: Build wheels
 
     - task: PublishBuildArtifacts@1
