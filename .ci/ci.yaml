@@ -20,8 +20,8 @@ jobs:
       displayName: Clone mlpack
 
     - bash: |
-        mkdir build
-        cd build
+        mkdir -p mlpack/build
+        cd mlpack/build
         cmake -DBUILD_PYTHON_BINDINGS=ON ../
         make python_configured
       displayName: Generate setup.py
