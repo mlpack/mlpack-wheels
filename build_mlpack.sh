@@ -2,9 +2,7 @@
 #
 # Build mlpack's Python bindings inside the cibuildwheel environment.
 
-ls
-
-mkdir build
-cd build
+cd mlpack/build/
+rm -rf *
 cmake -DBUILD_PYTHON_BINDINGS=ON ../
 make
