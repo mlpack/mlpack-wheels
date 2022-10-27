@@ -2,7 +2,6 @@ jobs:
 - job: linux
   pool: {vmImage: 'Ubuntu-20.04'}
   variables:
-    CIBW_BEFORE_ALL: "./build_mlpack.sh"
     MLPACK_VERSION: 4.0.0
   steps:
     - task: UsePythonVersion@0
@@ -18,16 +17,18 @@ jobs:
         git clone https://github.com/mlpack/mlpack
         cd mlpack
         git checkout $(MLPACK_VERSION)
-        mkdir build
-        cd build
-        cmake -DBUILD_PYTHON_BINDINGS=ON ../
-        make -j2 python
-        cd src/mlpack/bindings/python/
-        ls
       displayName: Clone mlpack
 
     - bash: |
-        CIBW_BEFORE_ALL="./build_mlpack.sh" ls mlpack/ && cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
+        mkdir build
+        cd build
+        cmake -DBUILD_PYTHON_BINDINGS=ON ../
+        make python_configured
+      displayName: Generate setup.py
+
+    - bash: |
+        export CIBW_BEFORE_ALL="$PWD/build_mlpack.sh"
+        cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
       displayName: Build wheels
 
     - task: PublishBuildArtifacts@1
