@@ -27,7 +27,7 @@ jobs:
       displayName: Clone mlpack
 
     - bash: |
-        CIBW_BEFORE_ALL="./build_mlpack.sh" ls && cibuildwheel --output-dir wheelhouse build/src/mlpack/bindings/python/
+        CIBW_BEFORE_ALL="./build_mlpack.sh" ls mlpack/ && cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
       displayName: Build wheels
 
     - task: PublishBuildArtifacts@1
