@@ -8,4 +8,4 @@ pip install cython numpy pandas
 cd mlpack/build/
 rm -rf *
 cmake -DBUILD_PYTHON_BINDINGS=ON ../
-make
+make -j4
