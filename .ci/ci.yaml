@@ -1,5 +1,6 @@
 jobs:
 - job: linux
+  timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'Ubuntu-20.04'}
   variables:
     MLPACK_VERSION: 4.0.0
