@@ -4,7 +4,7 @@ jobs:
   pool: {vmImage: 'Ubuntu-20.04'}
   variables:
     MLPACK_VERSION: 4.0.0
-    CIBW_BUILD: cp36-*
+    CIBW_BUILD: cp36-manylinux_x86_64
   steps:
     - task: UsePythonVersion@0
     - bash: |
