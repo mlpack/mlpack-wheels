@@ -1,27 +1,35 @@
-From 7bbdd6a6611c4059fd3571b04a75b5abfc95b90f Mon Sep 17 00:00:00 2001
+From bfbe7e7210ccf471083714161229be38ca4a4188 Mon Sep 17 00:00:00 2001
 From: Ryan Curtin <ryan@ratml.org>
-Date: Tue, 1 Nov 2022 14:49:11 -0400
-Subject: [PATCH] Add some options to reduce the size of compiled libraries.
+Date: Tue, 1 Nov 2022 16:29:33 -0400
+Subject: [PATCH] Try another patch.
 
 ---
- src/mlpack/bindings/python/setup.py.in | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ src/mlpack/bindings/python/setup.py.in | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/src/mlpack/bindings/python/setup.py.in b/src/mlpack/bindings/python/setup.py.in
-index 103ed38106..64f84ce781 100644
+index aabd85a6fb..66629ca942 100644
 --- a/src/mlpack/bindings/python/setup.py.in
 +++ b/src/mlpack/bindings/python/setup.py.in
-@@ -57,7 +57,9 @@ else:
-         '/O2', '/Ob2', '/DNDEBUG'])
-   else:
-     extra_args.append('-DBINDING_TYPE=BINDING_TYPE_PYX')
--    extra_args.append('-std=c++14')
-+    extra_args.append('-std=c++17') # Use C++17 to avoid using bundled stdlib.
-+    extra_args.append('-g0') # Disable debugging symbols for size optimization.
-+    extra_link_args.append('-Wl,--strip-all') # Strip anything unnecessary.
- 
+@@ -49,7 +49,7 @@ else:
+   extra_cxx_flags = re.sub(' +', ' ', cxx_flags)
+   cxx_flags += ' '
+   cxx_flags += extra_cxx_flags
+-  extra_args = ['-DBINDING_TYPE=BINDING_TYPE_PYX', '-std=c++14']
++  extra_args = ['-DBINDING_TYPE=BINDING_TYPE_PYX', '-std=c++17']
    if '${OpenMP_CXX_FLAGS}' != '':
      extra_args.append('${OpenMP_CXX_FLAGS}')
+   if cxx_flags:
+@@ -58,6 +58,9 @@ else:
+   # Extra options for MSVC compiler.
+   if platform.system() == 'Windows':
+     extra_args.extend(['/MD', '/O2', '/Ob2', '/DNDEBUG'])
++  else:
++    extra_args.append('-g0')
++    extra_link_args.append('-Wl,--strip-all')
+ 
+   # This is used for parallel builds; CMake will set PYX_TO_BUILD accordingly.
+   if module is not None:
 -- 
 2.37.2
 
