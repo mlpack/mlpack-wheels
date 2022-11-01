@@ -44,4 +44,5 @@ jobs:
         echo "username = __token__" >> ~/.pypirc
         echo "password = $(PYPI_TOKEN)" >> ~/.pypirc
         twine upload wheelhouse/*.whl
+        rm -f ~/.pypirc
       displayName: Push wheels to PyPI
