@@ -1,0 +1,27 @@
+From 7bbdd6a6611c4059fd3571b04a75b5abfc95b90f Mon Sep 17 00:00:00 2001
+From: Ryan Curtin <ryan@ratml.org>
+Date: Tue, 1 Nov 2022 14:49:11 -0400
+Subject: [PATCH] Add some options to reduce the size of compiled libraries.
+
+---
+ src/mlpack/bindings/python/setup.py.in | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/mlpack/bindings/python/setup.py.in b/src/mlpack/bindings/python/setup.py.in
+index 103ed38106..64f84ce781 100644
+--- a/src/mlpack/bindings/python/setup.py.in
++++ b/src/mlpack/bindings/python/setup.py.in
+@@ -57,7 +57,9 @@ else:
+         '/O2', '/Ob2', '/DNDEBUG'])
+   else:
+     extra_args.append('-DBINDING_TYPE=BINDING_TYPE_PYX')
+-    extra_args.append('-std=c++14')
++    extra_args.append('-std=c++17') # Use C++17 to avoid using bundled stdlib.
++    extra_args.append('-g0') # Disable debugging symbols for size optimization.
++    extra_link_args.append('-Wl,--strip-all') # Strip anything unnecessary.
+ 
+   if '${OpenMP_CXX_FLAGS}' != '':
+     extra_args.append('${OpenMP_CXX_FLAGS}')
+-- 
+2.37.2
+
