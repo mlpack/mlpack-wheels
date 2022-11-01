@@ -6,8 +6,8 @@ yum install -y openblas-devel armadillo-devel cereal-devel ensmallen-devel
 pip install cython numpy pandas
 
 cd mlpack/
-patch -p0 < ../reduce-lib-size.patch
-cd mlpack/build/
+patch -p1 < ../reduce-lib-size.patch
+cd build/
 rm -rf *
 cmake -DBUILD_PYTHON_BINDINGS=ON ../
 make -j4
