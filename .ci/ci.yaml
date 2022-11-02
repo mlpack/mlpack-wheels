@@ -367,7 +367,7 @@ jobs:
         rm -f ~/.pypirc
       displayName: Push wheels to PyPI
 
-- job: macos
+- job: windows
   strategy:
     matrix:
       cp36-win_amd64:
