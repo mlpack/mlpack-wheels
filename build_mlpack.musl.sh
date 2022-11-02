@@ -2,7 +2,7 @@
 #
 # Build mlpack's Python bindings inside the cibuildwheel musllinux environment.
 
-apk install openblas-dev armadillo-dev cereal
+apk add openblas-dev armadillo-dev cereal
 pip install cython numpy pandas
 
 # ensmallen must be built by hand.
