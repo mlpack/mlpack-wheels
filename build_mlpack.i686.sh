@@ -15,20 +15,20 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr ../
 make
 make install
 cd ../
-rm -rf armadillo*/
+rm -rf armadillo-11.4.1/ armadillo-11.4.1.tar.gz
 
 wget https://www.ensmallen.org/files/ensmallen-2.19.0.tar.gz
 tar -xvzpf ensmallen-2.19.0.tar.gz
-cd ensmallen*/
+cd ensmallen-2.19.0/
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTS=OFF ../
 make
 make install
 cd ../
-rm -rf ensmallen*
+rm -rf ensmallen-2.19.0/ ensmallen-2.19.0.tar.gz
 
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
-cd build/
-rm -rf *
+rm -rf build/
+mkdir build/
 cmake -DBUILD_PYTHON_BINDINGS=ON ../
 make -j4
