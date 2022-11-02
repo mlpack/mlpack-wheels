@@ -405,6 +405,7 @@ jobs:
       cp39-win_arm64:
         CIBW_BUILD: cp39-win_arm64
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_WINDOWS: "ARM64"
       cp310-win_amd64:
         CIBW_BUILD: cp310-win_amd64
         BUILD_SCRIPT: build_mlpack.sh
@@ -414,6 +415,7 @@ jobs:
       cp310-win_arm64:
         CIBW_BUILD: cp310-win_arm64
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_WINDOWS: "ARM64"
       cp311-win_amd64:
         CIBW_BUILD: cp311-win_amd64
         BUILD_SCRIPT: build_mlpack.sh
@@ -423,6 +425,7 @@ jobs:
       cp311-win_arm64:
         CIBW_BUILD: cp311-win_arm64
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_WINDOWS: "ARM64"
       pp37-win_amd64:
         CIBW_BUILD: pp37-win_amd64
         BUILD_SCRIPT: build_mlpack.sh
