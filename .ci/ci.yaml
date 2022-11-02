@@ -335,7 +335,7 @@ jobs:
         set -o errexit
         python3 -m pip install --upgrade pip
         pip3 install cibuildwheel cython numpy pandas setuptools twine
-        brew install armadillo cereal g++ cmake ensmallen
+        brew install --force armadillo cereal g++ cmake ensmallen
       displayName: Install dependencies
 
     - bash: |
