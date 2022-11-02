@@ -282,36 +282,44 @@ jobs:
       cp38-macosx_universal2:
         CIBW_BUILD: cp38-macosx_universal2
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_MACOS: "universal2"
       cp38-macosx_arm64:
         CIBW_BUILD: cp38-macosx_arm64
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_MACOS: "arm64"
       cp39-macosx_x86_64:
         CIBW_BUILD: cp39-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.sh
       cp39-macosx_universal2:
         CIBW_BUILD: cp39-macosx_universal2
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_MACOS: "universal2"
       cp39-macosx_arm64:
         CIBW_BUILD: cp39-macosx_arm64
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_MACOS: "arm64"
       cp310-macosx_x86_64:
         CIBW_BUILD: cp310-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.sh
       cp310-macosx_universal2:
         CIBW_BUILD: cp310-macosx_universal2
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_MACOS: "universal2"
       cp310-macosx_arm64:
         CIBW_BUILD: cp310-macosx_arm64
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_MACOS: "arm64"
       cp311-macosx_x86_64:
         CIBW_BUILD: cp311-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.sh
       cp311-macosx_universal2:
         CIBW_BUILD: cp311-macosx_universal2
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_MACOS: "universal2"
       cp311-macosx_arm64:
         CIBW_BUILD: cp311-macosx_arm64
         BUILD_SCRIPT: build_mlpack.sh
+        CIBW_ARCHS_MACOS: "arm64"
       pp37-macosx_x86_64:
         CIBW_BUILD: pp37-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.sh
