@@ -449,8 +449,44 @@ jobs:
         set -o errexit
         python3 -m pip install --upgrade pip
         pip3 install cibuildwheel cython numpy pandas setuptools twine
-        nuget install armadillo cereal g++ cmake ensmallen
-      displayName: Install dependencies
+      displayName: Install Python dependencies
+
+    - task: NuGetToolInstaller@0
+      inputs:
+        versionSpec: '5.3.0'
+
+    - powershell: |
+        nuget install OpenBLAS -o $(Agent.ToolsDirectory)
+        nuget install unofficial-flayan-cereal -o $(Agent.ToolsDirectory)
+        nuget install ensmallen -o $(Agent.ToolsDirectory) -Version 2.17.0
+      display: Install nuget dependencies
+
+    # Configure armadillo
+    - bash: |
+        git clone --depth 1 https://github.com/mlpack/jenkins-conf.git conf
+
+        curl -O -L https://files.mlpack.org/armadillo-11.4.1.tar.gz -o armadillo-11.4.1.tar.gz
+        tar -xvzf armadillo-11.4.1.tar.gz
+        cd armadillo-9.800.6/ && cmake $(CMakeGenerator) \
+            -DBLAS_LIBRARY:FILEPATH=$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a \
+            -DLAPACK_LIBRARY:FILEPATH=$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a \
+            -DCMAKE_PREFIX:FILEPATH=../../armadillo \
+            -DBUILD_SHARED_LIBS=OFF \
+            -DCMAKE_BUILD_TYPE=Release .
+      displayName: 'Configure armadillo'
+
+    # Build Armadillo
+    - task: MSBuild@1
+      inputs:
+        solution: 'armadillo-9.800.6/*.sln'
+        msbuildLocationMethod: 'location'
+        msbuildVersion: $(MSBuildVersion)
+        configuration: 'Release'
+        msbuildArchitecture: 'x64'
+        msbuildArguments: /m /p:BuildInParallel=true
+        clean: false
+        maximumCpuCount: false
+      displayName: 'Build armadillo'
 
     - bash: |
         git clone https://github.com/mlpack/mlpack
