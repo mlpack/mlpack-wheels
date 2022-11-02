@@ -4,8 +4,8 @@ Date: Tue, 1 Nov 2022 16:29:33 -0400
 Subject: [PATCH] Try another patch.
 
 ---
- src/mlpack/bindings/python/setup.py.in | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ src/mlpack/bindings/python/setup.py.in | 7 ++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/src/mlpack/bindings/python/setup.py.in b/src/mlpack/bindings/python/setup.py.in
 index aabd85a6fb..66629ca942 100644
@@ -24,6 +24,8 @@ index aabd85a6fb..66629ca942 100644
    # Extra options for MSVC compiler.
    if platform.system() == 'Windows':
      extra_args.extend(['/MD', '/O2', '/Ob2', '/DNDEBUG'])
++  elif platform.system() == 'Darwin':
++    extra_args.append('-g0')
 +  else:
 +    extra_args.append('-g0')
 +    extra_link_args.append('-Wl,--strip-all')
