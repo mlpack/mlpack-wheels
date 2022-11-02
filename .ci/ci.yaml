@@ -467,11 +467,9 @@ jobs:
 
     # Configure armadillo
     - bash: |
-        git clone --depth 1 https://github.com/mlpack/jenkins-conf.git conf
-
         curl -O -L https://files.mlpack.org/armadillo-11.4.1.tar.gz -o armadillo-11.4.1.tar.gz
         tar -xvzf armadillo-11.4.1.tar.gz
-        cd armadillo-9.800.6/ && cmake $(CMakeGenerator) \
+        cd armadillo-11.4.1/ && cmake $(CMakeGenerator) \
             -DBLAS_LIBRARY:FILEPATH=$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a \
             -DLAPACK_LIBRARY:FILEPATH=$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a \
             -DCMAKE_PREFIX:FILEPATH=../../armadillo \
@@ -482,7 +480,7 @@ jobs:
     # Build Armadillo
     - task: MSBuild@1
       inputs:
-        solution: 'armadillo-9.800.6/*.sln'
+        solution: 'armadillo-11.4.1/*.sln'
         msbuildLocationMethod: 'location'
         msbuildVersion: $(MSBuildVersion)
         configuration: 'Release'
@@ -498,11 +496,21 @@ jobs:
         git checkout $(MLPACK_VERSION)
       displayName: Clone mlpack
 
-    - bash: |
-        mkdir -p mlpack/build
-        cd mlpack/build
-        cmake -DBUILD_PYTHON_BINDINGS=ON ../
-        make python_configured
+    - powershell: |
+        cd mlpack
+        mkdir build
+        cd build
+        cmake $(CMakeGenerator) `
+            -DBLAS_LIBRARIES:FILEPATH=$(Agent.ToolsDirectory)\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a `
+            -DLAPACK_LIBRARIES:FILEPATH=$(Agent.ToolsDirectory)\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a `
+            -DARMADILLO_INCLUDE_DIR="..\armadillo-11.4.1\tmp\include" `
+            -DARMADILLO_LIBRARY="..\armadillo-11.4.1\Release\armadillo.lib" `
+            -DCEREAL_INCLUDE_DIR=$(Agent.ToolsDirectory)\unofficial-flayan-cereal.1.2.2\build\native\include" `
+            -DENSMALLEN_INCLUDE_DIR=$(Agent.ToolsDirectory)\ensmallen.2.17.0\installed\x64-linux\include `
+            -DBUILD_JULIA_BINDINGS=OFF `
+            -DBUILD_PYTHON_BINDINGS=ON `
+            -DCMAKE_BUILD_TYPE=Release ..
+        cmake --build . --target python_configured --config Release
       displayName: Generate setup.py
 
     - bash: |
