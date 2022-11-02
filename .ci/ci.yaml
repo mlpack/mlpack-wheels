@@ -128,99 +128,148 @@ jobs:
 
       cp36-musllinux_x86_64:
         CIBW_BUILD: cp36-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp37-musllinux_x86_64:
         CIBW_BUILD: cp37-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp38-musllinux_x86_64:
         CIBW_BUILD: cp38-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp39-musllinux_x86_64:
         CIBW_BUILD: cp39-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp310-musllinux_x86_64:
         CIBW_BUILD: cp310-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp311-musllinux_x86_64:
         CIBW_BUILD: cp311-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
 
       cp36-musllinux_i686:
         CIBW_BUILD: cp36-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp37-musllinux_i686:
         CIBW_BUILD: cp37-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp38-musllinux_i686:
         CIBW_BUILD: cp38-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp39-musllinux_i686:
         CIBW_BUILD: cp39-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp310-musllinux_i686:
         CIBW_BUILD: cp310-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp311-musllinux_i686:
         CIBW_BUILD: cp311-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
 
       cp36-musllinux_aarch64:
         CIBW_BUILD: cp36-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp37-musllinux_aarch64:
         CIBW_BUILD: cp37-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp38-musllinux_aarch64:
         CIBW_BUILD: cp38-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp39-musllinux_aarch64:
         CIBW_BUILD: cp39-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp310-musllinux_aarch64:
         CIBW_BUILD: cp310-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp311-musllinux_aarch64:
         CIBW_BUILD: cp311-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
 
       cp36-musllinux_ppc64le:
         CIBW_BUILD: cp36-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp37-musllinux_ppc64le:
         CIBW_BUILD: cp37-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp38-musllinux_ppc64le:
         CIBW_BUILD: cp38-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp39-musllinux_ppc64le:
         CIBW_BUILD: cp39-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp310-musllinux_ppc64le:
         CIBW_BUILD: cp310-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp311-musllinux_ppc64le:
         CIBW_BUILD: cp311-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
 
       cp36-musllinux_s390x:
         CIBW_BUILD: cp36-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp37-musllinux_s390x:
         CIBW_BUILD: cp37-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp38-musllinux_s390x:
         CIBW_BUILD: cp38-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp39-musllinux_s390x:
         CIBW_BUILD: cp39-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp310-musllinux_s390x:
         CIBW_BUILD: cp310-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
       cp311-musllinux_s390x:
         CIBW_BUILD: cp311-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.musl.sh
 
+  timeoutInMinutes: 0 # No limit for build time.
+  pool: {vmImage: 'Ubuntu-20.04'}
+  variables:
+    MLPACK_VERSION: 4.0.0
+    CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
+    # The PYPI_TOKEN variable is automatically set by Azure Pipelines.
+    TWINE_PYPI_TOKEN: $(PYPI_TOKEN)
+  steps:
+    - task: UsePythonVersion@0
+    - bash: |
+        set -o errexit
+        python3 -m pip install --upgrade pip
+        pip3 install cibuildwheel cython numpy pandas setuptools twine
+        sudo apt-get update
+        sudo apt-get install libarmadillo-dev libcereal-dev g++ cmake libensmallen-dev
+      displayName: Install dependencies
+
+    - bash: |
+        git clone https://github.com/mlpack/mlpack
+        cd mlpack
+        git checkout $(MLPACK_VERSION)
+      displayName: Clone mlpack
+
+    - bash: |
+        mkdir -p mlpack/build
+        cd mlpack/build
+        cmake -DBUILD_PYTHON_BINDINGS=ON ../
+        make python_configured
+      displayName: Generate setup.py
+
+    - bash: |
+        export CIBW_BEFORE_BUILD="./$(BUILD_SCRIPT)"
+        cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
+      displayName: Build wheels
+
+    - task: PublishBuildArtifacts@1
+      inputs: {pathtoPublish: 'wheelhouse'}
+
+    - bash: |
+        echo "[pypi]" > ~/.pypirc
+        echo "username = __token__" >> ~/.pypirc
+        echo "password = $(TWINE_PYPI_TOKEN)" >> ~/.pypirc
+        twine upload wheelhouse/*.whl
+        rm -f ~/.pypirc
+      displayName: Push wheels to PyPI
+
+- job: macos
+  strategy:
+    matrix:
       cp36-macosx_x86_64:
         CIBW_BUILD: cp36-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.sh
@@ -273,6 +322,54 @@ jobs:
         CIBW_BUILD: pp39-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.sh
 
+  timeoutInMinutes: 0 # No limit for build time.
+  pool: {vmImage: 'macOS-11'}
+  variables:
+    MLPACK_VERSION: 4.0.0
+    CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
+    # The PYPI_TOKEN variable is automatically set by Azure Pipelines.
+    TWINE_PYPI_TOKEN: $(PYPI_TOKEN)
+  steps:
+    - task: UsePythonVersion@0
+    - bash: |
+        set -o errexit
+        python3 -m pip install --upgrade pip
+        pip3 install cibuildwheel cython numpy pandas setuptools twine
+        sudo brew install armadillo cereal g++ cmake ensmallen
+      displayName: Install dependencies
+
+    - bash: |
+        git clone https://github.com/mlpack/mlpack
+        cd mlpack
+        git checkout $(MLPACK_VERSION)
+      displayName: Clone mlpack
+
+    - bash: |
+        mkdir -p mlpack/build
+        cd mlpack/build
+        cmake -DBUILD_PYTHON_BINDINGS=ON ../
+        make python_configured
+      displayName: Generate setup.py
+
+    - bash: |
+        export CIBW_BEFORE_BUILD="./$(BUILD_SCRIPT)"
+        cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
+      displayName: Build wheels
+
+    - task: PublishBuildArtifacts@1
+      inputs: {pathtoPublish: 'wheelhouse'}
+
+    - bash: |
+        echo "[pypi]" > ~/.pypirc
+        echo "username = __token__" >> ~/.pypirc
+        echo "password = $(TWINE_PYPI_TOKEN)" >> ~/.pypirc
+        twine upload wheelhouse/*.whl
+        rm -f ~/.pypirc
+      displayName: Push wheels to PyPI
+
+- job: macos
+  strategy:
+    matrix:
       cp36-win_amd64:
         CIBW_BUILD: cp36-win_amd64
         BUILD_SCRIPT: build_mlpack.sh
@@ -329,7 +426,7 @@ jobs:
         BUILD_SCRIPT: build_mlpack.sh
 
   timeoutInMinutes: 0 # No limit for build time.
-  pool: {vmImage: 'Ubuntu-20.04'}
+  pool: {vmImage: 'windows-2019'}
   variables:
     MLPACK_VERSION: 4.0.0
     CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
@@ -341,8 +438,7 @@ jobs:
         set -o errexit
         python3 -m pip install --upgrade pip
         pip3 install cibuildwheel cython numpy pandas setuptools twine
-        sudo apt-get update
-        sudo apt-get install libarmadillo-dev libcereal-dev g++ cmake libensmallen-dev
+        sudo nuget install armadillo cereal g++ cmake ensmallen
       displayName: Install dependencies
 
     - bash: |
