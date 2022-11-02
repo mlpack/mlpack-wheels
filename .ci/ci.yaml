@@ -482,7 +482,7 @@ jobs:
       inputs:
         solution: 'armadillo-11.4.1/*.sln'
         msbuildLocationMethod: 'location'
-        msbuildVersion: $(MSBuildVersion)
+        msbuildVersion: '16.0'
         configuration: 'Release'
         msbuildArchitecture: 'x64'
         msbuildArguments: /m /p:BuildInParallel=true
