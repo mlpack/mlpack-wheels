@@ -5,7 +5,7 @@
 
 # RHEL7 on i686 does not have openblas-devel; so, we use atlas-devel instead.
 # Armadillo and ensmallen must both be installed by hand.
-yum install -y atlas-devel cereal-devel
+yum install -y atlas-devel cereal-devel wget
 pip install cython numpy pandas
 
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
