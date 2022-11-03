@@ -41,7 +41,8 @@ jobs:
 
       - name: Build wheel
         uses: pypa/cibuildwheel@v2.11.2a
-        package-dir: mlpack/build/src/mlpack/bindings/python/
+        with:
+          package-dir: mlpack/build/src/mlpack/bindings/python/
         env:
           CIBW_ARCHS_LINUX: "${{ matrix.arch }}"
 
