@@ -29,7 +29,7 @@ index aabd85a6fb..66629ca942 100644
 +  else:
 +    extra_args.append('-g0')
 +    extra_link_args.append('-Wl,--strip-all')
- 
+
    # This is used for parallel builds; CMake will set PYX_TO_BUILD accordingly.
    if module is not None:
 -- 
