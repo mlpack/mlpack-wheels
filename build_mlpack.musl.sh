@@ -28,9 +28,11 @@ rm -rf cereal-1.3.2 v1.3.2.tar.gz
 wget https://www.ensmallen.org/files/ensmallen-2.19.0.tar.gz
 tar -xvzpf ensmallen-2.19.0.tar.gz
 cd ensmallen-2.19.0/
+mkdir build/
+cd build/
 cmake -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/usr ../
 make install
-cd ../
+cd ../../
 rm -rf ensmallen-2.19.0 ensmallen-2.19.0.tar.gz
 
 cd mlpack/
