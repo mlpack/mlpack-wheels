@@ -1,0 +1,50 @@
+name: Build aarch64, s390x, and ppc64le wheels
+
+on: [push]
+
+env:
+  MLPACK_COMMIT: 4.0.0
+  CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
+  CIBW_BEFORE_BUILD: "../../../../../../build_mlpack.sh"
+
+jobs:
+  build_wheels:
+    name: Build wheels on ${{ matrix.arch }}
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        arch: [aarch64, s390x, ppc64le]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up QEMU
+        if: runner.os == 'Linux'
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: all
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install libopenblas-dev libarmadillo-dev libensmallen-dev libcereal-dev g++ cmake
+          sudo pip install numpy cython pandas
+
+      - name: Generate setup.py
+        run: |
+          git clone https://github.com/mlpack/mlpack
+          cd mlpack/
+          git checkout $MLPACK_COMMIT
+          mkdir build/
+          cd build/
+          cmake -DBUILD_PYTHON_BINDINGS=ON ../
+          make python_configured
+
+      - name: Build wheel
+        uses: pypa/cibuildwheel@v2.11.2a
+        working-directory: mlpack/build/src/mlpack/bindings/python/
+        env:
+          CIBW_ARCHS_LINUX: "${{ arch }}"
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./wheelhouse/*.whl
