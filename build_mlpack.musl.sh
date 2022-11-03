@@ -10,7 +10,7 @@ pip install cython numpy pandas
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
 tar -xvzpf armadillo-11.4.1.tar.gz
 cd armadillo-11.4.1/
-cmake -DCMAKE_INSTALL_PREFIX=/usr .
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DOPENBLAS_PROVIDES_LAPACK=true .
 make
 make install
 cd ../
