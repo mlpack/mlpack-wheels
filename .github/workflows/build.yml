@@ -5,7 +5,7 @@ on: [push]
 env:
   MLPACK_COMMIT: 4.0.0
   CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
-  CIBW_BEFORE_BUILD: "../../../../../../build_mlpack.sh"
+  CIBW_BEFORE_BUILD: "./build_mlpack.sh"
 
 jobs:
   build_wheels:
@@ -41,9 +41,9 @@ jobs:
 
       - name: Build wheel
         uses: pypa/cibuildwheel@v2.11.2a
-        working-directory: mlpack/build/src/mlpack/bindings/python/
+        package-dir: mlpack/build/src/mlpack/bindings/python/
         env:
-          CIBW_ARCHS_LINUX: "${{ arch }}"
+          CIBW_ARCHS_LINUX: "${{ matrix.arch }}"
 
       - uses: actions/upload-artifact@v3
         with:
