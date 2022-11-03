@@ -470,11 +470,12 @@ jobs:
         curl -O -L https://files.mlpack.org/armadillo-11.4.1.tar.gz -o armadillo-11.4.1.tar.gz
         tar -xvzf armadillo-11.4.1.tar.gz
         cd armadillo-11.4.1/ && cmake $(CMakeGenerator) \
-            -DBLAS_LIBRARY:FILEPATH=$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a \
-            -DLAPACK_LIBRARY:FILEPATH=$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a \
+            -DBLAS_LIBRARY:FILEPATH="$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
+            -DLAPACK_LIBRARY:FILEPATH="$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
             -DCMAKE_PREFIX:FILEPATH=../../armadillo \
             -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_BUILD_TYPE=Release .
+
       displayName: 'Configure armadillo'
 
     # Build Armadillo
