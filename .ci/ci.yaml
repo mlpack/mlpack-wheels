@@ -60,71 +60,71 @@ jobs:
         CIBW_BUILD: pp39-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
 
-      cp36-manylinux_aarch64:
-        CIBW_BUILD: cp36-manylinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
-      cp37-manylinux_aarch64:
-        CIBW_BUILD: cp37-manylinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
-      cp38-manylinux_aarch64:
-        CIBW_BUILD: cp38-manylinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
-      cp39-manylinux_aarch64:
-        CIBW_BUILD: cp39-manylinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
-      cp310-manylinux_aarch64:
-        CIBW_BUILD: cp310-manylinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
-      cp311-manylinux_aarch64:
-        CIBW_BUILD: cp311-manylinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
-      pp37-manylinux_aarch64:
-        CIBW_BUILD: pp37-manylinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
-      pp38_manylinux_aarch64:
-        CIBW_BUILD: pp38-manylinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
-      pp39_manylinux_aarch64:
-        CIBW_BUILD: pp39-manylinux_aarch64
-        BUILD_SCRIPT: build_mlpack.sh
+#      cp36-manylinux_aarch64:
+#        CIBW_BUILD: cp36-manylinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp37-manylinux_aarch64:
+#        CIBW_BUILD: cp37-manylinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp38-manylinux_aarch64:
+#        CIBW_BUILD: cp38-manylinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp39-manylinux_aarch64:
+#        CIBW_BUILD: cp39-manylinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp310-manylinux_aarch64:
+#        CIBW_BUILD: cp310-manylinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp311-manylinux_aarch64:
+#        CIBW_BUILD: cp311-manylinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.sh
+#      pp37-manylinux_aarch64:
+#        CIBW_BUILD: pp37-manylinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.sh
+#      pp38_manylinux_aarch64:
+#        CIBW_BUILD: pp38-manylinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.sh
+#      pp39_manylinux_aarch64:
+#        CIBW_BUILD: pp39-manylinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.sh
 
-      cp36-manylinux_ppc64le:
-        CIBW_BUILD: cp36-manylinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
-      cp37-manylinux_ppc64le:
-        CIBW_BUILD: cp37-manylinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
-      cp38-manylinux_ppc64le:
-        CIBW_BUILD: cp38-manylinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
-      cp39-manylinux_ppc64le:
-        CIBW_BUILD: cp39-manylinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
-      cp310-manylinux_ppc64le:
-        CIBW_BUILD: cp310-manylinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
-      cp311-manylinux_ppc64le:
-        CIBW_BUILD: cp311-manylinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.sh
+#      cp36-manylinux_ppc64le:
+#        CIBW_BUILD: cp36-manylinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp37-manylinux_ppc64le:
+#        CIBW_BUILD: cp37-manylinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp38-manylinux_ppc64le:
+#        CIBW_BUILD: cp38-manylinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp39-manylinux_ppc64le:
+#        CIBW_BUILD: cp39-manylinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp310-manylinux_ppc64le:
+#        CIBW_BUILD: cp310-manylinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp311-manylinux_ppc64le:
+#        CIBW_BUILD: cp311-manylinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.sh
 
-      cp36-manylinux_s390x:
-        CIBW_BUILD: cp36-manylinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
-      cp37-manylinux_s390x:
-        CIBW_BUILD: cp37-manylinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
-      cp38-manylinux_s390x:
-        CIBW_BUILD: cp38-manylinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
-      cp39-manylinux_s390x:
-        CIBW_BUILD: cp39-manylinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
-      cp310-manylinux_s390x:
-        CIBW_BUILD: cp310-manylinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
-      cp311-manylinux_s390x:
-        CIBW_BUILD: cp311-manylinux_s390x
-        BUILD_SCRIPT: build_mlpack.sh
+#      cp36-manylinux_s390x:
+#        CIBW_BUILD: cp36-manylinux_s390x
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp37-manylinux_s390x:
+#        CIBW_BUILD: cp37-manylinux_s390x
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp38-manylinux_s390x:
+#        CIBW_BUILD: cp38-manylinux_s390x
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp39-manylinux_s390x:
+#        CIBW_BUILD: cp39-manylinux_s390x
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp310-manylinux_s390x:
+#        CIBW_BUILD: cp310-manylinux_s390x
+#        BUILD_SCRIPT: build_mlpack.sh
+#      cp311-manylinux_s390x:
+#        CIBW_BUILD: cp311-manylinux_s390x
+#        BUILD_SCRIPT: build_mlpack.sh
 
       cp36-musllinux_x86_64:
         CIBW_BUILD: cp36-musllinux_x86_64
@@ -164,62 +164,62 @@ jobs:
         CIBW_BUILD: cp311-musllinux_i686
         BUILD_SCRIPT: build_mlpack.musl.sh
 
-      cp36-musllinux_aarch64:
-        CIBW_BUILD: cp36-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp37-musllinux_aarch64:
-        CIBW_BUILD: cp37-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp38-musllinux_aarch64:
-        CIBW_BUILD: cp38-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp39-musllinux_aarch64:
-        CIBW_BUILD: cp39-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp310-musllinux_aarch64:
-        CIBW_BUILD: cp310-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp311-musllinux_aarch64:
-        CIBW_BUILD: cp311-musllinux_aarch64
-        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp36-musllinux_aarch64:
+#        CIBW_BUILD: cp36-musllinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp37-musllinux_aarch64:
+#        CIBW_BUILD: cp37-musllinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp38-musllinux_aarch64:
+#        CIBW_BUILD: cp38-musllinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp39-musllinux_aarch64:
+#        CIBW_BUILD: cp39-musllinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp310-musllinux_aarch64:
+#        CIBW_BUILD: cp310-musllinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp311-musllinux_aarch64:
+#        CIBW_BUILD: cp311-musllinux_aarch64
+#        BUILD_SCRIPT: build_mlpack.musl.sh
 
-      cp36-musllinux_ppc64le:
-        CIBW_BUILD: cp36-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp37-musllinux_ppc64le:
-        CIBW_BUILD: cp37-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp38-musllinux_ppc64le:
-        CIBW_BUILD: cp38-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp39-musllinux_ppc64le:
-        CIBW_BUILD: cp39-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp310-musllinux_ppc64le:
-        CIBW_BUILD: cp310-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp311-musllinux_ppc64le:
-        CIBW_BUILD: cp311-musllinux_ppc64le
-        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp36-musllinux_ppc64le:
+#        CIBW_BUILD: cp36-musllinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp37-musllinux_ppc64le:
+#        CIBW_BUILD: cp37-musllinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp38-musllinux_ppc64le:
+#        CIBW_BUILD: cp38-musllinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp39-musllinux_ppc64le:
+#        CIBW_BUILD: cp39-musllinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp310-musllinux_ppc64le:
+#        CIBW_BUILD: cp310-musllinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp311-musllinux_ppc64le:
+#        CIBW_BUILD: cp311-musllinux_ppc64le
+#        BUILD_SCRIPT: build_mlpack.musl.sh
 
-      cp36-musllinux_s390x:
-        CIBW_BUILD: cp36-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp37-musllinux_s390x:
-        CIBW_BUILD: cp37-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp38-musllinux_s390x:
-        CIBW_BUILD: cp38-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp39-musllinux_s390x:
-        CIBW_BUILD: cp39-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp310-musllinux_s390x:
-        CIBW_BUILD: cp310-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.musl.sh
-      cp311-musllinux_s390x:
-        CIBW_BUILD: cp311-musllinux_s390x
-        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp36-musllinux_s390x:
+#        CIBW_BUILD: cp36-musllinux_s390x
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp37-musllinux_s390x:
+#        CIBW_BUILD: cp37-musllinux_s390x
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp38-musllinux_s390x:
+#        CIBW_BUILD: cp38-musllinux_s390x
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp39-musllinux_s390x:
+#        CIBW_BUILD: cp39-musllinux_s390x
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp310-musllinux_s390x:
+#        CIBW_BUILD: cp310-musllinux_s390x
+#        BUILD_SCRIPT: build_mlpack.musl.sh
+#      cp311-musllinux_s390x:
+#        CIBW_BUILD: cp311-musllinux_s390x
+#        BUILD_SCRIPT: build_mlpack.musl.sh
 
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'Ubuntu-20.04'}
