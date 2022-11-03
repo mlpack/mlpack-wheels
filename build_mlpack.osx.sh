@@ -11,5 +11,5 @@ cd build/
 rm -rf *
 # _LIBCPP_DISABLE_AVAILABILITY is required to avoid compilation errors claiming
 # that any_cast is not available.
-cmake -DBUILD_PYTHON_BINDINGS=ON -DCMAKE_CXX_FLAGS="-D_LIBCPP_DISABLE_AVAILABILITY" ../
+cmake -DBUILD_PYTHON_BINDINGS=ON -DCMAKE_CXX_FLAGS="-D_LIBCPP_DISABLE_AVAILABILITY -DARMA_DONT_USE_WRAPPER" ../
 make -j4
