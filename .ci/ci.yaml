@@ -368,61 +368,61 @@ jobs:
     matrix:
       cp36-win_amd64:
         CIBW_BUILD: cp36-win_amd64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp36-win32:
         CIBW_BUILD: cp36-win32
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp37-win_amd64:
         CIBW_BUILD: cp37-win_amd64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp37-win32:
         CIBW_BUILD: cp37-win32
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp38-win_amd64:
         CIBW_BUILD: cp38-win_amd64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp38-win32:
         CIBW_BUILD: cp38-win32
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp39-win_amd64:
         CIBW_BUILD: cp39-win_amd64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp39-win32:
         CIBW_BUILD: cp39-win32
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp39-win_arm64:
         CIBW_BUILD: cp39-win_arm64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
         CIBW_ARCHS_WINDOWS: "ARM64"
       cp310-win_amd64:
         CIBW_BUILD: cp310-win_amd64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp310-win32:
         CIBW_BUILD: cp310-win32
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp310-win_arm64:
         CIBW_BUILD: cp310-win_arm64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
         CIBW_ARCHS_WINDOWS: "ARM64"
       cp311-win_amd64:
         CIBW_BUILD: cp311-win_amd64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp311-win32:
         CIBW_BUILD: cp311-win32
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       cp311-win_arm64:
         CIBW_BUILD: cp311-win_arm64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
         CIBW_ARCHS_WINDOWS: "ARM64"
       pp37-win_amd64:
         CIBW_BUILD: pp37-win_amd64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       pp38-win_amd64:
         CIBW_BUILD: pp38-win_amd64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
       pp39-win_amd64:
         CIBW_BUILD: pp39-win_amd64
-        BUILD_SCRIPT: build_mlpack.sh
+        BUILD_SCRIPT: build_mlpack.bat
 
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'windows-2019'}
@@ -499,7 +499,7 @@ jobs:
       displayName: Generate setup.py
 
     - bash: |
-        export CIBW_BEFORE_BUILD="./$(BUILD_SCRIPT)"
+        export CIBW_BEFORE_BUILD="$(BUILD_SCRIPT)"
         cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
       displayName: Build wheels
 
