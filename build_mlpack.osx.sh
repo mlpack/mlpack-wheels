@@ -4,6 +4,7 @@
 
 brew install --force armadillo cereal gcc cmake ensmallen
 pip install cython numpy pandas
+pip install packaging==20.5
 
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
