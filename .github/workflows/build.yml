@@ -40,7 +40,7 @@ jobs:
           make python_configured
 
       - name: Build wheel
-        uses: pypa/cibuildwheel@v2.11.2a
+        uses: pypa/cibuildwheel@v2.11.2
         with:
           package-dir: mlpack/build/src/mlpack/bindings/python/
         env:
