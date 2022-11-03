@@ -5,7 +5,7 @@
 
 # RHEL7 on i686 does not have openblas-devel; so, we use atlas-devel instead.
 # Armadillo and ensmallen must both be installed by hand.
-yum install -y atlas-devel wget
+yum install -y atlas-devel lapack-devel wget
 pip install cython numpy pandas
 
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
@@ -40,5 +40,6 @@ cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
 rm -rf build/
 mkdir build/
+cd build/
 cmake -DBUILD_PYTHON_BINDINGS=ON ../
 make -j4
