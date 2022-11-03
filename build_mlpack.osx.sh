@@ -26,6 +26,6 @@ cmake \
   -DBUILD_PYTHON_BINDINGS=ON \
   -DCMAKE_CXX_FLAGS="-D_LIBCPP_DISABLE_AVAILABILITY" \
   -DBUILD_CLI_EXECUTABLES=OFF \
-  -DARMADILLO_LIBRARY=/usr/local/lib/libarmadillo.11.dylib
+  -DARMADILLO_LIBRARY=/usr/local/lib/libarmadillo.11.dylib \
   ../
 make -j4
