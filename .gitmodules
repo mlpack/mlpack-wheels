@@ -1,9 +1,0 @@
-[submodule "mlpack"]
-	path = mlpack
-	url = https://github.com/mlpack/mlpack.git
-[submodule "gfortran-install"]
-	path = gfortran-install
-	url = https://github.com/MacPython/gfortran-install
-[submodule "numpy"]
-	path = numpy
-	url = https://github.com/numpy/numpy
