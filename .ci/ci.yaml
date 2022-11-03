@@ -453,7 +453,7 @@ jobs:
     - bash: |
         curl -O -L https://files.mlpack.org/armadillo-11.4.1.tar.gz -o armadillo-11.4.1.tar.gz
         tar -xvzf armadillo-11.4.1.tar.gz
-        cd armadillo-11.4.1/ && cmake $(CMakeGenerator) \
+        cd armadillo-11.4.1/ && cmake -G "Visual Studio 16 2019" \
             -DBLAS_LIBRARY:FILEPATH="$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
             -DLAPACK_LIBRARY:FILEPATH="$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
             -DCMAKE_PREFIX:FILEPATH=../../armadillo \
@@ -485,7 +485,7 @@ jobs:
         cd mlpack
         mkdir build
         cd build
-        cmake $(CMakeGenerator) `
+        cmake -G "Visual Studio 16 2019" `
             -DBLAS_LIBRARIES:FILEPATH=$(Agent.ToolsDirectory)\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a `
             -DLAPACK_LIBRARIES:FILEPATH=$(Agent.ToolsDirectory)\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a `
             -DARMADILLO_INCLUDE_DIR="..\armadillo-11.4.1\tmp\include" `
