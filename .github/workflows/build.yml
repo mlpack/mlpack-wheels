@@ -9,7 +9,7 @@ env:
 
 jobs:
   build_wheels:
-    name: Build wheels on ${{ matrix.arch }}
+    name: Build wheel for ${{ matrix.py_ver }}-manylinux_${{ matrix.arch }}
     runs-on: ubuntu-20.04
     strategy:
       matrix:
