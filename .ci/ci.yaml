@@ -341,6 +341,9 @@ jobs:
         cd mlpack/build
         cmake -DBUILD_PYTHON_BINDINGS=ON ../
         make python_configured
+        cd ../
+        mkdir -p install/lib/
+        cp -vr ../build/src/mlpack/bindings/python/mlpack/* install/lib/
       displayName: Generate setup.py
 
     - bash: |
