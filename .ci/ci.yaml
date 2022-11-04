@@ -220,7 +220,7 @@ jobs:
         make python_configured
         cd ../
         mkdir -p install/lib/
-        cp -vr build/src/mlpack/bindings/python/mlpack/* install/lib/
+        cp -vr build/src/mlpack/bindings/python/* install/lib/
       displayName: Generate setup.py
 
     - bash: |
