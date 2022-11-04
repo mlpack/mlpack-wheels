@@ -32,7 +32,7 @@ index aabd85a6fb..8cac63b458 100644
 +    extra_args.append('-DBINDING_TYPE=BINDING_TYPE_PYX')
 +    extra_args.append('-std=c++17')
 +    extra_args.append('-g0')
-+    extra_link_args.append('-Wl,--strip-all')
++    #extra_link_args.append('-Wl,--strip-all')
 +
    if '${OpenMP_CXX_FLAGS}' != '':
      extra_args.append('${OpenMP_CXX_FLAGS}')
