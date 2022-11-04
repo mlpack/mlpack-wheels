@@ -32,9 +32,9 @@ jobs:
 #        CIBW_BUILD: pp39-manylinux_x86_64
 #        BUILD_SCRIPT: build_mlpack.sh
 
-#      cp36-manylinux_i686:
-#        CIBW_BUILD: cp36-manylinux_i686
-#        BUILD_SCRIPT: build_mlpack.i686.sh
+      cp36-manylinux_i686:
+        CIBW_BUILD: cp36-manylinux_i686
+        BUILD_SCRIPT: build_mlpack.i686.sh
 #      cp37-manylinux_i686:
 #        CIBW_BUILD: cp37-manylinux_i686
 #        BUILD_SCRIPT: build_mlpack.i686.sh
