@@ -10,11 +10,10 @@ pip install packaging==20.5
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
 tar -xvzpf armadillo-11.4.1.tar.gz
 cd armadillo-11.4.1/
-cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENBLAS_PROVIDES_LAPACK=true .
+cmake -DOPENBLAS_PROVIDES_LAPACK=true .
 make
-make install
 cd ../
-rm -rf armadillo-11.4.1/ armadillo-11.4.1.tar.gz
+rm -rf armadillo-11.4.1.tar.gz
 
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
@@ -26,6 +25,7 @@ cmake \
   -DBUILD_PYTHON_BINDINGS=ON \
   -DCMAKE_CXX_FLAGS="-D_LIBCPP_DISABLE_AVAILABILITY" \
   -DBUILD_CLI_EXECUTABLES=OFF \
-  -DARMADILLO_LIBRARY=/usr/local/lib/libarmadillo.11.dylib \
+  -DARMADILLO_LIBRARY=../../armadillo-11.4.1/libarmadillo.dylib \
+  -DARMADILLO_INCLUDE_DIR=../../armadillo-11.4.1/tmp/include/ \
   ../
 make -j4
