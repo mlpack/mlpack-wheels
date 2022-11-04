@@ -454,12 +454,12 @@ jobs:
     - bash: |
         curl -O -L https://files.mlpack.org/armadillo-11.4.1.tar.gz
         tar -xvzf armadillo-11.4.1.tar.gz
-        ls ../
-        ls ../OpenBLAS.0.2.14.1/
-        ls ../OpenBLAS.0.2.14.1/lib/
-        ls ../OpenBLAS.0.2.14.1/lib/native
-        ls ../OpenBLAS.0.2.14.1/lib/native/lib
-        ls ../OpenBLAS.0.2.14.1/lib/native/lib/x64
+        ls
+        ls OpenBLAS.0.2.14.1/
+        ls OpenBLAS.0.2.14.1/lib/
+        ls OpenBLAS.0.2.14.1/lib/native
+        ls OpenBLAS.0.2.14.1/lib/native/lib
+        ls OpenBLAS.0.2.14.1/lib/native/lib/x64
         cd armadillo-11.4.1/ && cmake -G "Visual Studio 16 2019" \
             -DBLAS_LIBRARY:FILEPATH="../OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
             -DLAPACK_LIBRARY:FILEPATH="../OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
