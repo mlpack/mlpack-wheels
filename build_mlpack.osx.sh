@@ -33,5 +33,9 @@ cmake \
   -DARMADILLO_LIBRARY=../../armadillo-11.4.1/libarmadillo.dylib \
   -DARMADILLO_INCLUDE_DIR=../../armadillo-11.4.1/tmp/include/ \
   -DENSMALLEN_INCLUDE_DIR=../../ensmallen-2.19.0/include/ \
+  -DCMAKE_INSTALL_PREFIX=../install/
   ../
 make -j4
+make install
+ls ../install/
+ls ../install/lib/

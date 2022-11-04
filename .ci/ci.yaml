@@ -349,7 +349,7 @@ jobs:
 
     - bash: |
         export CIBW_BEFORE_BUILD="./$(BUILD_SCRIPT)"
-        cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
+        cibuildwheel --output-dir wheelhouse mlpack/install/lib/
       displayName: Build wheels
 
     - task: PublishBuildArtifacts@1
