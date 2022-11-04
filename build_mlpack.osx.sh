@@ -2,7 +2,7 @@
 #
 # Build mlpack's Python bindings inside the cibuildwheel environment.
 
-brew install --force cereal gcc cmake ensmallen hdf5
+brew install --force cereal gcc cmake hdf5
 pip install cython numpy pandas
 pip install packaging==20.5
 
@@ -13,7 +13,12 @@ cd armadillo-11.4.1/
 cmake -DOPENBLAS_PROVIDES_LAPACK=true .
 make
 cd ../
-rm -rf armadillo-11.4.1.tar.gz
+rm -f armadillo-11.4.1.tar.gz
+
+# ensmallen must also be installed by hand.
+wget https://www.ensmallen.org/files/ensmallen-2.19.0.tar.gz
+tar -xvzpf ensmallen-2.19.0.tar.gz
+rm -f ensmallen-2.19.0.tar.gz
 
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
@@ -27,5 +32,6 @@ cmake \
   -DBUILD_CLI_EXECUTABLES=OFF \
   -DARMADILLO_LIBRARY=../../armadillo-11.4.1/libarmadillo.dylib \
   -DARMADILLO_INCLUDE_DIR=../../armadillo-11.4.1/tmp/include/ \
+  -DENSMALLEN_INCLUDE_DIR=../../ensmallen-2.19.0/include/ \
   ../
 make -j4
