@@ -451,26 +451,19 @@ jobs:
     - bash: |
         curl -O -L https://files.mlpack.org/armadillo-11.4.1.tar.gz
         tar -xvzf armadillo-11.4.1.tar.gz
+        ls ../
+        ls ../OpenBLAS.0.2.14.1/
+        ls ../OpenBLAS.0.2.14.1/lib/
+        ls ../OpenBLAS.0.2.14.1/lib/native
+        ls ../OpenBLAS.0.2.14.1/lib/native/lib
+        ls ../OpenBLAS.0.2.14.1/lib/native/lib/x64
         cd armadillo-11.4.1/ && cmake -G "Visual Studio 16 2019" \
             -DBLAS_LIBRARY:FILEPATH="../OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
             -DLAPACK_LIBRARY:FILEPATH="../OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
-            -DCMAKE_PREFIX:FILEPATH=../../armadillo \
             -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_BUILD_TYPE=Release .
 
       displayName: 'Configure armadillo'
-
-    # Download ensmallen
-    - bash: |
-        curl -O -L https://www.ensmallen.org/files/ensmallen-2.19.0.tar.gz
-        tar -xvzf ensmallen-2.19.0.tar.gz
-        # No build needed---it's header-only.
-      displayName: 'Download ensmallen'
-
-    - bash: |
-        curl -O -L https://github.com/USCILab/cereal/archive/refs/tags/v1.3.2.tar.gz
-        tar -xvzf v1.3.2.tar.gz
-      displayName: 'Download cereal'
 
     # Build Armadillo
     - task: MSBuild@1
@@ -484,6 +477,18 @@ jobs:
         clean: false
         maximumCpuCount: false
       displayName: 'Build armadillo'
+
+    # Download ensmallen
+    - bash: |
+        curl -O -L https://www.ensmallen.org/files/ensmallen-2.19.0.tar.gz
+        tar -xvzf ensmallen-2.19.0.tar.gz
+        # No build needed---it's header-only.
+      displayName: 'Download ensmallen'
+
+    - bash: |
+        curl -O -L https://github.com/USCILab/cereal/archive/refs/tags/v1.3.2.tar.gz
+        tar -xvzf v1.3.2.tar.gz
+      displayName: 'Download cereal'
 
     - bash: |
         git clone https://github.com/mlpack/mlpack
