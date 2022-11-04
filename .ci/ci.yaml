@@ -444,9 +444,7 @@ jobs:
         versionSpec: '5.3.0'
 
     - powershell: |
-        nuget install OpenBLAS -o $(Agent.ToolsDirectory)
-        nuget install unofficial-flayan-cereal -o $(Agent.ToolsDirectory)
-        nuget install ensmallen -o $(Agent.ToolsDirectory) -Version 2.17.0
+        nuget install OpenBLAS -o $pwd
       displayName: Install nuget dependencies
 
     # Configure armadillo
@@ -454,13 +452,25 @@ jobs:
         curl -O -L https://files.mlpack.org/armadillo-11.4.1.tar.gz -o armadillo-11.4.1.tar.gz
         tar -xvzf armadillo-11.4.1.tar.gz
         cd armadillo-11.4.1/ && cmake -G "Visual Studio 16 2019" \
-            -DBLAS_LIBRARY:FILEPATH="$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
-            -DLAPACK_LIBRARY:FILEPATH="$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
+            -DBLAS_LIBRARY:FILEPATH="../OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
+            -DLAPACK_LIBRARY:FILEPATH="../OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a" \
             -DCMAKE_PREFIX:FILEPATH=../../armadillo \
             -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_BUILD_TYPE=Release .
 
       displayName: 'Configure armadillo'
+
+    # Download ensmallen
+    - bash: |
+        curl -O -L https://www.ensmallen.org/files/ensmallen-2.19.0.tar.gz -o ensmallen-2.19.0.tar.gz
+        tar -xvzf ensmallen-2.19.0.tar.gz
+        # No build needed---it's header-only.
+      displayName: 'Download ensmallen'
+
+    - bash: |
+        curl -O -L https://github.com/USCILab/cereal/archive/refs/tags/v1.3.2.tar.gz -o cereal-1.3.2.tar.gz
+        tar -xvzf cereal-1.3.2.tar.gz
+      displayName: 'Download cereal'
 
     # Build Armadillo
     - task: MSBuild@1
@@ -486,12 +496,12 @@ jobs:
         mkdir build
         cd build
         cmake -G "Visual Studio 16 2019" `
-            -DBLAS_LIBRARIES:FILEPATH=$(Agent.ToolsDirectory)\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a `
-            -DLAPACK_LIBRARIES:FILEPATH=$(Agent.ToolsDirectory)\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a `
+            -DBLAS_LIBRARIES:FILEPATH="..\..\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a" `
+            -DLAPACK_LIBRARIES:FILEPATH="..\..\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a" `
             -DARMADILLO_INCLUDE_DIR="..\..\armadillo-11.4.1\tmp\include" `
             -DARMADILLO_LIBRARY="..\..\armadillo-11.4.1\Release\armadillo.lib" `
-            -DCEREAL_INCLUDE_DIR=$(Agent.ToolsDirectory)\unofficial-flayan-cereal.1.2.2\build\native\include `
-            -DENSMALLEN_INCLUDE_DIR=$(Agent.ToolsDirectory)\ensmallen.2.17.0\installed\x64-linux\include `
+            -DCEREAL_INCLUDE_DIR="..\..\cereal-1.3.2\include `
+            -DENSMALLEN_INCLUDE_DIR="..\..\ensmallen-2.19.0\include\" `
             -DBUILD_JULIA_BINDINGS=OFF `
             -DBUILD_PYTHON_BINDINGS=ON `
             -DCMAKE_BUILD_TYPE=Release ..
