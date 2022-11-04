@@ -328,9 +328,12 @@ jobs:
       displayName: Install nuget dependencies
 
     # Configure armadillo
-    - powershell: |
+    - bash: |
         curl -O -L https://files.mlpack.org/armadillo-11.4.1.tar.gz
         tar -xvzf armadillo-11.4.1.tar.gz
+      displayName: 'Download Armadillo'
+
+    - powershell: |
         cd armadillo-11.4.1/
         cmake -G "Visual Studio 16 2019" `
             -DBLAS_LIBRARY:FILEPATH="..\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a" `
