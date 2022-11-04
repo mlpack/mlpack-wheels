@@ -225,9 +225,9 @@ jobs:
   pool: {vmImage: 'Ubuntu-20.04'}
   variables:
     MLPACK_VERSION: 4.0.0
-    CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
+#    CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
     # The PYPI_TOKEN variable is automatically set by Azure Pipelines.
-    TWINE_PYPI_TOKEN: $(PYPI_TOKEN)
+#    TWINE_PYPI_TOKEN: $(PYPI_TOKEN)
   steps:
     - task: UsePythonVersion@0
     - bash: |
@@ -259,13 +259,13 @@ jobs:
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: 'wheelhouse'}
 
-    - bash: |
-        echo "[pypi]" > ~/.pypirc
-        echo "username = __token__" >> ~/.pypirc
-        echo "password = $(TWINE_PYPI_TOKEN)" >> ~/.pypirc
-        twine upload wheelhouse/*.whl
-        rm -f ~/.pypirc
-      displayName: Push wheels to PyPI
+#    - bash: |
+#        echo "[pypi]" > ~/.pypirc
+#        echo "username = __token__" >> ~/.pypirc
+#        echo "password = $(TWINE_PYPI_TOKEN)" >> ~/.pypirc
+#        twine upload wheelhouse/*.whl
+#        rm -f ~/.pypirc
+#      displayName: Push wheels to PyPI
 
 - job: macos
   strategy:
