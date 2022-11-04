@@ -43,3 +43,9 @@ mkdir build/
 cd build/
 cmake -DBUILD_PYTHON_BINDINGS=ON ../
 make -j4
+
+# Debugging information...
+echo "list python directory"
+ls -lh src/mlpack/bindings/python/mlpack/
+cat src/mlpack/bindings/python/mlpack/test_python_binding.pyx
+ldd src/mlpack/bindings/python/mlpack/test_python_binding*.so
