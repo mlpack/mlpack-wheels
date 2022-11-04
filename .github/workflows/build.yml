@@ -15,10 +15,9 @@ jobs:
       matrix:
         py_ver: [cp36, cp37, cp38, cp39, cp310, cp311, pp37, pp38, pp39]
         arch: [aarch64, s390x, ppc64le]
-
-      exclude:
-        py_ver: [pp37, pp38, pp39]
-        arch: [s390x, ppc64le]
+        exclude:
+          py_ver: [pp37, pp38, pp39]
+          arch: [s390x, ppc64le]
 
     env:
       CIBW_BUILD: ${{ matrix.py_ver }}-manylinux_${{ matrix.arch }}
