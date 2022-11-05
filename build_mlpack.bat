@@ -15,6 +15,6 @@ cmake -G "Visual Studio 16 2019" ^
     -DBUILD_CLI_EXECUTABLES=OFF ^
     -DBUILD_JULIA_BINDINGS=OFF ^
     -DBUILD_PYTHON_BINDINGS=ON ^
-    -DBUILD_SHARED_LIBS=OFF ^
+    -DBUILD_SHARED_LIBS=ON ^
     -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --target python --config Release
