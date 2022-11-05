@@ -34,6 +34,7 @@ cmake \
   -DARMADILLO_INCLUDE_DIR=../../armadillo-11.4.1/tmp/include/ \
   -DENSMALLEN_INCLUDE_DIR=../../ensmallen-2.19.0/include/ \
   -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
+  -DINSTALL_NAME_DIR=$PWD \
   ../
 make -j4
 rm -rf ../install/
