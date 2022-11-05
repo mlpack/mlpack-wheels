@@ -136,6 +136,9 @@ jobs:
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: 'wheelhouse'}
 
+    - task: PublishBuildArtifacts@1
+      inputs: {pathtoPublish: 'mlpack/build.tar.gz'}
+
 #    - bash: |
 #        echo "[pypi]" > ~/.pypirc
 #        echo "username = __token__" >> ~/.pypirc

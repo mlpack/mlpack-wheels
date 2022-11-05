@@ -53,3 +53,7 @@ echo "list python directory"
 ls -lh src/mlpack/bindings/python/mlpack/
 cat src/mlpack/bindings/python/mlpack/test_python_binding.pyx
 ldd src/mlpack/bindings/python/mlpack/test_python_binding*.so
+
+echo "tar everything up for export"
+cd ../
+tar -cvzf build.tar.gz build/
