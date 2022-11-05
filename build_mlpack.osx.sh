@@ -36,6 +36,7 @@ cmake \
   -DCMAKE_INSTALL_PREFIX=../install/ \
   ../
 make -j4
+rm -rf ../install/
 make install
 ls ../install/
 ls ../install/lib/
