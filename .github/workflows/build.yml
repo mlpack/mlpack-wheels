@@ -29,6 +29,12 @@ jobs:
             arch: ppc64le
           - py_ver: pp39
             arch: ppc64le
+          - py_ver: pp37
+            host: musllinux
+          - py_ver: pp38
+            host: musllinux
+          - py_ver: pp39
+            host: musllinux
 
     env:
       CIBW_BUILD: ${{ matrix.py_ver }}-${{ matrix.host }}_${{ matrix.arch }}
