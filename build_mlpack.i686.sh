@@ -45,6 +45,10 @@ cmake -DBUILD_PYTHON_BINDINGS=ON ../
 make -j4
 
 # Debugging information...
+echo "run test_python_binding"
+ls -lh bin/
+bin/generate_pyx_test_python_binding
+
 echo "list python directory"
 ls -lh src/mlpack/bindings/python/mlpack/
 cat src/mlpack/bindings/python/mlpack/test_python_binding.pyx
