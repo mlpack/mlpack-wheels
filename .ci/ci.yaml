@@ -341,6 +341,7 @@ jobs:
             -DBUILD_SHARED_LIBS=OFF `
             -DCMAKE_BUILD_TYPE=Release .
         cmake --build . --target armadillo --config Release
+        cd ../
       displayName: 'Configure and build armadillo'
 
     # Download ensmallen
