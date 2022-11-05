@@ -30,7 +30,7 @@ tar -xvzpf ensmallen-2.19.0.tar.gz
 cd ensmallen-2.19.0/
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTS=OFF ../
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTS=OFF -DDEBUG=ON ../
 make
 make install
 cd ../../
