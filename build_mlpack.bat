@@ -19,5 +19,5 @@ cmake -G "Visual Studio 16 2019" ^
     -DBUILD_SHARED_LIBS=OFF ^
     -DBUILD_TESTS=ON ^
     -DCMAKE_BUILD_TYPE=Release ..
-cmake --build . --target mlpack_test --config Release
-cmake --build . --target python --config Release
+cmake --build . --target mlpack_test --config Release -- /verbosity:detailed
+cmake --build . --target python --config Release -- /verbosity:detailed
