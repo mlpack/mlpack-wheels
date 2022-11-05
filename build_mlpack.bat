@@ -2,6 +2,7 @@ pip install cython numpy pandas
 
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
+patch -p1 < ../static-binding-linking.patch
 rm -rf build/
 mkdir build
 cd build/
@@ -15,6 +16,6 @@ cmake -G "Visual Studio 16 2019" ^
     -DBUILD_CLI_EXECUTABLES=OFF ^
     -DBUILD_JULIA_BINDINGS=OFF ^
     -DBUILD_PYTHON_BINDINGS=ON ^
-    -DBUILD_SHARED_LIBS=ON ^
+    -DBUILD_SHARED_LIBS=OFF ^
     -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --target python --config Release

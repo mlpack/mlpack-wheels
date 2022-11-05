@@ -1,0 +1,152 @@
+From 659e0f38d5160fbf686dab19cd0e5732767c0a01 Mon Sep 17 00:00:00 2001
+From: Ryan Curtin <ryan@ratml.org>
+Date: Sat, 5 Nov 2022 10:10:10 -0400
+Subject: [PATCH] Propagate BUILD_SHARED_LIBS setting to binding compilation
+ too.
+
+---
+ src/mlpack/bindings/R/CMakeLists.txt      |  8 ++++++--
+ src/mlpack/bindings/go/CMakeLists.txt     | 18 +++++++++++++++---
+ src/mlpack/bindings/julia/CMakeLists.txt  | 18 +++++++++++++++---
+ src/mlpack/bindings/python/CMakeLists.txt | 13 +++++++++++--
+ 4 files changed, 47 insertions(+), 10 deletions(-)
+
+diff --git a/src/mlpack/bindings/R/CMakeLists.txt b/src/mlpack/bindings/R/CMakeLists.txt
+index 4aa4033aee..804528c099 100644
+--- a/src/mlpack/bindings/R/CMakeLists.txt
++++ b/src/mlpack/bindings/R/CMakeLists.txt
+@@ -374,8 +374,12 @@ if (BUILD_R_BINDINGS)
+       ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/R/print_input_processing.hpp
+       ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/R/print_serialize_util.hpp
+       ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/R/print_output_processing.hpp)
+-   target_link_libraries(generate_r_${name} ${MLPACK_LIBRARIES})
+-   set_target_properties(generate_r_${name} PROPERTIES
++  if (BUILD_SHARED_LIBS)
++    target_link_libraries(generate_r_${name} ${MLPACK_LIBRARIES})
++  else ()
++    target_link_libraries(generate_r_${name} -static ${MLPACK_LIBRARIES})
++  endif ()
++  set_target_properties(generate_r_${name} PROPERTIES
+       COMPILE_FLAGS "-DBINDING_TYPE=BINDING_TYPE_R"
+       RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/src/mlpack/bindings/R/build/bin/")
+   add_custom_command(TARGET generate_r_${name} POST_BUILD
+diff --git a/src/mlpack/bindings/go/CMakeLists.txt b/src/mlpack/bindings/go/CMakeLists.txt
+index efc5396a3b..f9b9dbd074 100644
+--- a/src/mlpack/bindings/go/CMakeLists.txt
++++ b/src/mlpack/bindings/go/CMakeLists.txt
+@@ -140,7 +140,11 @@ if (BUILD_GO_SHLIB)
+   add_library(mlpack_go_util SHARED
+           ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/go/mlpack/capi/arma_util.cpp
+           ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/go/mlpack/capi/io_util.cpp)
+-  target_link_libraries(mlpack_go_util ${MLPACK_LIBRARIES})
++  if (BUILD_SHARED_LIBS)
++    target_link_libraries(mlpack_go_util ${MLPACK_LIBRARIES})
++  else ()
++    target_link_libraries(mlpack_go_util -static ${MLPACK_LIBRARIES})
++  endif ()
+   target_compile_definitions(mlpack_go_util PUBLIC
+       -DBINDING_TYPE=BINDING_TYPE_GO
+       -DMLPACK_PRINT_INFO
+@@ -213,7 +217,11 @@ if (BUILD_GO_BINDINGS)
+       ${CMAKE_BINARY_DIR}/src/mlpack/bindings/go/generate_go_${name}.cpp
+       ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/go/print_go.hpp
+       ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/go/print_go.cpp)
+-  target_link_libraries(generate_go_${name} ${MLPACK_LIBRARIES})
++  if (BUILD_SHARED_LIBS)
++    target_link_libraries(generate_go_${name} ${MLPACK_LIBRARIES})
++  else ()
++    target_link_libraries(generate_go_${name} -static ${MLPACK_LIBRARIES})
++  endif ()
+   set_target_properties(generate_go_${name} PROPERTIES COMPILE_FLAGS
+       -DBINDING_TYPE=BINDING_TYPE_GO)
+   add_custom_command(TARGET generate_go_${name} POST_BUILD
+@@ -242,7 +250,11 @@ if(BUILD_GO_SHLIB)
+   # Build libmlpack_go_${name}.so.
+   add_library(mlpack_go_${name} SHARED
+       ${CMAKE_BINARY_DIR}/src/mlpack/bindings/go/build/${name}.cpp)
+-  target_link_libraries(mlpack_go_${name} mlpack_go_util)
++  if (BUILD_SHARED_LIBS)
++    target_link_libraries(mlpack_go_${name} mlpack_go_util)
++  else ()
++    target_link_libraries(mlpack_go_${name} -static mlpack_go_util)
++  endif ()
+   target_compile_definitions(mlpack_go_${name} PUBLIC
+       -DMLPACK_PRINT_INFO -DMLPACK_PRINT_WARN)
+   set_target_properties(mlpack_go_${name} PROPERTIES
+diff --git a/src/mlpack/bindings/julia/CMakeLists.txt b/src/mlpack/bindings/julia/CMakeLists.txt
+index 003b5113ab..cad28cf062 100644
+--- a/src/mlpack/bindings/julia/CMakeLists.txt
++++ b/src/mlpack/bindings/julia/CMakeLists.txt
+@@ -53,7 +53,11 @@ if (BUILD_JULIA_BINDINGS)
+   add_library(mlpack_julia_util
+     julia_util.h
+     julia_util.cpp)
+-  target_link_libraries(mlpack_julia_util ${MLPACK_LIBRARIES})
++  if (BUILD_SHARED_LIBS)
++    target_link_libraries(mlpack_julia_util ${MLPACK_LIBRARIES})
++  else ()
++    target_link_libraries(mlpack_julia_util -static ${MLPACK_LIBRARIES})
++  endif ()
+   target_compile_definitions(mlpack_julia_util PUBLIC
+       -DMLPACK_PRINT_INFO -DMLPACK_PRINT_WARN)
+   set_target_properties(mlpack_julia_util PROPERTIES
+@@ -189,7 +193,11 @@ if (BUILD_JULIA_BINDINGS)
+   add_library(mlpack_julia_${name}
+       ${CMAKE_BINARY_DIR}/src/mlpack/bindings/julia/mlpack/build/julia_${name}.h
+       ${CMAKE_BINARY_DIR}/src/mlpack/bindings/julia/mlpack/build/julia_${name}.cpp)
+-  target_link_libraries(mlpack_julia_${name} mlpack_julia_util)
++  if (BUILD_SHARED_LIBS)
++    target_link_libraries(mlpack_julia_${name} mlpack_julia_util)
++  else ()
++    target_link_libraries(mlpack_julia_${name} -static mlpack_julia_util)
++  endif ()
+   target_compile_definitions(mlpack_julia_${name} PUBLIC
+       -DMLPACK_PRINT_INFO -DMLPACK_PRINT_WARN)
+   set_target_properties(mlpack_julia_${name} PROPERTIES
+@@ -229,7 +237,11 @@ if (BUILD_JULIA_BINDINGS)
+       ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/julia/print_model_type_import.hpp
+       ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/julia/default_param.hpp
+       ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/julia/default_param_impl.hpp)
+-  target_link_libraries(generate_jl_${name} ${MLPACK_LIBRARIES})
++  if (BUILD_SHARED_LIBS)
++    target_link_libraries(generate_jl_${name} ${MLPACK_LIBRARIES})
++  else ()
++    target_link_libraries(generate_jl_${name} -static ${MLPACK_LIBRARIES})
++  endif ()
+   set_target_properties(generate_jl_${name} PROPERTIES
+       COMPILE_FLAGS "-DBINDING_TYPE=BINDING_TYPE_JL"
+       RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/src/mlpack/bindings/julia/mlpack/build/bin/")
+diff --git a/src/mlpack/bindings/python/CMakeLists.txt b/src/mlpack/bindings/python/CMakeLists.txt
+index 2d240a88eb..acc5845375 100644
+--- a/src/mlpack/bindings/python/CMakeLists.txt
++++ b/src/mlpack/bindings/python/CMakeLists.txt
+@@ -242,7 +242,11 @@ macro (add_python_binding directory name)
+         ${CMAKE_BINARY_DIR}/src/mlpack/bindings/python/generate_pyx_${name}.cpp
+         ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/python/print_pyx.hpp
+         ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/python/print_pyx.cpp)
+-    target_link_libraries(generate_pyx_${name} ${MLPACK_LIBRARIES})
++    if (BUILD_SHARED_LIBS)
++      target_link_libraries(generate_pyx_${name} ${MLPACK_LIBRARIES})
++    else ()
++      target_link_libraries(generate_pyx_${name} -static ${MLPACK_LIBRARIES})
++    endif ()
+     set_target_properties(generate_pyx_${name} PROPERTIES COMPILE_FLAGS
+         -DBINDING_TYPE=BINDING_TYPE_PYX)
+     add_custom_command(TARGET generate_pyx_${name} POST_BUILD
+@@ -309,7 +313,12 @@ macro (add_python_wrapper directory group_name)
+       ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/python/print_wrapper_py.hpp
+       ${CMAKE_SOURCE_DIR}/src/mlpack/bindings/python/print_wrapper_py.cpp)
+ 
+-  target_link_libraries(generate_py_wrapper_${group_name} ${MLPACK_LIBRARIES})
++  if (BUILD_SHARED_LIBS)
++    target_link_libraries(generate_py_wrapper_${group_name} ${MLPACK_LIBRARIES})
++  else ()
++    target_link_libraries(generate_py_wrapper_${group_name} -static
++        ${MLPACK_LIBRARIES})
++  endif ()
+ 
+   add_custom_command(TARGET generate_py_wrapper_${group_name} POST_BUILD
+       COMMAND ${CMAKE_COMMAND}
+-- 
+2.38.1
+
