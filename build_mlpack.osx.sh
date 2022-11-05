@@ -33,7 +33,7 @@ cmake \
   -DARMADILLO_LIBRARY=../../armadillo-11.4.1/libarmadillo.dylib \
   -DARMADILLO_INCLUDE_DIR=../../armadillo-11.4.1/tmp/include/ \
   -DENSMALLEN_INCLUDE_DIR=../../ensmallen-2.19.0/include/ \
-  -DCMAKE_INSTALL_PREFIX=../install/ \
+  -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
   ../
 make -j4
 rm -rf ../install/

@@ -218,9 +218,6 @@ jobs:
         cd mlpack/build
         cmake -DBUILD_PYTHON_BINDINGS=ON ../
         make python_configured
-        cd ../
-        mkdir -p install/lib/python3.6/site-packages/mlpack/
-        cp -vr build/src/mlpack/bindings/python/* install/lib/python3.6/site-packages/mlpack/
       displayName: Generate setup.py
 
     - bash: |
@@ -229,7 +226,7 @@ jobs:
 
     - bash: |
         export CIBW_BEFORE_BUILD="./$(BUILD_SCRIPT)"
-        cibuildwheel --output-dir wheelhouse mlpack/install/lib/python3.6/site-packages/mlpack/
+        cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
       displayName: Build wheels
 
     - task: PublishBuildArtifacts@1
