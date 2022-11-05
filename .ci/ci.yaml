@@ -101,7 +101,7 @@ jobs:
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'Ubuntu-20.04'}
   variables:
-    MLPACK_VERSION: 4.0.0
+    MLPACK_VERSION: i686-debug
 #    CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
     # The PYPI_TOKEN variable is automatically set by Azure Pipelines.
 #    TWINE_PYPI_TOKEN: $(PYPI_TOKEN)
@@ -116,7 +116,7 @@ jobs:
       displayName: Install dependencies
 
     - bash: |
-        git clone https://github.com/mlpack/mlpack
+        git clone https://github.com/rcurtin/mlpack
         cd mlpack
         git checkout $(MLPACK_VERSION)
       displayName: Clone mlpack
