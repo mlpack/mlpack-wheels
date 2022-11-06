@@ -46,7 +46,8 @@ make install
 mkdir tmp
 cd tmp
 ls ../../install/lib/python3.6/site-packages
-unzip ../../install/lib/python3.6/site-packages/mlpack*.egg
+file ../../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg
+unzip ../../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg
 ls
 ls mlpack/
 cp -vr mlpack/*.so ../src/mlpack/bindings/python/mlpack/
