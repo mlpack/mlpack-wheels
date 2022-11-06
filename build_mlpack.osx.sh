@@ -46,4 +46,6 @@ make install
 ls ../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/
 ls ../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/mlpack/
 
+otool -L src/mlpack/bindings/python/test_python_binding.cpython-36m-darwin.so
 cp -vr ../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/mlpack/*.so src/mlpack/bindings/python/mlpack/
+otool -L src/mlpack/bindings/python/test_python_binding.cpython-36m-darwin.so
