@@ -38,7 +38,3 @@ cmake \
   -DINSTALL_NAME_DIR=$PWD \
   ../
 make -j4
-rm -rf ../install/
-make install
-ls ../install/
-ls ../install/lib/
