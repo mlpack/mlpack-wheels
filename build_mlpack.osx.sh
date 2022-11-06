@@ -36,7 +36,7 @@ cmake \
   -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
   -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=true \
   -DINSTALL_NAME_DIR=$PWD \
-  -DCMAKE_INSTALL_DIR=../install \
+  -DCMAKE_INSTALL_PREFIX=../install \
   ../
 make -j4
 make install
