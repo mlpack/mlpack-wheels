@@ -1,0 +1,25 @@
+From 9338dd375265af3fdd48bd0c880ca6b31f633d69 Mon Sep 17 00:00:00 2001
+From: Ryan Curtin <ryan@ratml.org>
+Date: Sun, 6 Nov 2022 14:03:41 -0500
+Subject: [PATCH] Try to work around i686 compiler bug (maybe?).
+
+---
+ src/mlpack/core/util/io_impl.hpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/mlpack/core/util/io_impl.hpp b/src/mlpack/core/util/io_impl.hpp
+index e1ddb6273e..5b3d014520 100644
+--- a/src/mlpack/core/util/io_impl.hpp
++++ b/src/mlpack/core/util/io_impl.hpp
+@@ -85,7 +85,7 @@ inline void IO::AddParameter(const std::string& bindingName,
+   if (data.alias != '\0')
+     bindingAliases[data.alias] = data.name;
+ 
+-  bindingParams[data.name] = std::move(data);
++  bindingParams[data.name] = data;
+ }
+ 
+ /**
+-- 
+2.38.1
+

@@ -38,6 +38,7 @@ rm -rf ensmallen-2.19.0/ ensmallen-2.19.0.tar.gz
 
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
+patch -p1 < ../i686-binding-fix.patch
 rm -rf build/
 mkdir build/
 cd build/
@@ -53,8 +54,3 @@ echo "list python directory"
 ls -lh src/mlpack/bindings/python/mlpack/
 cat src/mlpack/bindings/python/mlpack/test_python_binding.pyx
 ldd src/mlpack/bindings/python/mlpack/test_python_binding*.so
-
-echo "tar everything up for export"
-cd ../
-pwd
-tar -cvzf build.tar.gz build/
