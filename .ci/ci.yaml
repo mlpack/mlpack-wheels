@@ -384,6 +384,7 @@ jobs:
             -DENSMALLEN_INCLUDE_DIR="..\..\ensmallen-2.19.0\include\" `
             -DBUILD_JULIA_BINDINGS=OFF `
             -DBUILD_PYTHON_BINDINGS=ON `
+            -DCMAKE_FIND_LIBRARY_SUFFIXES=".lib;.dll.a" `
             -DCMAKE_BUILD_TYPE=Release ..
         cmake --build . --target python_configured --config Release
       displayName: Generate setup.py
