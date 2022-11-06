@@ -141,7 +141,9 @@ jobs:
         ls
         echo "list mlpack/"
         ls mlpack/
-      displayName: Get directory and list
+        cd mlpack/
+        tar -cvzf build.tar.gz build/
+      displayName: Get directory and archive build
 
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: 'mlpack/build.tar.gz'}
