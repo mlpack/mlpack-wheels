@@ -136,6 +136,13 @@ jobs:
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: 'wheelhouse'}
 
+    - bash: |
+        pwd
+        ls
+        echo "list mlpack/"
+        ls mlpack/
+      displayName: Get directory and list
+
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: 'mlpack/build.tar.gz'}
 
