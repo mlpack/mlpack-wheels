@@ -6,9 +6,13 @@ patch -p1 < ../static-binding-linking.patch
 rm -rf build/
 mkdir build
 cd build/
+
+mkdir Release/
+cp ..\..\OpenBLAS-0.3.21\bin\libopenblas.dll Release/
+
 cmake -G "Visual Studio 16 2019" ^
-    -DBLAS_LIBRARIES:FILEPATH="..\..\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a" ^
-    -DLAPACK_LIBRARIES:FILEPATH="..\..\OpenBLAS.0.2.14.1\lib\native\lib\x64\libopenblas.dll.a" ^
+    -DBLAS_LIBRARY:FILEPATH="..\..\OpenBLAS-0.3.21\lib\libopenblas.lib" `
+    -DLAPACK_LIBRARY:FILEPATH="..\..\OpenBLAS-0.3.21\lib\libopenblas.lib" `
     -DARMADILLO_INCLUDE_DIR="..\..\armadillo-11.4.1\tmp\include" ^
     -DARMADILLO_LIBRARY="..\..\armadillo-11.4.1\Release\armadillo.lib" ^
     -DCEREAL_INCLUDE_DIR="..\..\cereal-1.3.2\include" ^
@@ -17,7 +21,5 @@ cmake -G "Visual Studio 16 2019" ^
     -DBUILD_JULIA_BINDINGS=OFF ^
     -DBUILD_PYTHON_BINDINGS=ON ^
     -DBUILD_SHARED_LIBS=OFF ^
-    -DBUILD_TESTS=ON ^
     -DCMAKE_BUILD_TYPE=Release ..
-cmake --build . --target mlpack_test --config Release -- -verbosity:detailed
 cmake --build . --target python --config Release -- -verbosity:detailed
