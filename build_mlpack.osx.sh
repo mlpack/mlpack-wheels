@@ -36,5 +36,10 @@ cmake \
   -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
   -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=true \
   -DINSTALL_NAME_DIR=$PWD \
+  -DCMAKE_INSTALL_DIR=../install \
   ../
 make -j4
+make install
+
+# Now copy the .sos from the Python installation back...
+cp -vr ../install/lib/python3.6/site-packages/mlpack/*.so src/mlpack/bindings/python/mlpack/
