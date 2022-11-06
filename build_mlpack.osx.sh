@@ -41,5 +41,13 @@ cmake \
 make -j4
 make install
 
-# Now copy the .sos from the Python installation back...
-cp -vr ../install/lib/python3.6/site-packages/mlpack/*.so src/mlpack/bindings/python/mlpack/
+# Now copy the .sos from the Python installation back.
+# (This is a bit of a hack!)
+mkdir tmp
+cd tmp
+unzip ../../install/lib/python3.6/site-packages/mlpack/*.egg
+ls
+ls mlpack/
+cp -vr mlpack/*.so ../src/mlpack/bindings/python/mlpack/
+cd ../
+rm -rf tmp
