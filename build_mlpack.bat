@@ -7,7 +7,7 @@ rm -rf build/
 mkdir build
 cd build/
 
-mkdir Release/
+mkdir Release
 cp ..\..\OpenBLAS-0.3.21\bin\libopenblas.dll Release/
 
 cmake -G "Visual Studio 16 2019" ^
