@@ -47,9 +47,9 @@ mkdir tmp
 cd tmp
 ls ../../install/lib/python3.6/site-packages
 file ../../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg
-unzip ../../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg
-ls
-ls mlpack/
+ls ../../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/
+ls ../../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/mlpack/
+
 cp -vr mlpack/*.so ../src/mlpack/bindings/python/mlpack/
 cd ../
 rm -rf tmp
