@@ -56,4 +56,5 @@ ldd src/mlpack/bindings/python/mlpack/test_python_binding*.so
 
 echo "tar everything up for export"
 cd ../
+pwd
 tar -cvzf build.tar.gz build/
