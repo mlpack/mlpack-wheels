@@ -46,4 +46,4 @@ make install
 ls ../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/
 ls ../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/mlpack/
 
-cp -vr ../install/lib/python3.6/site-packages/mlpack-4.0.0-py36-macosx-10.9-x86_64.egg/mlpack/*.so src/mlpack/bindings/python/mlpack/
+cp -vr ../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/mlpack/*.so src/mlpack/bindings/python/mlpack/
