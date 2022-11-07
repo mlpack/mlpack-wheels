@@ -41,15 +41,6 @@ make -j4
 
 # Manually change the @rpath/libarmadillo.11.dylib to a direct reference.
 # This allows delocate-wheel to know exactly where libarmadillo is.
-cd src/mlpack/bindings/python/mlpack/
-for lib in *.so
-do
-  echo "before:"
-  otool -L $lib
-  install_name_tool -change "@rpath/libarmadillo.11.dylib" "$rootdir/armadillo-11.4.1/libarmadillo.11.dylib" $lib
-  echo "after:"
-  otool -L $lib
-done
-
-echo "tree:"
-tree ../
+cd src/mlpack/bindings/python/
+find ./ -iname '*.so' -exec install_name_tool -change "@rpath/libarmadillo.11.dylib" "$rootdir/armadillo-11.4.1/libarmadillo.11.dylib" \{\} \;
+cd ../../../../
