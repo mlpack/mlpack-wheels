@@ -3,7 +3,7 @@ pip install cython numpy pandas
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
 patch -p1 < ../static-binding-linking.patch
-rm -rf build/
+rmdir /s /q build
 mkdir build
 cd build/
 
