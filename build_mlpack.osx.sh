@@ -6,7 +6,7 @@ brew install --force cereal gcc cmake hdf5 tree
 pip install cython numpy pandas
 pip install packaging==20.5
 
-rootdir=$pwd
+export rootdir=$pwd
 
 # Armadillo must be installed by hand.
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
@@ -42,5 +42,6 @@ make -j4
 # Manually change the @rpath/libarmadillo.11.dylib to a direct reference.
 # This allows delocate-wheel to know exactly where libarmadillo is.
 cd src/mlpack/bindings/python/
+echo "rootdir is $rootdir"
 find ./ -iname '*.so' -exec install_name_tool -change "@rpath/libarmadillo.11.dylib" "$rootdir/armadillo-11.4.1/libarmadillo.11.dylib" \{\} \;
 cd ../../../../
