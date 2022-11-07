@@ -11,9 +11,6 @@ rmdir /s /q build
 mkdir build
 cd build/
 
-mkdir Release
-cp ..\..\OpenBLAS-0.3.21\bin\libopenblas.dll Release/
-
 cmake -G "Visual Studio 16 2019" ^
     -DBLAS_LIBRARIES:FILEPATH="%rootdir%\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
     -DLAPACK_LIBRARIES:FILEPATH="%rootdir%\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
@@ -27,3 +24,5 @@ cmake -G "Visual Studio 16 2019" ^
     -DBUILD_SHARED_LIBS=OFF ^
     -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --target python --config Release -- -verbosity:detailed
+
+cp %rootdir%\OpenBLAS-0.3.21\bin\libopenblas.dll src\mlpack\bindings\python\mlpack\
