@@ -46,7 +46,7 @@ for lib in *.so
 do
   echo "before:"
   otool -L $lib
-  install_name_tool -change "@rpath/libarmadillo.11.dylib" "$rootdir/armadillo-11.4.1/libarmadillo.11.dylib"
+  install_name_tool -change "@rpath/libarmadillo.11.dylib" "$rootdir/armadillo-11.4.1/libarmadillo.11.dylib" $lib
   echo "after:"
   otool -L $lib
 done
