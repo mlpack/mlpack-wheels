@@ -16,10 +16,10 @@ echo "%cd%"
 cmake -G "Visual Studio 16 2019" ^
     -DBLAS_LIBRARIES:FILEPATH="%cd%\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
     -DLAPACK_LIBRARIES:FILEPATH="%cd%\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
-    -DARMADILLO_INCLUDE_DIR="..\..\armadillo-11.4.1\tmp\include" ^
-    -DARMADILLO_LIBRARY="..\..\armadillo-11.4.1\Release\armadillo.lib" ^
-    -DCEREAL_INCLUDE_DIR="..\..\cereal-1.3.2\include" ^
-    -DENSMALLEN_INCLUDE_DIR="..\..\ensmallen-2.19.0\include" ^
+    -DARMADILLO_INCLUDE_DIR="%cd%\armadillo-11.4.1\tmp\include" ^
+    -DARMADILLO_LIBRARY="%cd%\armadillo-11.4.1\Release\armadillo.lib" ^
+    -DCEREAL_INCLUDE_DIR="%cd%\cereal-1.3.2\include" ^
+    -DENSMALLEN_INCLUDE_DIR="%cd%\ensmallen-2.19.0\include" ^
     -DBUILD_CLI_EXECUTABLES=OFF ^
     -DBUILD_JULIA_BINDINGS=OFF ^
     -DBUILD_PYTHON_BINDINGS=ON ^
