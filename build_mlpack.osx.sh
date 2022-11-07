@@ -52,4 +52,4 @@ do
 done
 
 echo "tree:"
-tree src/mlpack/bindings/python
+tree .
