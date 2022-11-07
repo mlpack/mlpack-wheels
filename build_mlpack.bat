@@ -27,9 +27,5 @@ cmake --build . --target python --config Release -- -verbosity:detailed
 
 cd src\mlpack\bindings\python
 cp %rootdir%\OpenBLAS-0.3.21\bin\libopenblas.dll .
-
-dir /b /a /s %rootdir%\armadillo-11.4.1\
-
-cp %rootdir%\armadillo-11.4.1\Release\armadillo.dll .
-set PYTHONPATH=%PYTHONPATH%;%rootdir%\mlpack\build\src\mlpack\bindings\python\
-python -c "import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)"
+cd %rootdir%
+cp OpenBLAS-0.3.21\bin\libopenblas.dll .
