@@ -25,4 +25,7 @@ cmake -G "Visual Studio 16 2019" ^
     -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --target python --config Release -- -verbosity:detailed
 
-cp %rootdir%\OpenBLAS-0.3.21\bin\libopenblas.dll src\mlpack\bindings\python\mlpack\
+cd src\mlpack\bindings\python
+cp %rootdir%\OpenBLAS-0.3.21\bin\libopenblas.dll .
+cp %rootdir%\armadillo-11.4.1\Release\armadillo.dll .
+PYTHONPATH="." python -c "import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)"
