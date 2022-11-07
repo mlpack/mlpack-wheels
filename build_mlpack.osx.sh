@@ -6,6 +6,8 @@ brew install --force cereal gcc cmake hdf5
 pip install cython numpy pandas
 pip install packaging==20.5
 
+rootdir=$pwd
+
 # Armadillo must be installed by hand.
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
 tar -xvzpf armadillo-11.4.1.tar.gz
@@ -36,13 +38,15 @@ cmake \
   -DCMAKE_INSTALL_PREFIX=../install \
   ../
 make -j4
-make install
 
-# Now copy the .sos from the Python installation back.
-# (This is a bit of a hack!)
-ls ../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/
-ls ../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/mlpack/
-
-otool -L src/mlpack/bindings/python/mlpack/test_python_binding.cpython-36m-darwin.so
-cp -vr ../install/lib/python3.6/site-packages/mlpack-4.0.0-py3.6-macosx-10.9-x86_64.egg/mlpack/*.so src/mlpack/bindings/python/mlpack/
-otool -L src/mlpack/bindings/python/mlpack/test_python_binding.cpython-36m-darwin.so
+# Manually change the @rpath/libarmadillo.11.dylib to a direct reference.
+# This allows delocate-wheel to know exactly where libarmadillo is.
+cd src/mlpack/bindings/python/mlpack/
+for lib in *.so
+do
+  echo "before:"
+  otool -L $lib
+  install_name_tool -change "@rpath/libarmadillo.11.dylib" "$rootdir/armadillo-11.4.1/libarmadillo.11.dylib"
+  echo "after:"
+  otool -L $lib
+done
