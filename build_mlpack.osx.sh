@@ -6,7 +6,7 @@ brew install --force cereal gcc cmake hdf5 tree
 pip install cython numpy pandas
 pip install packaging==20.5
 
-export rootdir=$pwd
+export rootdir=`pwd`
 
 # Armadillo must be installed by hand.
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
