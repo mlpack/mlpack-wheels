@@ -10,9 +10,12 @@ cd build/
 mkdir Release
 cp ..\..\OpenBLAS-0.3.21\bin\libopenblas.dll Release/
 
+echo "cd at start"
+echo "%cd%"
+
 cmake -G "Visual Studio 16 2019" ^
-    -DBLAS_LIBRARIES:FILEPATH="%cd%\..\..\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
-    -DLAPACK_LIBRARIES:FILEPATH="%cd%\..\..\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
+    -DBLAS_LIBRARIES:FILEPATH="%cd%\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
+    -DLAPACK_LIBRARIES:FILEPATH="%cd%\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
     -DARMADILLO_INCLUDE_DIR="..\..\armadillo-11.4.1\tmp\include" ^
     -DARMADILLO_LIBRARY="..\..\armadillo-11.4.1\Release\armadillo.lib" ^
     -DCEREAL_INCLUDE_DIR="..\..\cereal-1.3.2\include" ^
