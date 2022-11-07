@@ -52,4 +52,4 @@ do
 done
 
 echo "tree:"
-tree .
+tree ../
