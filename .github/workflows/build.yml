@@ -89,6 +89,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: "Set up Visual Studio"
+        uses: microsoft/setup-msbuild@v1.1
+        with:
+          vs-version: '16'
+
       - uses: lukka/get-cmake@latest
 
       - name: Setup vcpkg
