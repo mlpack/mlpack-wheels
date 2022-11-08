@@ -93,18 +93,14 @@ jobs:
       - name: Build OpenBLAS
         shell: bash
         run: |
-          ls C:/msys64/
-          ls C:/msys64/mingw64/
-          ls C:/msys64/mingw64/bin
-
-          C:\msys64\usr\bin\wget.exe https://github.com/xianyi/OpenBLAS/archive/refs/tags/v0.3.21.zip
+          C:/msys64/usr/bin/wget.exe https://github.com/xianyi/OpenBLAS/archive/refs/tags/v0.3.21.zip
           unzip v0.3.21.zip
           cd OpenBLAS-0.3.21/
           mkdir build/
           cd build/
 
           cmake -G Ninja \
-            -DCMAKE_C_COMPILER="C:/msys64/mingw32/bin/clang.exe" \
+            -DCMAKE_C_COMPILER="C:/msys64/clang64.exe" \
             -DDYNAMIC_ARCH=0 \
             -DTARGET=ARMV8 \
             -DARCH=arm64 \
