@@ -12,7 +12,10 @@ export rootdir=`pwd`
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
 tar -xvzpf armadillo-11.4.1.tar.gz
 cd armadillo-11.4.1/
-cmake -DOPENBLAS_PROVIDES_LAPACK=true .
+cmake \
+  -DOPENBLAS_PROVIDES_LAPACK=true \
+  -DCMAKE_OSX_ARCHITECTURES="$(CIBW_ARCHS_MACOS)" \
+  .
 make
 cd ../
 rm -f armadillo-11.4.1.tar.gz
@@ -30,6 +33,7 @@ rm -rf *
 # that any_cast is not available.
 cmake \
   -DBUILD_PYTHON_BINDINGS=ON \
+  -DCMAKE_OSX_ARCHITECTURES="$(CIBW_ARCHS_MACOS)" \
   -DCMAKE_CXX_FLAGS="-D_LIBCPP_DISABLE_AVAILABILITY" \
   -DBUILD_CLI_EXECUTABLES=OFF \
   -DARMADILLO_LIBRARY=../../armadillo-11.4.1/libarmadillo.dylib \

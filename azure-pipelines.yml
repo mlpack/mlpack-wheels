@@ -124,9 +124,10 @@ jobs:
 #        CIBW_BUILD: cp38-macosx_arm64
 #        BUILD_SCRIPT: build_mlpack.osx.sh
 #        CIBW_ARCHS_MACOS: "arm64"
-#      cp39-macosx_x86_64:
-#        CIBW_BUILD: cp39-macosx_x86_64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
+      cp39-macosx_x86_64:
+        CIBW_BUILD: cp39-macosx_x86_64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+        CIBW_ARCHS_MACOS: "x86_64"
       cp39-macosx_arm64:
         CIBW_BUILD: cp39-macosx_arm64
         BUILD_SCRIPT: build_mlpack.osx.sh
