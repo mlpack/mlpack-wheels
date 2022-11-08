@@ -89,10 +89,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Download OpenBLAS
+      - uses: lukka/get-cmake@latest
+
+      - name: Setup vcpkg
         uses: lukka/run-vcpkg@v10
         with:
-          vcpkgArguments: 'openblas:arm64-uwp'
+          vcpkgJsonGlob: '**/vcpkg.json'
+
+      - name: Run CMake consuming CMakePreset.json and vcpkg.json
+        uses: lukka/run-cmake@v10
+          configurePreset: 'ninja-multi-vcpkg'
+          buildPreset: 'ninja-multi-vcpkg'
 
       - name: Build wheel
         uses: pypa/cibuildwheel@v2.11.2

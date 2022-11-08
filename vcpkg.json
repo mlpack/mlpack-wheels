@@ -1,0 +1,7 @@
+{
+  "name": "mlpack",
+  "version-string": "4.0.0",
+  "dependencies": [
+    "openblas:arm64-uwp"
+  ]
+}
