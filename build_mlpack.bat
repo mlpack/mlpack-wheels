@@ -1,4 +1,4 @@
-pip install cython numpy pandas
+pip install cython numpy pandas delvewheel
 
 echo "cd at start"
 echo "%cd%"

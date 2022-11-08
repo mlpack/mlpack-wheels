@@ -379,7 +379,7 @@ jobs:
       displayName: Generate setup.py
 
     - bash: |
-        export CIBW_BEFORE_BUILD="pip install delvewheel; $(BUILD_SCRIPT)"
+        export CIBW_BEFORE_BUILD="$(BUILD_SCRIPT)"
         cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
       displayName: Build wheels
 
