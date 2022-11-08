@@ -75,48 +75,48 @@ jobs:
         with:
           path: ./wheelhouse/*.whl
 
-    windows_arm_build_wheels:
-      name: Build wheel for ${{ matrix.py_ver }}-win_arm64
-      runs-on: windows-latest
-      matrix:
-        py_ver: [cp311]
+  windows_arm_build_wheels:
+    name: Build wheel for ${{ matrix.py_ver }}-win_arm64
+    runs-on: windows-latest
+    matrix:
+      py_ver: [cp311]
 
-      env:
-        CIBW_BUILD: ${{ matrix.py_ver }}-win_arm64
+    env:
+      CIBW_BUILD: ${{ matrix.py_ver }}-win_arm64
 
-      steps:
-        - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-        - name: Build OpenBLAS
-          run: |
-            wget https://github.com/xianyi/OpenBLAS/archive/refs/tags/v0.3.21.zip
-            unzip v0.3.21.zip
-            cd OpenBLAS-0.3.21/
-            mkdir build/
-            cd build/
+      - name: Build OpenBLAS
+        run: |
+          wget https://github.com/xianyi/OpenBLAS/archive/refs/tags/v0.3.21.zip
+          unzip v0.3.21.zip
+          cd OpenBLAS-0.3.21/
+          mkdir build/
+          cd build/
 
-            cmake -G Ninja \
-              -DCMAKE_C_COMPILER="C:\msys64\mingw32\bin" \
-              -DDYNAMIC_ARCH=0 \
-              -DTARGET=ARMV8 \
-              -DARCH=arm64 \
-              -DBINARY=64 \
-              -DUSE_OPENMP=0 \
-              -DCMAKE_SYSTEM_PROCESSOR=ARM64 \
-              -DCMAKE_CROSSCOMPILING=1 \
-              -DCMAKE_SYSTEM_NAME=Windows \
-              ..
+          cmake -G Ninja \
+            -DCMAKE_C_COMPILER="C:\msys64\mingw32\bin" \
+            -DDYNAMIC_ARCH=0 \
+            -DTARGET=ARMV8 \
+            -DARCH=arm64 \
+            -DBINARY=64 \
+            -DUSE_OPENMP=0 \
+            -DCMAKE_SYSTEM_PROCESSOR=ARM64 \
+            -DCMAKE_CROSSCOMPILING=1 \
+            -DCMAKE_SYSTEM_NAME=Windows \
+            ..
 
-            cmake --build . --config Release
-            ls
+          cmake --build . --config Release
+          ls
 
-        - name: Build wheel
-          uses: pypa/cibuildwheel@v2.11.2
-          with:
-            package-dir: mlpack/build/src/mlpack/bindings/python/
-          env:
-            CIBW_ARCHS_WINDOWS: "ARM64"
+      - name: Build wheel
+        uses: pypa/cibuildwheel@v2.11.2
+        with:
+          package-dir: mlpack/build/src/mlpack/bindings/python/
+        env:
+          CIBW_ARCHS_WINDOWS: "ARM64"
 
-        - uses: actions/upload-artifact@v3
-          with:
-            path: ./wheelhouse/*.whl
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./wheelhouse/*.whl
