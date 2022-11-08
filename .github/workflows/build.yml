@@ -100,9 +100,6 @@ jobs:
 
       - name: Run CMake consuming CMakePreset.json and vcpkg.json
         uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'ninja-multi-vcpkg'
-          buildPreset: 'ninja-multi-vcpkg'
 
       - name: Build wheel
         uses: pypa/cibuildwheel@v2.11.2
