@@ -78,8 +78,9 @@ jobs:
   windows_arm_build_wheels:
     name: Build wheel for ${{ matrix.py_ver }}-win_arm64
     runs-on: windows-latest
-    matrix:
-      py_ver: [cp311]
+    strategy:
+      matrix:
+        py_ver: [cp311]
 
     env:
       CIBW_BUILD: ${{ matrix.py_ver }}-win_arm64
