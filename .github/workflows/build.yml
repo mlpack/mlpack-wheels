@@ -90,7 +90,7 @@ jobs:
 
       - name: Build OpenBLAS
         run: |
-          wget https://github.com/xianyi/OpenBLAS/archive/refs/tags/v0.3.21.zip
+          C:\msys64\usr\bin\wget.exe https://github.com/xianyi/OpenBLAS/archive/refs/tags/v0.3.21.zip
           unzip v0.3.21.zip
           cd OpenBLAS-0.3.21/
           mkdir build/
