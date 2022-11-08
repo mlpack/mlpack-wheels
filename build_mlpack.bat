@@ -15,6 +15,7 @@ cd build/
 
 rem Configure CMake and build the Python bindings.
 cmake -G "Visual Studio 16 2019" ^
+    -A Win32 ^
     -DBLAS_LIBRARIES:FILEPATH="%rootdir%\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
     -DLAPACK_LIBRARIES:FILEPATH="%rootdir%\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
     -DARMADILLO_INCLUDE_DIR="%rootdir%\armadillo-11.4.1\tmp\include" ^
