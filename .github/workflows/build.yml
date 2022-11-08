@@ -98,25 +98,64 @@ jobs:
           vcpkgGitCommitId: 'bdf073a835ebea07e1d039cd9cff4f650014e4ce'
 
       - name: Install OpenBLAS via vcpkg
-        shell: bash
-        run: |
-            ls vcpkg/
-            vcpkg install openblas:arm64-windows
+        run: vcpkg install openblas:arm64-windows
 
-      - name: Try to find OpenBLAS
+      - name: Download Armadillo
         shell: bash
         run: |
-            ls C:/vcpkg/
-            echo "now packages"
-            ls C:/vcpkg/packages/
-            echo "now openblas"
-            ls C:/vcpkg/packages/openblas_arm64-windows/
-            echo "now lib"
-            ls C:/vcpkg/packages/openblas_arm64-windows/lib/
-            echo "now debug"
-            ls C:/vcpkg/packages/openblas_arm64-windows/debug/
-            echo "now everything"
-            find C:/vcpkg/packages/openblas_arm64-windows/
+          curl -O -L https://files.mlpack.org/armadillo-11.4.1.tar.gz
+          tar -xvzf armadillo-11.4.1.tar.gz
+
+      - name: Configure and build Armadillo
+        shell: powershell
+        run: |
+          rootdir = $pwd
+          cd armadillo-11.4.1/
+          cmake -G "Visual Studio 16 2019" `
+              -DBLAS_LIBRARY:FILEPATH="C:\vcpkg\packages\openblas_arm64-windows\lib\openblas.lib" `
+              -DLAPACK_LIBRARY:FILEPATH="C:\vcpkg\packages\openblas_arm64-windows\lib\openblas.lib" `
+              -DBUILD_SHARED_LIBS=OFF `
+              -DCMAKE_BUILD_TYPE=Release .
+          cmake --build . --target armadillo --config Release
+
+      - name: Download ensmallen
+        shell: bash
+        run: |
+          curl -O -L https://www.ensmallen.org/files/ensmallen-2.19.0.tar.gz
+          tar -xvzf ensmallen-2.19.0.tar.gz
+          # No build needed---it's header-only.
+
+      - name: Download cereal
+        shell: bash
+        run: |
+          curl -O -L https://github.com/USCILab/cereal/archive/refs/tags/v1.3.2.tar.gz
+          tar -xvzf v1.3.2.tar.gz
+
+      - name: Clone mlpack
+        shell: bash
+        run: |
+          git clone https://github.com/mlpack/mlpack
+          cd mlpack
+          git checkout $MLPACK_VERSION
+
+      - name: Generate setup.py
+        shell: powershell
+        run: |
+          $rootdir = $pwd
+          cd mlpack
+          mkdir build
+          cd build
+          cmake -G "Visual Studio 16 2019" `
+              -DBLAS_LIBRARIES:FILEPATH="C:\vcpkg\packages\openblas_arm64-windows\lib\openblas.lib" `
+              -DLAPACK_LIBRARIES:FILEPATH="C:\vcpkg\packages\openblas_arm64-windows\lib\openblas.lib" `
+              -DARMADILLO_INCLUDE_DIR="$rootdir\armadillo-11.4.1\tmp\include" `
+              -DARMADILLO_LIBRARY="$rootdir\armadillo-11.4.1\Release\armadillo.lib" `
+              -DCEREAL_INCLUDE_DIR="$rootdir\cereal-1.3.2\include" `
+              -DENSMALLEN_INCLUDE_DIR="$rootdir\ensmallen-2.19.0\include\" `
+              -DBUILD_JULIA_BINDINGS=OFF `
+              -DBUILD_PYTHON_BINDINGS=ON `
+              -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build . --target python_configured --config Release
 
       - name: Build wheel
         uses: pypa/cibuildwheel@v2.11.2
@@ -124,6 +163,8 @@ jobs:
           package-dir: mlpack/build/src/mlpack/bindings/python/
         env:
           CIBW_ARCHS_WINDOWS: "ARM64"
+          CIBW_BEFORE_BUILD: "build_mlpack.bat"
+          CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair --add-path C:/vcpkg/packages/openblas_arm64-windows/bin/ -w {dest_dir} {wheel}"
 
       - uses: actions/upload-artifact@v3
         with:
