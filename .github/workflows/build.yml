@@ -5,7 +5,6 @@ on: [push]
 env:
   MLPACK_COMMIT: 4.0.0
   CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
-  CIBW_BEFORE_BUILD: "./build_mlpack.emulated.sh"
 
 jobs:
   linux_build_wheels:
@@ -39,6 +38,7 @@ jobs:
 
     env:
       CIBW_BUILD: ${{ matrix.py_ver }}-${{ matrix.host }}_${{ matrix.arch }}
+      CIBW_BEFORE_BUILD: "${{ matrix.host == 'manylinux' && './build_mlpack.emulated.sh' || './build_mlpack.musl.sh' }}"
 
     steps:
       - uses: actions/checkout@v3
