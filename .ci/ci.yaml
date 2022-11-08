@@ -306,7 +306,6 @@ jobs:
   variables:
     MLPACK_VERSION: 4.0.0
     #CIBW_TEST_COMMAND: python -c "import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)"
-    CIBW_BEFORE_BUILD_WINDOWS: "pip install delvewheel"
     CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair -w {dest_dir} {wheel}"
     # The PYPI_TOKEN variable is automatically set by Azure Pipelines.
     TWINE_PYPI_TOKEN: $(PYPI_TOKEN)
@@ -380,7 +379,7 @@ jobs:
       displayName: Generate setup.py
 
     - bash: |
-        export CIBW_BEFORE_BUILD="$(BUILD_SCRIPT)"
+        export CIBW_BEFORE_BUILD="pip install delvewheel; $(BUILD_SCRIPT)"
         cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
       displayName: Build wheels
 
