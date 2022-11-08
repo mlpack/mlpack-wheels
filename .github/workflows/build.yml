@@ -97,7 +97,7 @@ jobs:
           cd build/
 
           cmake -G Ninja `
-            -DCMAKE_C_COMPILER="C:\msys64\mingw32\bin" `
+            -DCMAKE_C_COMPILER="C:/msys64/mingw32/bin/clang.exe" `
             -DDYNAMIC_ARCH=0 `
             -DTARGET=ARMV8 `
             -DARCH=arm64 `
