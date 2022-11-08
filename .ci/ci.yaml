@@ -243,12 +243,12 @@ jobs:
 - job: windows
   strategy:
     matrix:
-      cp36-win_amd64:
-        CIBW_BUILD: cp36-win_amd64
-        BUILD_SCRIPT: build_mlpack.bat
-#      cp36-win32:
-#        CIBW_BUILD: cp36-win32
+#      cp36-win_amd64:
+#        CIBW_BUILD: cp36-win_amd64
 #        BUILD_SCRIPT: build_mlpack.bat
+      cp36-win32:
+        CIBW_BUILD: cp36-win32
+        BUILD_SCRIPT: build_mlpack.bat
 #      cp37-win_amd64:
 #        CIBW_BUILD: cp37-win_amd64
 #        BUILD_SCRIPT: build_mlpack.bat
@@ -316,10 +316,10 @@ jobs:
       displayName: Install Python dependencies
 
     - bash: |
-        curl -O -L https://github.com/xianyi/OpenBLAS/releases/download/v0.3.21/OpenBLAS-0.3.21-x64.zip
+        curl -O -L https://github.com/xianyi/OpenBLAS/releases/download/v0.3.21/OpenBLAS-0.3.21-x86.zip
         mkdir OpenBLAS-0.3.21/
         cd OpenBLAS-0.3.21/
-        unzip ../OpenBLAS-0.3.21-x64.zip
+        unzip ../OpenBLAS-0.3.21-x86.zip
       displayName: 'Download OpenBLAS'
 
     # Configure armadillo
