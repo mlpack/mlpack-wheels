@@ -88,15 +88,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-#      - uses: msys2/setup-msys2@v2
-#        with:
-#          update: true
-#          install: wget git
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: wget git
+
+      - name: Download OpenBLAS
+        run: C:/msys64/usr/bin/wget.exe https://github.com/xianyi/OpenBLAS/archive/refs/tags/v0.3.21.zip
 
       - name: Build OpenBLAS
         shell: bash
         run: |
-          C:/msys64/usr/bin/wget.exe https://github.com/xianyi/OpenBLAS/archive/refs/tags/v0.3.21.zip
           unzip v0.3.21.zip
           cd OpenBLAS-0.3.21/
           mkdir build/
