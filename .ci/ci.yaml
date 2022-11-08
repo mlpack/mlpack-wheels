@@ -332,6 +332,7 @@ jobs:
         $rootdir = $pwd
         cd armadillo-11.4.1/
         cmake -G "Visual Studio 16 2019" `
+            -A Win32 `
             -DBLAS_LIBRARY:FILEPATH="$rootdir\OpenBLAS-0.3.21\lib\libopenblas.lib" `
             -DLAPACK_LIBRARY:FILEPATH="$rootdir\OpenBLAS-0.3.21\lib\libopenblas.lib" `
             -DBUILD_SHARED_LIBS=OFF `
