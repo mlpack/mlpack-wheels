@@ -14,7 +14,8 @@ jobs:
       matrix:
 #        py_ver: [cp36, cp37, cp38, cp39, cp310, cp311, pp37, pp38, pp39]
         py_ver: [cp311]
-        arch: [aarch64, s390x, ppc64le]
+        # numpy does not build for s390x: "error: 'HWCAP_S390_VX' undeclared".
+        arch: [aarch64, ppc64le]
         host: [manylinux, musllinux]
         exclude:
           - py_ver: pp37
