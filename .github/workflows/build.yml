@@ -94,12 +94,14 @@ jobs:
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v10
         with:
-          vcpkgJsonGlob: '**/vcpkg.json'
           # I guess this will go out of date...
           vcpkgGitCommitId: 'bdf073a835ebea07e1d039cd9cff4f650014e4ce'
 
-      - name: Run CMake consuming CMakePreset.json and vcpkg.json
-        uses: lukka/run-cmake@v10
+      - name: Install OpenBLAS via vcpkg
+        shell: bash
+        run: |
+            ls vcpkg/
+            vcpkg install openblas:arm64-uwp
 
       - name: Build wheel
         uses: pypa/cibuildwheel@v2.11.2
