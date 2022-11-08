@@ -96,16 +96,16 @@ jobs:
           mkdir build/
           cd build/
 
-          cmake -G Ninja \
-            -DCMAKE_C_COMPILER="C:\msys64\mingw32\bin" \
-            -DDYNAMIC_ARCH=0 \
-            -DTARGET=ARMV8 \
-            -DARCH=arm64 \
-            -DBINARY=64 \
-            -DUSE_OPENMP=0 \
-            -DCMAKE_SYSTEM_PROCESSOR=ARM64 \
-            -DCMAKE_CROSSCOMPILING=1 \
-            -DCMAKE_SYSTEM_NAME=Windows \
+          cmake -G Ninja ^
+            -DCMAKE_C_COMPILER="C:\msys64\mingw32\bin" ^
+            -DDYNAMIC_ARCH=0 ^
+            -DTARGET=ARMV8 ^
+            -DARCH=arm64 ^
+            -DBINARY=64 ^
+            -DUSE_OPENMP=0 ^
+            -DCMAKE_SYSTEM_PROCESSOR=ARM64 ^
+            -DCMAKE_CROSSCOMPILING=1 ^
+            -DCMAKE_SYSTEM_NAME=Windows ^
             ..
 
           cmake --build . --config Release
