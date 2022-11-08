@@ -88,36 +88,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: msys2/setup-msys2@v2
-        with:
-          update: true
-          install: wget git
-
       - name: Download OpenBLAS
-        run: C:/msys64/usr/bin/wget.exe https://github.com/xianyi/OpenBLAS/archive/refs/tags/v0.3.21.zip
-
-      - name: Build OpenBLAS
-        shell: bash
-        run: |
-          unzip v0.3.21.zip
-          cd OpenBLAS-0.3.21/
-          mkdir build/
-          cd build/
-
-          cmake -G Ninja \
-            -DCMAKE_C_COMPILER="C:/msys64/clang.exe" \
-            -DDYNAMIC_ARCH=0 \
-            -DTARGET=ARMV8 \
-            -DARCH=arm64 \
-            -DBINARY=64 \
-            -DUSE_OPENMP=0 \
-            -DCMAKE_SYSTEM_PROCESSOR=ARM64 \
-            -DCMAKE_CROSSCOMPILING=1 \
-            -DCMAKE_SYSTEM_NAME=Windows \
-            ..
-
-          cmake --build . --config Release
-          ls
+        uses: lukka/run-vcpkg@v4
+        with:
+          vcpkgArguments: 'openblas:arm64-uwp'
 
       - name: Build wheel
         uses: pypa/cibuildwheel@v2.11.2
