@@ -102,6 +102,12 @@ jobs:
           # I guess this will go out of date...
           vcpkgGitCommitId: 'bdf073a835ebea07e1d039cd9cff4f650014e4ce'
 
+      - name: List generators
+        shell: bash
+        run: |
+          cmake --help
+          exit 1
+
       - name: Install OpenBLAS via vcpkg
         run: vcpkg install openblas:arm64-windows
 
