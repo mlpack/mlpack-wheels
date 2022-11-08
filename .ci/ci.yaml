@@ -377,8 +377,9 @@ jobs:
       displayName: Generate setup.py
 
     - powershell: |
-        $CIBW_REPAIR_WHEEL_COMMAND_WINDOWS = "delvewheel repair --add-path $pwd/OpenBLAS-0.3.21/bin/ -w {dest_dir} {wheel}"
-        $CIBW_BEFORE_BUILD = $BUILD_SCRIPT
+        $env:CIBW_REPAIR_WHEEL_COMMAND_WINDOWS = "delvewheel repair --add-path $pwd/OpenBLAS-0.3.21/bin/ -w {dest_dir} {wheel}"
+        $env:CIBW_BEFORE_BUILD = $env:BUILD_SCRIPT
+        $env:CIBW_BUILD_VERBOSITY = 1
         cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
       displayName: Build wheels
 
