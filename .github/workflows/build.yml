@@ -95,6 +95,7 @@ jobs:
         uses: lukka/run-vcpkg@v10
         with:
           vcpkgJsonGlob: '**/vcpkg.json'
+          vcpkgGitCommitId: 'master'
 
       - name: Run CMake consuming CMakePreset.json and vcpkg.json
         uses: lukka/run-cmake@v10
