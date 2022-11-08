@@ -101,8 +101,22 @@ jobs:
         shell: bash
         run: |
             ls vcpkg/
-            vcpkg env
             vcpkg install openblas:arm64-windows
+
+      - name: Try to find OpenBLAS
+        shell: bash
+        run: |
+            ls vcpkg/
+            echo "now packages"
+            ls vcpkg/packages/
+            echo "now openblas"
+            ls vcpkg/packages/openblas_arm64-windows/
+            echo "now lib"
+            ls vcpkg/packages/openblas_arm64-windows/lib/
+            echo "now debug"
+            ls vcpkg/packages/openblas_arm64-windows/debug/
+            echo "now everything"
+            find vcpkg/packages/openblas_arm64-windows/
 
       - name: Build wheel
         uses: pypa/cibuildwheel@v2.11.2
