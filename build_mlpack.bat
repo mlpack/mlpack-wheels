@@ -1,7 +1,5 @@
 pip install cython numpy pandas delvewheel
 
-echo "cd at start"
-echo "%cd%"
 set rootdir=%cd%
 
 cd mlpack/
