@@ -101,7 +101,8 @@ jobs:
         shell: bash
         run: |
             ls vcpkg/
-            vcpkg install openblas:arm64-uwp
+            vcpkg env
+            vcpkg install openblas:arm64-windows
 
       - name: Build wheel
         uses: pypa/cibuildwheel@v2.11.2
