@@ -105,7 +105,7 @@ jobs:
           cd build/
 
           cmake -G Ninja \
-            -DCMAKE_C_COMPILER="C:/msys64/clang64.exe" \
+            -DCMAKE_C_COMPILER="C:/msys64/clang.exe" \
             -DDYNAMIC_ARCH=0 \
             -DTARGET=ARMV8 \
             -DARCH=arm64 \
