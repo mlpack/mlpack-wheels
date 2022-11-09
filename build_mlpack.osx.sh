@@ -2,7 +2,7 @@
 #
 # Build mlpack's Python bindings inside the cibuildwheel environment.
 
-brew install --force cereal gcc cmake hdf5 tree
+brew install --force cereal gcc cmake hdf5 tree openblas
 pip install cython numpy pandas
 pip install packaging==20.5
 
