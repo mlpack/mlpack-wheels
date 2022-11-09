@@ -16,7 +16,8 @@ jobs:
         py_ver: [cp311]
         # numpy does not build for s390x: "error: 'HWCAP_S390_VX' undeclared".
         arch: [aarch64, ppc64le]
-        host: [manylinux, musllinux]
+        # musllinux suffers from timeouts and OOMs, unfortunately.
+        host: [manylinux]
         exclude:
           - py_ver: pp37
             arch: s390x
