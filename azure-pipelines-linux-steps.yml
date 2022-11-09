@@ -23,6 +23,7 @@ steps:
 
   - bash: |
       export CIBW_BEFORE_BUILD="./$(BUILD_SCRIPT)"
+      export NUM_CORES=4
       cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
     displayName: Build wheels
 
