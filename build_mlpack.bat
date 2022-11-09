@@ -27,7 +27,7 @@ cmake -G "%VS_GENERATOR%" ^
     -DBUILD_PYTHON_BINDINGS=ON ^
     -DBUILD_SHARED_LIBS=OFF ^
     -DCMAKE_BUILD_TYPE=Release ..
-cmake --build . --target python --config Release
+cmake --build . --target python --config Release -- -verbosity:detailed
 
 rem The tests cannot be run correctly by cibuildwheel because libopenblas.dll
 rem must be in the right directory; so, we copy libopenblas.dll to the right
