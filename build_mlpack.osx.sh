@@ -59,6 +59,11 @@ cmake \
   ../
 make -j4
 
+echo ""
+echo "running generate_pyx_test_python_binding"
+echo ""
+bin/generate_pyx_test_python_binding
+
 # Manually change the @rpath/libarmadillo.11.dylib to a direct reference.
 # This allows delocate-wheel to know exactly where libarmadillo is.
 find src/mlpack/bindings/python/ -iname '*.so' -exec \
