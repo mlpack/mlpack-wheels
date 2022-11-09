@@ -118,6 +118,7 @@ jobs:
           $rootdir = $pwd
           cd armadillo-11.4.1/
           cmake -G "Visual Studio 17 2022" `
+              -A "ARM64" `
               -DBLAS_LIBRARY:FILEPATH="C:\vcpkg\packages\openblas_arm64-windows\lib\openblas.lib" `
               -DLAPACK_LIBRARY:FILEPATH="C:\vcpkg\packages\openblas_arm64-windows\lib\openblas.lib" `
               -DBUILD_SHARED_LIBS=OFF `
