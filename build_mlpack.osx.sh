@@ -2,7 +2,7 @@
 #
 # Build mlpack's Python bindings inside the cibuildwheel environment.
 
-brew install --force cereal gcc cmake hdf5 tree openblas
+brew install --force cereal gcc cmake hdf5 tree
 pip install cython numpy pandas
 pip install packaging==20.5
 
@@ -18,13 +18,11 @@ cd armadillo-11.4.1/
 if [ "$CIBW_ARCHS_MACOS" == "x86_64" ];
 then
   cmake \
-    -DOPENBLAS_PROVIDES_LAPACK=true \
     -DCMAKE_OSX_ARCHITECTURES="$CIBW_ARCHS_MACOS" \
     .
 elif [ "$CIBW_ARCHS_MACOS" == "arm64" ];
 then
   cmake \
-    -DOPENBLAS_PROVIDES_LAPACK=true \
     -DCMAKE_OSX_ARCHITECTURES="$CIBW_ARCHS_MACOS" \
     -DDETECT_HDF5=OFF \
     .
@@ -44,6 +42,7 @@ rm -f ensmallen-2.19.0.tar.gz
 
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
+patch -p1 < ../osx-accelerate.patch
 cd build/
 rm -rf *
 # _LIBCPP_DISABLE_AVAILABILITY is required to avoid compilation errors claiming

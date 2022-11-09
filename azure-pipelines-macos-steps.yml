@@ -21,7 +21,7 @@ steps:
     displayName: Generate setup.py
 
   - bash: |
-      brew uninstall --force armadillo cereal ensmallen arpack hdf5 open-mpi openblas r superlu cmake gcc
+      brew uninstall --force armadillo cereal ensmallen arpack hdf5 open-mpi r superlu cmake gcc
     displayName: Remove dependencies before entering build environment
 
   - bash: |
