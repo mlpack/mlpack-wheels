@@ -9,13 +9,30 @@ pip install packaging==20.5
 export rootdir=`pwd`
 
 # Armadillo must be installed by hand.
+#
+# If we are building for an arm64 target, then we want to disable everything
+# except OpenBLAS.
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
 tar -xvzpf armadillo-11.4.1.tar.gz
 cd armadillo-11.4.1/
-cmake \
-  -DOPENBLAS_PROVIDES_LAPACK=true \
-  -DCMAKE_OSX_ARCHITECTURES="$CIBW_ARCHS_MACOS" \
-  .
+if [ "$CIBW_ARCHS_MACOS" == "x86_64" ];
+then
+  cmake \
+    -DOPENBLAS_PROVIDES_LAPACK=true \
+    -DCMAKE_OSX_ARCHITECTURES="$CIBW_ARCHS_MACOS" \
+    .
+elif [ "$CIBW_ARCHS_MACOS" == "arm64" ];
+then
+  cmake \
+    -DOPENBLAS_PROVIDES_LAPACK=true \
+    -DCMAKE_OSX_ARCHITECTURES="$CIBW_ARCHS_MACOS" \
+    -DDETECT_HDF5=OFF \
+    .
+else
+  echo "Unknown architecture \"$CIBW_ARCHS_MACOS\"!"
+  exit 1
+fi
+
 make
 cd ../
 rm -f armadillo-11.4.1.tar.gz
