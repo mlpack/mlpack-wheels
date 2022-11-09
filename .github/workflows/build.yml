@@ -105,7 +105,7 @@ jobs:
           vcpkgGitCommitId: 'bdf073a835ebea07e1d039cd9cff4f650014e4ce'
 
       - name: Install OpenBLAS via vcpkg
-        run: vcpkg install openblas:arm64-windows
+        run: vcpkg install openblas:arm64-windows lapack-reference:arm64-windows
 
       - name: Download Armadillo
         shell: bash
