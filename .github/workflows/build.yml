@@ -150,7 +150,7 @@ jobs:
           cd mlpack
           mkdir build
           cd build
-          cmake -G "Visual Studio 16 2019" `
+          cmake -G "Visual Studio 17 2022" `
               -DBLAS_LIBRARIES:FILEPATH="C:\vcpkg\packages\openblas_arm64-windows\lib\openblas.lib" `
               -DLAPACK_LIBRARIES:FILEPATH="C:\vcpkg\packages\openblas_arm64-windows\lib\openblas.lib" `
               -DARMADILLO_INCLUDE_DIR="$rootdir\armadillo-11.4.1\tmp\include" `
