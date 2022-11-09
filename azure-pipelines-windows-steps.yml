@@ -73,6 +73,8 @@ steps:
       $env:CIBW_BEFORE_BUILD = $env:BUILD_SCRIPT
       $env:CIBW_BUILD_VERBOSITY = 1
       $env:VS_GENERATOR = "Visual Studio 16 2019"
+      $env:OPENBLAS_LIB = "$pwd/OpenBLAS-0.3.21/lib/libopenblas.lib"
+      $env:OPENBLAS_DLL = "$pwd/OpenBLAS-0.3.21/bin/libopenblas.dll"
       cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
     displayName: Build wheels
 

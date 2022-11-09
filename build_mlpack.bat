@@ -16,8 +16,8 @@ cd build/
 rem Configure CMake and build the Python bindings.
 cmake -G "%VS_GENERATOR%" ^
     -A %WIN_ARCH% ^
-    -DBLAS_LIBRARIES:FILEPATH="%rootdir%\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
-    -DLAPACK_LIBRARIES:FILEPATH="%rootdir%\OpenBLAS-0.3.21\lib\libopenblas.lib" ^
+    -DBLAS_LIBRARIES:FILEPATH="%OPENBLAS_LIB%" ^
+    -DLAPACK_LIBRARIES:FILEPATH="%OPENBLAS_LIB%" ^
     -DARMADILLO_INCLUDE_DIR="%rootdir%\armadillo-11.4.1\tmp\include" ^
     -DARMADILLO_LIBRARY="%rootdir%\armadillo-11.4.1\Release\armadillo.lib" ^
     -DCEREAL_INCLUDE_DIR="%rootdir%\cereal-1.3.2\include" ^
@@ -34,6 +34,6 @@ rem must be in the right directory; so, we copy libopenblas.dll to the right
 rem place and manually run a simple test here to ensure that everything is
 rem working.
 cd src\mlpack\bindings\python
-cp %rootdir%\OpenBLAS-0.3.21\bin\libopenblas.dll .
+cp %OPENBLAS_DLL% .
 set PYTHONPATH=%PYTHONPATH%;%rootdir%\mlpack\build\src\mlpack\bindings\python
 python -c "import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)"

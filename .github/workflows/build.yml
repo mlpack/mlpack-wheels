@@ -176,6 +176,8 @@ jobs:
           CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair --add-path C:/vcpkg/packages/openblas_arm64-windows/bin/ -w {dest_dir} {wheel}"
           VS_GENERATOR: "Visual Studio 17 2022"
           WIN_ARCH: "ARM64"
+          OPENBLAS_LIB: "C:/vcpkg/packages/openblas_arm64-windows/lib/openblas.lib"
+          OPENBLAS_DLL: "C:/vcpkg/packages/openblas_arm64-windows/bin/openblas.dll"
 
       - uses: actions/upload-artifact@v3
         with:
