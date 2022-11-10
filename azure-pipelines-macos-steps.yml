@@ -25,7 +25,7 @@ steps:
       make -j4 python
       mkdir ../pyx-old/
       cp src/mlpack/bindings/python/mlpack/*.pyx ../pyx-old/
-    condition: eq(variables['CIBW_ARCHS_MACOS'], "arm64")
+    condition: eq(variables['CIBW_ARCHS_MACOS'], 'arm64')
     displayName: Build .pyx files before entering build environment
 
   - bash: |
