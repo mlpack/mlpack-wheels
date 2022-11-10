@@ -59,6 +59,21 @@ cmake \
   ../
 make -j4
 
+# If we are building for ARM64, then all generation of .pyx files will have
+# failed because we cannot run any programs compiled for ARM64 (which includes
+# the `generate_pyx_*` targets that make the .pyx files).  But, we have a way
+# out: earlier in the build, before we started emulating, we built all the .pyx
+# files and stored them off to the side.  So, we will put them back into place,
+# and we will then call setup.py build_ext again to build all the Cython
+# modules.
+if [ "$CIBW_ARCHS_MACOS" == "arm64" ];
+then
+  cp ../pyx-old/*.pyx src/mlpack/bindings/python/mlpack/
+  cd src/mlpack/bindings/python
+  python setup.py build_ext
+  cd ../../../..
+fi
+
 echo ""
 echo "running generate_pyx_test_python_binding"
 echo ""
