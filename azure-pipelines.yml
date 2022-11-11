@@ -7,96 +7,126 @@ jobs:
       cp36-manylinux_x86_64:
         CIBW_BUILD: cp36-manylinux_x86_64
         BUILD_SCRIPT: build_mlpack.sh
+        NUM_CORES: 4
       cp37-manylinux_x86_64:
         CIBW_BUILD: cp37-manylinux_x86_64
         BUILD_SCRIPT: build_mlpack.sh
+        NUM_CORES: 4
       cp38-manylinux_x86_64:
         CIBW_BUILD: cp38-manylinux_x86_64
         BUILD_SCRIPT: build_mlpack.sh
+        NUM_CORES: 4
       cp39-manylinux_x86_64:
         CIBW_BUILD: cp39-manylinux_x86_64
         BUILD_SCRIPT: build_mlpack.sh
+        NUM_CORES: 4
       cp310-manylinux_x86_64:
         CIBW_BUILD: cp310-manylinux_x86_64
         BUILD_SCRIPT: build_mlpack.sh
+        NUM_CORES: 4
       cp311-manylinux_x86_64:
         CIBW_BUILD: cp311-manylinux_x86_64
         BUILD_SCRIPT: build_mlpack.sh
+        NUM_CORES: 4
       pp37-manylinux_x86_64:
         CIBW_BUILD: pp37-manylinux_x86_64
         BUILD_SCRIPT: build_mlpack.sh
+        NUM_CORES: 4
       pp38_manylinux_x86_64:
         CIBW_BUILD: pp38-manylinux_x86_64
         BUILD_SCRIPT: build_mlpack.sh
+        NUM_CORES: 4
       pp39_manylinux_x86_64:
         CIBW_BUILD: pp39-manylinux_x86_64
         BUILD_SCRIPT: build_mlpack.sh
+        NUM_CORES: 4
 
       cp36-manylinux_i686:
         CIBW_BUILD: cp36-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
+        NUM_CORES: 4
       cp37-manylinux_i686:
         CIBW_BUILD: cp37-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
+        NUM_CORES: 4
       cp38-manylinux_i686:
         CIBW_BUILD: cp38-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
+        NUM_CORES: 4
       cp39-manylinux_i686:
         CIBW_BUILD: cp39-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
+        NUM_CORES: 4
       cp310-manylinux_i686:
         CIBW_BUILD: cp310-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
+        NUM_CORES: 4
       cp311-manylinux_i686:
         CIBW_BUILD: cp311-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
+        NUM_CORES: 4
       pp37-manylinux_i686:
         CIBW_BUILD: pp37-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
+        NUM_CORES: 4
       pp38_manylinux_i686:
         CIBW_BUILD: pp38-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
+        NUM_CORES: 4
       pp39_manylinux_i686:
         CIBW_BUILD: pp39-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
+        NUM_CORES: 4
 
       cp36-musllinux_x86_64:
         CIBW_BUILD: cp36-musllinux_x86_64
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
       cp37-musllinux_x86_64:
         CIBW_BUILD: cp37-musllinux_x86_64
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
       cp38-musllinux_x86_64:
         CIBW_BUILD: cp38-musllinux_x86_64
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
       cp39-musllinux_x86_64:
         CIBW_BUILD: cp39-musllinux_x86_64
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
       cp310-musllinux_x86_64:
         CIBW_BUILD: cp310-musllinux_x86_64
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
       cp311-musllinux_x86_64:
         CIBW_BUILD: cp311-musllinux_x86_64
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
 
       cp36-musllinux_i686:
         CIBW_BUILD: cp36-musllinux_i686
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
       cp37-musllinux_i686:
         CIBW_BUILD: cp37-musllinux_i686
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
       cp38-musllinux_i686:
         CIBW_BUILD: cp38-musllinux_i686
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
       cp39-musllinux_i686:
         CIBW_BUILD: cp39-musllinux_i686
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
       cp310-musllinux_i686:
         CIBW_BUILD: cp310-musllinux_i686
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
       cp311-musllinux_i686:
         CIBW_BUILD: cp311-musllinux_i686
         BUILD_SCRIPT: build_mlpack.musl.sh
+        NUM_CORES: 1
 
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'Ubuntu-20.04'}
