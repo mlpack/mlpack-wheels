@@ -22,6 +22,7 @@ cmake -G "%VS_GENERATOR%" ^
     -DARMADILLO_LIBRARY="%rootdir%\armadillo-11.4.1\Release\armadillo.lib" ^
     -DCEREAL_INCLUDE_DIR="%rootdir%\cereal-1.3.2\include" ^
     -DENSMALLEN_INCLUDE_DIR="%rootdir%\ensmallen-2.19.0\include" ^
+    -DSTB_INCLUDE_DIR="%rootdir%\stb\include" ^
     -DBUILD_CLI_EXECUTABLES=OFF ^
     -DBUILD_JULIA_BINDINGS=OFF ^
     -DBUILD_PYTHON_BINDINGS=ON ^

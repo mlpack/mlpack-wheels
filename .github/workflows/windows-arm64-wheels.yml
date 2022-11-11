@@ -72,6 +72,12 @@ jobs:
           curl -O -L https://github.com/USCILab/cereal/archive/refs/tags/v1.3.2.tar.gz
           tar -xvzf v1.3.2.tar.gz
 
+      - name: Download STB
+        shell: bash
+        run: |
+          curl -O -L https://www.mlpack.org/files/stb.tar.gz
+          tar -xvzf stb.tar.gz
+
       - name: Install Python dependencies
         run: python -m pip install cython numpy pandas
 

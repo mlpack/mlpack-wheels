@@ -40,6 +40,10 @@ wget https://www.ensmallen.org/files/ensmallen-2.19.0.tar.gz
 tar -xvzpf ensmallen-2.19.0.tar.gz
 rm -f ensmallen-2.19.0.tar.gz
 
+wget https://www.mlpack.org/files/stb.tar.gz
+cp stb/include/*.h /usr/include/
+rm -rf stb.tar.gz
+
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
 patch -p1 < ../osx-accelerate.patch
@@ -55,6 +59,7 @@ cmake \
   -DARMADILLO_LIBRARY=../../armadillo-11.4.1/libarmadillo.dylib \
   -DARMADILLO_INCLUDE_DIR=../../armadillo-11.4.1/tmp/include/ \
   -DENSMALLEN_INCLUDE_DIR=../../ensmallen-2.19.0/include/ \
+  -DSTB_INCLUDE_DIR=../../stb/include/ \
   -DCMAKE_INSTALL_PREFIX=../install \
   ../
 make -j4

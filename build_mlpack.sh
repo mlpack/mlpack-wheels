@@ -5,6 +5,12 @@
 yum install -y openblas-devel armadillo-devel cereal-devel ensmallen-devel
 pip install cython numpy pandas
 
+# STB must be installed by hand.
+wget https://www.mlpack.org/files/stb.tar.gz
+tar -xvzpf stb.tar.gz
+cp -vr stb/include/*.h /usr/include/
+rm -rf stb/ stb.tar.gz
+
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
 cd build/

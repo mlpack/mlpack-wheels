@@ -36,6 +36,11 @@ make install
 cd ../../
 rm -rf ensmallen-2.19.0/ ensmallen-2.19.0.tar.gz
 
+wget https://www.mlpack.org/files/stb.tar.gz
+tar -xvzpf stb.tar.gz
+cp stb/include/*.h /usr/include/
+rm -rf stb/ stb.tar.gz
+
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
 patch -p1 < ../i686-binding-fix.patch

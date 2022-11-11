@@ -16,7 +16,8 @@ steps:
   - bash: |
       mkdir -p mlpack/build
       cd mlpack/build
-      cmake -DBUILD_PYTHON_BINDINGS=ON ../
+      # We download dependencies so that we get STB automatically.
+      cmake -DBUILD_PYTHON_BINDINGS=ON -DDOWNLOAD_DEPENDENCIES=ON ../
       make python_configured
     displayName: Generate setup.py
 

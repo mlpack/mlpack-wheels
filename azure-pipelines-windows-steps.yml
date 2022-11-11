@@ -45,6 +45,11 @@ steps:
     displayName: 'Download cereal'
 
   - bash: |
+      curl -O -L https://www.mlpack.org/files/stb.tar.gz
+      tar -xvzf stb.tar.gz
+    displayName: 'Download STB'
+
+  - bash: |
       git clone https://github.com/mlpack/mlpack
       cd mlpack
       git checkout $(MLPACK_VERSION)
