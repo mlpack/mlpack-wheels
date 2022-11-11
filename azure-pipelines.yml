@@ -4,99 +4,99 @@ jobs:
     matrix:
       # I literally cannot believe that Azure Pipelines does not support
       # multiple axis builds.
-#      cp36-manylinux_x86_64:
-#        CIBW_BUILD: cp36-manylinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.sh
-#      cp37-manylinux_x86_64:
-#        CIBW_BUILD: cp37-manylinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.sh
-#      cp38-manylinux_x86_64:
-#        CIBW_BUILD: cp38-manylinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.sh
-#      cp39-manylinux_x86_64:
-#        CIBW_BUILD: cp39-manylinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.sh
-#      cp310-manylinux_x86_64:
-#        CIBW_BUILD: cp310-manylinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.sh
-#      cp311-manylinux_x86_64:
-#        CIBW_BUILD: cp311-manylinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.sh
-#      pp37-manylinux_x86_64:
-#        CIBW_BUILD: pp37-manylinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.sh
-#      pp38_manylinux_x86_64:
-#        CIBW_BUILD: pp38-manylinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.sh
-#      pp39_manylinux_x86_64:
-#        CIBW_BUILD: pp39-manylinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.sh
+      cp36-manylinux_x86_64:
+        CIBW_BUILD: cp36-manylinux_x86_64
+        BUILD_SCRIPT: build_mlpack.sh
+      cp37-manylinux_x86_64:
+        CIBW_BUILD: cp37-manylinux_x86_64
+        BUILD_SCRIPT: build_mlpack.sh
+      cp38-manylinux_x86_64:
+        CIBW_BUILD: cp38-manylinux_x86_64
+        BUILD_SCRIPT: build_mlpack.sh
+      cp39-manylinux_x86_64:
+        CIBW_BUILD: cp39-manylinux_x86_64
+        BUILD_SCRIPT: build_mlpack.sh
+      cp310-manylinux_x86_64:
+        CIBW_BUILD: cp310-manylinux_x86_64
+        BUILD_SCRIPT: build_mlpack.sh
+      cp311-manylinux_x86_64:
+        CIBW_BUILD: cp311-manylinux_x86_64
+        BUILD_SCRIPT: build_mlpack.sh
+      pp37-manylinux_x86_64:
+        CIBW_BUILD: pp37-manylinux_x86_64
+        BUILD_SCRIPT: build_mlpack.sh
+      pp38_manylinux_x86_64:
+        CIBW_BUILD: pp38-manylinux_x86_64
+        BUILD_SCRIPT: build_mlpack.sh
+      pp39_manylinux_x86_64:
+        CIBW_BUILD: pp39-manylinux_x86_64
+        BUILD_SCRIPT: build_mlpack.sh
 
       cp36-manylinux_i686:
         CIBW_BUILD: cp36-manylinux_i686
         BUILD_SCRIPT: build_mlpack.i686.sh
-#      cp37-manylinux_i686:
-#        CIBW_BUILD: cp37-manylinux_i686
-#        BUILD_SCRIPT: build_mlpack.i686.sh
-#      cp38-manylinux_i686:
-#        CIBW_BUILD: cp38-manylinux_i686
-#        BUILD_SCRIPT: build_mlpack.i686.sh
-#      cp39-manylinux_i686:
-#        CIBW_BUILD: cp39-manylinux_i686
-#        BUILD_SCRIPT: build_mlpack.i686.sh
-#      cp310-manylinux_i686:
-#        CIBW_BUILD: cp310-manylinux_i686
-#        BUILD_SCRIPT: build_mlpack.i686.sh
-#      cp311-manylinux_i686:
-#        CIBW_BUILD: cp311-manylinux_i686
-#        BUILD_SCRIPT: build_mlpack.i686.sh
-#      pp37-manylinux_i686:
-#        CIBW_BUILD: pp37-manylinux_i686
-#        BUILD_SCRIPT: build_mlpack.i686.sh
-#      pp38_manylinux_i686:
-#        CIBW_BUILD: pp38-manylinux_i686
-#        BUILD_SCRIPT: build_mlpack.i686.sh
-#      pp39_manylinux_i686:
-#        CIBW_BUILD: pp39-manylinux_i686
-#        BUILD_SCRIPT: build_mlpack.i686.sh
+      cp37-manylinux_i686:
+        CIBW_BUILD: cp37-manylinux_i686
+        BUILD_SCRIPT: build_mlpack.i686.sh
+      cp38-manylinux_i686:
+        CIBW_BUILD: cp38-manylinux_i686
+        BUILD_SCRIPT: build_mlpack.i686.sh
+      cp39-manylinux_i686:
+        CIBW_BUILD: cp39-manylinux_i686
+        BUILD_SCRIPT: build_mlpack.i686.sh
+      cp310-manylinux_i686:
+        CIBW_BUILD: cp310-manylinux_i686
+        BUILD_SCRIPT: build_mlpack.i686.sh
+      cp311-manylinux_i686:
+        CIBW_BUILD: cp311-manylinux_i686
+        BUILD_SCRIPT: build_mlpack.i686.sh
+      pp37-manylinux_i686:
+        CIBW_BUILD: pp37-manylinux_i686
+        BUILD_SCRIPT: build_mlpack.i686.sh
+      pp38_manylinux_i686:
+        CIBW_BUILD: pp38-manylinux_i686
+        BUILD_SCRIPT: build_mlpack.i686.sh
+      pp39_manylinux_i686:
+        CIBW_BUILD: pp39-manylinux_i686
+        BUILD_SCRIPT: build_mlpack.i686.sh
 
-#      cp36-musllinux_x86_64:
-#        CIBW_BUILD: cp36-musllinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#      cp37-musllinux_x86_64:
-#        CIBW_BUILD: cp37-musllinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#      cp38-musllinux_x86_64:
-#        CIBW_BUILD: cp38-musllinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#      cp39-musllinux_x86_64:
-#        CIBW_BUILD: cp39-musllinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#      cp310-musllinux_x86_64:
-#        CIBW_BUILD: cp310-musllinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#      cp311-musllinux_x86_64:
-#        CIBW_BUILD: cp311-musllinux_x86_64
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#
-#      cp36-musllinux_i686:
-#        CIBW_BUILD: cp36-musllinux_i686
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#      cp37-musllinux_i686:
-#        CIBW_BUILD: cp37-musllinux_i686
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#      cp38-musllinux_i686:
-#        CIBW_BUILD: cp38-musllinux_i686
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#      cp39-musllinux_i686:
-#        CIBW_BUILD: cp39-musllinux_i686
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#      cp310-musllinux_i686:
-#        CIBW_BUILD: cp310-musllinux_i686
-#        BUILD_SCRIPT: build_mlpack.musl.sh
-#      cp311-musllinux_i686:
-#        CIBW_BUILD: cp311-musllinux_i686
-#        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp36-musllinux_x86_64:
+        CIBW_BUILD: cp36-musllinux_x86_64
+        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp37-musllinux_x86_64:
+        CIBW_BUILD: cp37-musllinux_x86_64
+        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp38-musllinux_x86_64:
+        CIBW_BUILD: cp38-musllinux_x86_64
+        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp39-musllinux_x86_64:
+        CIBW_BUILD: cp39-musllinux_x86_64
+        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp310-musllinux_x86_64:
+        CIBW_BUILD: cp310-musllinux_x86_64
+        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp311-musllinux_x86_64:
+        CIBW_BUILD: cp311-musllinux_x86_64
+        BUILD_SCRIPT: build_mlpack.musl.sh
+
+      cp36-musllinux_i686:
+        CIBW_BUILD: cp36-musllinux_i686
+        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp37-musllinux_i686:
+        CIBW_BUILD: cp37-musllinux_i686
+        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp38-musllinux_i686:
+        CIBW_BUILD: cp38-musllinux_i686
+        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp39-musllinux_i686:
+        CIBW_BUILD: cp39-musllinux_i686
+        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp310-musllinux_i686:
+        CIBW_BUILD: cp310-musllinux_i686
+        BUILD_SCRIPT: build_mlpack.musl.sh
+      cp311-musllinux_i686:
+        CIBW_BUILD: cp311-musllinux_i686
+        BUILD_SCRIPT: build_mlpack.musl.sh
 
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'Ubuntu-20.04'}
@@ -111,19 +111,19 @@ jobs:
 - job: macos
   strategy:
     matrix:
-#      cp36-macosx_x86_64:
-#        CIBW_BUILD: cp36-macosx_x86_64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
-#      cp37-macosx_x86_64:
-#        CIBW_BUILD: cp37-macosx_x86_64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
-#      cp38-macosx_x86_64:
-#        CIBW_BUILD: cp38-macosx_x86_64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
-#      cp38-macosx_arm64:
-#        CIBW_BUILD: cp38-macosx_arm64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
-#        CIBW_ARCHS_MACOS: "arm64"
+      cp36-macosx_x86_64:
+        CIBW_BUILD: cp36-macosx_x86_64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+      cp37-macosx_x86_64:
+        CIBW_BUILD: cp37-macosx_x86_64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+      cp38-macosx_x86_64:
+        CIBW_BUILD: cp38-macosx_x86_64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+      cp38-macosx_arm64:
+        CIBW_BUILD: cp38-macosx_arm64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+        CIBW_ARCHS_MACOS: "arm64"
       cp39-macosx_x86_64:
         CIBW_BUILD: cp39-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.osx.sh
@@ -132,29 +132,29 @@ jobs:
         CIBW_BUILD: cp39-macosx_arm64
         BUILD_SCRIPT: build_mlpack.osx.sh
         CIBW_ARCHS_MACOS: "arm64"
-#      cp310-macosx_x86_64:
-#        CIBW_BUILD: cp310-macosx_x86_64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
-#      cp310-macosx_arm64:
-#        CIBW_BUILD: cp310-macosx_arm64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
-#        CIBW_ARCHS_MACOS: "arm64"
-#      cp311-macosx_x86_64:
-#        CIBW_BUILD: cp311-macosx_x86_64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
-#      cp311-macosx_arm64:
-#        CIBW_BUILD: cp311-macosx_arm64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
-#        CIBW_ARCHS_MACOS: "arm64"
-#      pp37-macosx_x86_64:
-#        CIBW_BUILD: pp37-macosx_x86_64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
-#      pp38-macosx_x86_64:
-#        CIBW_BUILD: pp38-macosx_x86_64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
-#      pp39-macosx_x86_64:
-#        CIBW_BUILD: pp39-macosx_x86_64
-#        BUILD_SCRIPT: build_mlpack.osx.sh
+      cp310-macosx_x86_64:
+        CIBW_BUILD: cp310-macosx_x86_64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+      cp310-macosx_arm64:
+        CIBW_BUILD: cp310-macosx_arm64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+        CIBW_ARCHS_MACOS: "arm64"
+      cp311-macosx_x86_64:
+        CIBW_BUILD: cp311-macosx_x86_64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+      cp311-macosx_arm64:
+        CIBW_BUILD: cp311-macosx_arm64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+        CIBW_ARCHS_MACOS: "arm64"
+      pp37-macosx_x86_64:
+        CIBW_BUILD: pp37-macosx_x86_64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+      pp38-macosx_x86_64:
+        CIBW_BUILD: pp38-macosx_x86_64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+      pp39-macosx_x86_64:
+        CIBW_BUILD: pp39-macosx_x86_64
+        BUILD_SCRIPT: build_mlpack.osx.sh
 
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'macOS-11'}
@@ -179,57 +179,57 @@ jobs:
         BUILD_SCRIPT: build_mlpack.bat
         WIN_ARCH: "Win32"
         OPENBLAS_ARCH: "x86"
-#      cp37-win_amd64:
-#        CIBW_BUILD: cp37-win_amd64
-#        BUILD_SCRIPT: build_mlpack.bat
-#      cp37-win32:
-#        CIBW_BUILD: cp37-win32
-#        BUILD_SCRIPT: build_mlpack.bat
-#      cp38-win_amd64:
-#        CIBW_BUILD: cp38-win_amd64
-#        BUILD_SCRIPT: build_mlpack.bat
-#      cp38-win32:
-#        CIBW_BUILD: cp38-win32
-#        BUILD_SCRIPT: build_mlpack.bat
-#      cp39-win_amd64:
-#        CIBW_BUILD: cp39-win_amd64
-#        BUILD_SCRIPT: build_mlpack.bat
-#      cp39-win32:
-#        CIBW_BUILD: cp39-win32
-#        BUILD_SCRIPT: build_mlpack.bat
-#      cp39-win_arm64:
-#        CIBW_BUILD: cp39-win_arm64
-#        BUILD_SCRIPT: build_mlpack.bat
-#        CIBW_ARCHS_WINDOWS: "ARM64"
-#      cp310-win_amd64:
-#        CIBW_BUILD: cp310-win_amd64
-#        BUILD_SCRIPT: build_mlpack.bat
-#      cp310-win32:
-#        CIBW_BUILD: cp310-win32
-#        BUILD_SCRIPT: build_mlpack.bat
-#      cp310-win_arm64:
-#        CIBW_BUILD: cp310-win_arm64
-#        BUILD_SCRIPT: build_mlpack.bat
-#        CIBW_ARCHS_WINDOWS: "ARM64"
-#      cp311-win_amd64:
-#        CIBW_BUILD: cp311-win_amd64
-#        BUILD_SCRIPT: build_mlpack.bat
-#      cp311-win32:
-#        CIBW_BUILD: cp311-win32
-#        BUILD_SCRIPT: build_mlpack.bat
-#      cp311-win_arm64:
-#        CIBW_BUILD: cp311-win_arm64
-#        BUILD_SCRIPT: build_mlpack.bat
-#        CIBW_ARCHS_WINDOWS: "ARM64"
-#      pp37-win_amd64:
-#        CIBW_BUILD: pp37-win_amd64
-#        BUILD_SCRIPT: build_mlpack.bat
-#      pp38-win_amd64:
-#        CIBW_BUILD: pp38-win_amd64
-#        BUILD_SCRIPT: build_mlpack.bat
-#      pp39-win_amd64:
-#        CIBW_BUILD: pp39-win_amd64
-#        BUILD_SCRIPT: build_mlpack.bat
+      cp37-win_amd64:
+        CIBW_BUILD: cp37-win_amd64
+        BUILD_SCRIPT: build_mlpack.bat
+      cp37-win32:
+        CIBW_BUILD: cp37-win32
+        BUILD_SCRIPT: build_mlpack.bat
+      cp38-win_amd64:
+        CIBW_BUILD: cp38-win_amd64
+        BUILD_SCRIPT: build_mlpack.bat
+      cp38-win32:
+        CIBW_BUILD: cp38-win32
+        BUILD_SCRIPT: build_mlpack.bat
+      cp39-win_amd64:
+        CIBW_BUILD: cp39-win_amd64
+        BUILD_SCRIPT: build_mlpack.bat
+      cp39-win32:
+        CIBW_BUILD: cp39-win32
+        BUILD_SCRIPT: build_mlpack.bat
+      cp39-win_arm64:
+        CIBW_BUILD: cp39-win_arm64
+        BUILD_SCRIPT: build_mlpack.bat
+        CIBW_ARCHS_WINDOWS: "ARM64"
+      cp310-win_amd64:
+        CIBW_BUILD: cp310-win_amd64
+        BUILD_SCRIPT: build_mlpack.bat
+      cp310-win32:
+        CIBW_BUILD: cp310-win32
+        BUILD_SCRIPT: build_mlpack.bat
+      cp310-win_arm64:
+        CIBW_BUILD: cp310-win_arm64
+        BUILD_SCRIPT: build_mlpack.bat
+        CIBW_ARCHS_WINDOWS: "ARM64"
+      cp311-win_amd64:
+        CIBW_BUILD: cp311-win_amd64
+        BUILD_SCRIPT: build_mlpack.bat
+      cp311-win32:
+        CIBW_BUILD: cp311-win32
+        BUILD_SCRIPT: build_mlpack.bat
+      cp311-win_arm64:
+        CIBW_BUILD: cp311-win_arm64
+        BUILD_SCRIPT: build_mlpack.bat
+        CIBW_ARCHS_WINDOWS: "ARM64"
+      pp37-win_amd64:
+        CIBW_BUILD: pp37-win_amd64
+        BUILD_SCRIPT: build_mlpack.bat
+      pp38-win_amd64:
+        CIBW_BUILD: pp38-win_amd64
+        BUILD_SCRIPT: build_mlpack.bat
+      pp39-win_amd64:
+        CIBW_BUILD: pp39-win_amd64
+        BUILD_SCRIPT: build_mlpack.bat
 
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'windows-2019'}
