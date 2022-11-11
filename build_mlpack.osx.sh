@@ -68,16 +68,12 @@ make -j4
 # modules.
 if [ "$CIBW_ARCHS_MACOS" == "arm64" ];
 then
-  cp ../pyx-old/*.pyx src/mlpack/bindings/python/mlpack/
+  cp ../py-old/*.pyx src/mlpack/bindings/python/mlpack/
+  cp ../py-old/*.py src/mlpack/bindings/python/mlpack/
   cd src/mlpack/bindings/python
   python setup.py build_ext
   cd ../../../..
 fi
-
-echo ""
-echo "running generate_pyx_test_python_binding"
-echo ""
-bin/generate_pyx_test_python_binding
 
 # Manually change the @rpath/libarmadillo.11.dylib to a direct reference.
 # This allows delocate-wheel to know exactly where libarmadillo is.
