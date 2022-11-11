@@ -1,4 +1,4 @@
-name: Build aarch64, s390x, and ppc64le wheels
+name: Build Windows ARM64 wheels
 
 on: [push]
 
@@ -7,83 +7,16 @@ env:
   CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
 
 jobs:
-  linux_build_wheels:
-    name: Build wheel for ${{ matrix.py_ver }}-${{ matrix.host }}_${{ matrix.arch }}
-    runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-#        py_ver: [cp36, cp37, cp38, cp39, cp310, cp311, pp37, pp38, pp39]
-        py_ver: [cp311]
-        # numpy does not build for s390x: "error: 'HWCAP_S390_VX' undeclared".
-        arch: [aarch64, ppc64le]
-        # musllinux suffers from timeouts and OOMs, unfortunately.
-        host: [manylinux]
-        exclude:
-          - py_ver: pp37
-            arch: s390x
-          - py_ver: pp38
-            arch: s390x
-          - py_ver: pp39
-            arch: s390x
-          - py_ver: pp37
-            arch: ppc64le
-          - py_ver: pp38
-            arch: ppc64le
-          - py_ver: pp39
-            arch: ppc64le
-          - py_ver: pp37
-            host: musllinux
-          - py_ver: pp38
-            host: musllinux
-          - py_ver: pp39
-            host: musllinux
-
-    env:
-      CIBW_BUILD: ${{ matrix.py_ver }}-${{ matrix.host }}_${{ matrix.arch }}
-      CIBW_BEFORE_BUILD: "${{ matrix.host == 'manylinux' && './build_mlpack.emulated.sh' || './build_mlpack.musl.sh' }}"
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up QEMU
-        if: runner.os == 'Linux'
-        uses: docker/setup-qemu-action@v2
-        with:
-          platforms: all
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get install libopenblas-dev libarmadillo-dev libensmallen-dev libcereal-dev g++ cmake
-          sudo pip install numpy cython pandas
-
-      - name: Generate setup.py
-        run: |
-          git clone https://github.com/mlpack/mlpack
-          cd mlpack/
-          git checkout $MLPACK_COMMIT
-          mkdir build/
-          cd build/
-          cmake -DBUILD_PYTHON_BINDINGS=ON ../
-          make python_configured
-
-      - name: Build wheel
-        uses: pypa/cibuildwheel@v2.11.2
-        with:
-          package-dir: mlpack/build/src/mlpack/bindings/python/
-        env:
-          CIBW_ARCHS_LINUX: "${{ matrix.arch }}"
-          NUM_CORES: 1
-
-      - uses: actions/upload-artifact@v3
-        with:
-          path: ./wheelhouse/*.whl
-
   windows_arm_build_wheels:
+    # Note: this job is currently disabled, because we cannot install any ARM64
+    # version of LAPACK.  Ideally, we can enable this when we have vcpkg support
+    # for ARM64 gfortran.
+    if: ${{ false }}
     name: Build wheel for ${{ matrix.py_ver }}-win_arm64
     runs-on: windows-latest
     strategy:
       matrix:
-        py_ver: [cp311]
+        py_ver: [cp39, cp310, cp311]
 
     env:
       CIBW_BUILD: ${{ matrix.py_ver }}-win_arm64
