@@ -36,5 +36,10 @@ rem place and manually run a simple test here to ensure that everything is
 rem working.
 cd src\mlpack\bindings\python
 cp %OPENBLAS_DLL% .
+
+rem Debugging information...
+dir mlpack\
+dumpbin /imports mlpack\test_python_binding*.dll
+
 set PYTHONPATH=%PYTHONPATH%;%rootdir%\mlpack\build\src\mlpack\bindings\python
 python -c "import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)"
