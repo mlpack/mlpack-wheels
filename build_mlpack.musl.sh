@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 #
 # Build mlpack's Python bindings inside the cibuildwheel musllinux environment.
+# Note that this script is not currently used, because the musllinux builds seem
+# to get OOM-killed.
 
 # Enable the community repository.
 apk add openblas-dev

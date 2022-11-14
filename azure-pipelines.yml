@@ -78,56 +78,6 @@ jobs:
         BUILD_SCRIPT: build_mlpack.i686.sh
         NUM_CORES: 4
 
-      cp36-musllinux_x86_64:
-        CIBW_BUILD: cp36-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-      cp37-musllinux_x86_64:
-        CIBW_BUILD: cp37-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-      cp38-musllinux_x86_64:
-        CIBW_BUILD: cp38-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-      cp39-musllinux_x86_64:
-        CIBW_BUILD: cp39-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-      cp310-musllinux_x86_64:
-        CIBW_BUILD: cp310-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-      cp311-musllinux_x86_64:
-        CIBW_BUILD: cp311-musllinux_x86_64
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-
-      cp36-musllinux_i686:
-        CIBW_BUILD: cp36-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-      cp37-musllinux_i686:
-        CIBW_BUILD: cp37-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-      cp38-musllinux_i686:
-        CIBW_BUILD: cp38-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-      cp39-musllinux_i686:
-        CIBW_BUILD: cp39-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-      cp310-musllinux_i686:
-        CIBW_BUILD: cp310-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-      cp311-musllinux_i686:
-        CIBW_BUILD: cp311-musllinux_i686
-        BUILD_SCRIPT: build_mlpack.musl.sh
-        NUM_CORES: 1
-
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'Ubuntu-20.04'}
   variables:
