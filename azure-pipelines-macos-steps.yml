@@ -25,8 +25,9 @@ steps:
       cd mlpack/build
       make -j4 python
       mkdir ../pyx-old/
-      cp src/mlpack/bindings/python/mlpack/*.pyx ../py-old/
-      cp src/mlpack/bindings/python/mlpack/*.py ../py-old/
+      ls src/mlpack/bindings/python/mlpack/
+      cp -v src/mlpack/bindings/python/mlpack/*.pyx ../py-old/
+      cp -v src/mlpack/bindings/python/mlpack/*.py ../py-old/
     condition: eq(variables['CIBW_ARCHS_MACOS'], 'arm64')
     displayName: Build .pyx files before entering build environment
 
