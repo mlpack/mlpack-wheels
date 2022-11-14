@@ -39,7 +39,7 @@ cp %OPENBLAS_DLL% .
 
 rem Debugging information...
 dir mlpack\
-dumpbin /imports mlpack\test_python_binding*.dll
+dumpbin /imports mlpack\test_python_binding.cp*-win*.pyd
 
 set PYTHONPATH=%PYTHONPATH%;%rootdir%\mlpack\build\src\mlpack\bindings\python
 python -c "import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)"
