@@ -181,10 +181,6 @@ jobs:
         CIBW_BUILD: cp311-macosx_arm64
         BUILD_SCRIPT: build_mlpack.osx.sh
         CIBW_ARCHS_MACOS: "arm64"
-      pp37-macosx_x86_64:
-        CIBW_BUILD: pp37-macosx_x86_64
-        BUILD_SCRIPT: build_mlpack.osx.sh
-        CIBW_ARCHS_MACOS: "x86_64"
       pp38-macosx_x86_64:
         CIBW_BUILD: pp38-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.osx.sh
@@ -267,11 +263,6 @@ jobs:
         BUILD_SCRIPT: build_mlpack.bat
         WIN_ARCH: "Win32"
         OPENBLAS_ARCH: "x86"
-      pp37-win_amd64:
-        CIBW_BUILD: pp37-win_amd64
-        BUILD_SCRIPT: build_mlpack.bat
-        WIN_ARCH: "x64"
-        OPENBLAS_ARCH: "x64"
       pp38-win_amd64:
         CIBW_BUILD: pp38-win_amd64
         BUILD_SCRIPT: build_mlpack.bat
