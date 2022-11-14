@@ -24,7 +24,7 @@ steps:
   - bash: |
       cd mlpack/build
       make -j4 python
-      mkdir ../pyx-old/
+      mkdir ../py-old/
       ls src/mlpack/bindings/python/mlpack/
       cp -v src/mlpack/bindings/python/mlpack/*.pyx ../py-old/
       cp -v src/mlpack/bindings/python/mlpack/*.py ../py-old/
