@@ -62,8 +62,6 @@ cmake \
   -DSTB_IMAGE_INCLUDE_DIR=../../stb/include/ \
   -DCMAKE_INSTALL_PREFIX=../install \
   ../
-cat CMakeFiles/CMakeOutput.log
-cat CMakeFiles/CMakeError.log
 make -j4
 
 # If we are building for ARM64, then all generation of .pyx files will have
