@@ -18,13 +18,15 @@ pipeline
     {
       steps
       {
-        git clone https://github.com/mlpack/mlpack
-        cd mlpack/
-        git checkout $MLPACK_VERSION
-        mkdir build/
-        cd build/
-        cmake -DBUILD_PYTHON_BINDINGS=ON ../
-        make python_configured
+        sh '''
+          git clone https://github.com/mlpack/mlpack
+          cd mlpack/
+          git checkout $MLPACK_VERSION
+          mkdir build/
+          cd build/
+          cmake -DBUILD_PYTHON_BINDINGS=ON ../
+          make python_configured
+        '''
       }
     }
 
@@ -88,16 +90,18 @@ pipeline
 
       steps
       {
-        // Set environment variables properly.
-        if [ "${PYTHON_IMAGE}" == "manylinux" ];
-        then
-          export CIBW_BEFORE_BUILD="./build_mlpack.sh"
-        else
-          export CIBW_BEFORE_BUILD="./build_mlpack.musl.sh"
-        fi
+        sh '''
+          // Set environment variables properly.
+          if [ "${PYTHON_IMAGE}" == "manylinux" ];
+          then
+            export CIBW_BEFORE_BUILD="./build_mlpack.sh"
+          else
+            export CIBW_BEFORE_BUILD="./build_mlpack.musl.sh"
+          fi
 
-        export CIBW_ARCHS_LINUX="${ARCH}"
-        cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
+          export CIBW_ARCHS_LINUX="${ARCH}"
+          cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
+        '''
       }
 
       post
