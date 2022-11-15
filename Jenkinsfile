@@ -85,29 +85,35 @@ pipeline
             }
           }
         }
-      }
 
-      steps
-      {
-        sh '''
-          // Set environment variables properly.
-          if [ "${PYTHON_IMAGE}" == "manylinux" ];
-          then
-            export CIBW_BEFORE_BUILD="./build_mlpack.sh"
-          else
-            export CIBW_BEFORE_BUILD="./build_mlpack.musl.sh"
-          fi
-
-          export CIBW_ARCHS_LINUX="${ARCH}"
-          cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
-        '''
-      }
-
-      post
-      {
-        always
+        stages
         {
-          archiveArtifacts 'wheelhouse/*.whl'
+          stage('Run cibuildwheel')
+          {
+            steps
+            {
+              sh '''
+                // Set environment variables properly.
+                if [ "${PYTHON_IMAGE}" == "manylinux" ];
+                then
+                  export CIBW_BEFORE_BUILD="./build_mlpack.sh"
+                else
+                  export CIBW_BEFORE_BUILD="./build_mlpack.musl.sh"
+                fi
+
+                export CIBW_ARCHS_LINUX="${ARCH}"
+                cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
+              '''
+            }
+          }
+
+          post
+          {
+            always
+            {
+              archiveArtifacts 'wheelhouse/*.whl'
+            }
+          }
         }
       }
     }
