@@ -105,13 +105,13 @@ pipeline
                 cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
               '''
             }
-          }
 
-          post
-          {
-            always
+            post
             {
-              archiveArtifacts 'wheelhouse/*.whl'
+              always
+              {
+                archiveArtifacts 'wheelhouse/*.whl'
+              }
             }
           }
         }
