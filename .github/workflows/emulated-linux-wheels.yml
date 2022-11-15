@@ -74,7 +74,6 @@ jobs:
           package-dir: mlpack/build/src/mlpack/bindings/python/
         env:
           CIBW_ARCHS_LINUX: "${{ matrix.arch }}"
-          NUM_CORES: 2
 
       - uses: actions/upload-artifact@v3
         with:
@@ -145,7 +144,6 @@ jobs:
           package-dir: mlpack/build/src/mlpack/bindings/python/
         env:
           CIBW_ARCHS_LINUX: "${{ matrix.arch }}"
-          NUM_CORES: 2
 
       - uses: actions/upload-artifact@v3
         with:
@@ -216,7 +214,6 @@ jobs:
           package-dir: mlpack/build/src/mlpack/bindings/python/
         env:
           CIBW_ARCHS_LINUX: "${{ matrix.arch }}"
-          NUM_CORES: 2
 
       - uses: actions/upload-artifact@v3
         with:
