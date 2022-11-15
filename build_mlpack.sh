@@ -19,4 +19,5 @@ cmake \
     -DBUILD_CLI_EXECUTABLES=OFF \
     -DSTB_IMAGE_INCLUDE_DIR=../../stb/include/ \
     ../
+cat CMakeFiles/CMakeError.log
 make
