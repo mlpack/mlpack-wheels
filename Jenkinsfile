@@ -102,9 +102,13 @@ pipeline
                 {
                   env.CIBW_BEFORE_BUILD = './build_mlpack.sh'
                 }
-                else
+                else if (env.PYTHON_IMAGE == 'musllinux')
                 {
                   env.CIBW_BEFORE_BUILD = './build_mlpack.musl.sh'
+                }
+                else
+                {
+                  env.CIBW_BEFORE_BUILD = './build_mlpack.i686.sh'
                 }
 
                 env.CIBW_ARCHS_LINUX = env.ARCH
