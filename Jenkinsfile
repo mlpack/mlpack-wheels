@@ -19,7 +19,6 @@ pipeline
       {
         sh '''
           git clone https://github.com/mlpack/mlpack
-          pwd
           cd mlpack/
           git checkout $MLPACK_VERSION
           mkdir build/
@@ -97,18 +96,14 @@ pipeline
               unstash 'mlpack-configured'
               sh '''
                 # Set environment variables properly.
-                if [ \"a${PYTHON_IMAGE}\" == \"amanylinux\" ];
+                if [ \\"a${PYTHON_IMAGE}\\" == \\"amanylinux\\" ];
                 then
-                  export CIBW_BEFORE_BUILD="./build_mlpack.sh"
+                  export CIBW_BEFORE_BUILD=\\"./build_mlpack.sh\\"
                 else
-                  export CIBW_BEFORE_BUILD="./build_mlpack.musl.sh"
+                  export CIBW_BEFORE_BUILD=\\"./build_mlpack.musl.sh\\"
                 fi
 
-                export CIBW_ARCHS_LINUX="${ARCH}"
-                pwd
-                ls
-                ls mlpack/
-                ls mlpack/build/
+                export CIBW_ARCHS_LINUX=\\"${ARCH}\\"
                 cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
               '''
             }
