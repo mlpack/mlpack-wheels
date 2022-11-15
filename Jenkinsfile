@@ -27,6 +27,7 @@ pipeline
           cmake -DBUILD_PYTHON_BINDINGS=ON ../
           make python_configured
         '''
+        stash includes: 'mlpack/**', name: 'mlpack-configured'
       }
     }
 
@@ -93,9 +94,10 @@ pipeline
           {
             steps
             {
+              unstash 'mlpack-configured'
               sh '''
                 # Set environment variables properly.
-                if [ \"${PYTHON_IMAGE}\" == \"manylinux\" ];
+                if [ "a${PYTHON_IMAGE}" == "amanylinux" ];
                 then
                   export CIBW_BEFORE_BUILD="./build_mlpack.sh"
                 else
