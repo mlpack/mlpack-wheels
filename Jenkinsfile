@@ -100,15 +100,18 @@ pipeline
               {
                 if (env.PYTHON_IMAGE == 'manylinux')
                 {
-                  env.CIBW_BEFORE_BUILD = './build_mlpack.sh'
-                }
-                else if (env.PYTHON_IMAGE == 'musllinux')
-                {
-                  env.CIBW_BEFORE_BUILD = './build_mlpack.musl.sh'
+                  if (env.ARCH == 'i686')
+                  {
+                    env.CIBW_BEFORE_BUILD = './build_mlpack.i686.sh'
+                  }
+                  else
+                  {
+                    env.CIBW_BEFORE_BUILD = './build_mlpack.sh'
+                  }
                 }
                 else
                 {
-                  env.CIBW_BEFORE_BUILD = './build_mlpack.i686.sh'
+                  env.CIBW_BEFORE_BUILD = './build_mlpack.musl.sh'
                 }
 
                 env.CIBW_ARCHS_LINUX = env.ARCH
