@@ -19,6 +19,7 @@ pipeline
       {
         sh '''
           git clone https://github.com/mlpack/mlpack
+          pwd
           cd mlpack/
           git checkout $MLPACK_VERSION
           mkdir build/
