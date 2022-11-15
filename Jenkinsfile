@@ -97,7 +97,7 @@ pipeline
               unstash 'mlpack-configured'
               sh '''
                 # Set environment variables properly.
-                if [ "a${PYTHON_IMAGE}" == "amanylinux" ];
+                if [ \"a${PYTHON_IMAGE}\" == \"amanylinux\" ];
                 then
                   export CIBW_BEFORE_BUILD="./build_mlpack.sh"
                 else
