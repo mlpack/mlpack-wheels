@@ -94,16 +94,23 @@ pipeline
             steps
             {
               unstash 'mlpack-configured'
-              sh '''
-                # Set environment variables properly.
-                if [ \\"a${PYTHON_IMAGE}\\" == \\"amanylinux\\" ];
-                then
-                  export CIBW_BEFORE_BUILD=\\"./build_mlpack.sh\\"
-                else
-                  export CIBW_BEFORE_BUILD=\\"./build_mlpack.musl.sh\\"
-                fi
 
-                export CIBW_ARCHS_LINUX=\\"${ARCH}\\"
+              // Set environment variables properly.
+              script
+              {
+                if (env.PYTHON_IMAGE == 'manylinux')
+                {
+                  env.CIBW_BEFORE_BUILD = './build_mlpack.sh'
+                }
+                else
+                {
+                  env.CIBW_BEFORE_BUILD = './build_mlpack.musl.sh'
+                }
+
+                env.CIBW_ARCHS_LINUX = env.ARCH
+              }
+
+              sh '''
                 cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
               '''
             }
