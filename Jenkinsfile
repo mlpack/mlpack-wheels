@@ -6,7 +6,6 @@ pipeline
   environment
   {
     MLPACK_VERSION = '4.0.0'
-    CIBW_BEFORE_BUILD
   }
 
   // We assume that the wheel-builder system already has cibuildwheel, twine,
