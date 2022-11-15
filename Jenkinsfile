@@ -94,7 +94,7 @@ pipeline
             {
               sh '''
                 # Set environment variables properly.
-                if [ "${PYTHON_IMAGE}" == "manylinux" ];
+                if [ \"${PYTHON_IMAGE}\" == \"manylinux\" ];
                 then
                   export CIBW_BEFORE_BUILD="./build_mlpack.sh"
                 else
@@ -102,6 +102,10 @@ pipeline
                 fi
 
                 export CIBW_ARCHS_LINUX="${ARCH}"
+                pwd
+                ls
+                ls mlpack/
+                ls mlpack/build/
                 cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
               '''
             }
