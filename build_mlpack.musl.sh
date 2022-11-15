@@ -50,4 +50,4 @@ cmake \
     -DBUILD_CLI_EXECUTABLES=OFF \
     -DSTB_IMAGE_INCLUDE_DIR=../../stb/include/ \
     ../
-make -j$NUM_CORES
+make
