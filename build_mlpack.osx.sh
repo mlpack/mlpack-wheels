@@ -41,7 +41,6 @@ tar -xvzpf ensmallen-2.19.0.tar.gz
 rm -f ensmallen-2.19.0.tar.gz
 
 wget https://www.mlpack.org/files/stb.tar.gz
-cp stb/include/*.h /usr/include/
 rm -rf stb.tar.gz
 
 cd mlpack/
@@ -62,6 +61,8 @@ cmake \
   -DSTB_IMAGE_INCLUDE_DIR=../../stb/include/ \
   -DCMAKE_INSTALL_PREFIX=../install \
   ../
+cat CMakeFiles/CMakeOutput.log
+cat CMakeFiles/CMakeError.log
 make -j4
 
 # If we are building for ARM64, then all generation of .pyx files will have
