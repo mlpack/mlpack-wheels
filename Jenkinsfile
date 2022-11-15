@@ -108,6 +108,7 @@ pipeline
                 }
 
                 env.CIBW_ARCHS_LINUX = env.ARCH
+                env.CIBW_BUILD = env.PYTHON_VERSION + '-' + env.PYTHON_IMAGE + '_' + env.ARCH
               }
 
               sh '''
