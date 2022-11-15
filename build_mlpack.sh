@@ -2,7 +2,7 @@
 #
 # Build mlpack's Python bindings inside the cibuildwheel environment.
 
-yum install -y openblas-devel armadillo-devel cereal-devel ensmallen-devel
+yum install -y openblas-devel armadillo-devel cereal-devel ensmallen-devel wget
 pip install cython numpy pandas
 
 # STB must be installed by hand.
@@ -19,5 +19,4 @@ cmake \
     -DBUILD_CLI_EXECUTABLES=OFF \
     -DSTB_IMAGE_INCLUDE_DIR=../../stb/include/ \
     ../
-cat CMakeFiles/CMakeError.log
 make
