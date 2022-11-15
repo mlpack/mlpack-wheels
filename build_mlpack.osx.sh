@@ -41,6 +41,7 @@ tar -xvzpf ensmallen-2.19.0.tar.gz
 rm -f ensmallen-2.19.0.tar.gz
 
 wget https://www.mlpack.org/files/stb.tar.gz
+tar -xvzpf stb.tar.gz
 rm -rf stb.tar.gz
 
 cd mlpack/
