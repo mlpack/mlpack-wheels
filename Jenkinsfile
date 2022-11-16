@@ -134,7 +134,7 @@ pipeline
                 sh '''
                   echo "[pypi]" > ~/.pypirc
                   echo "username = __token__" >> ~/.pypirc
-                  echo "password = $(TWINE_PYPI_TOKEN)" >> ~/.pypirc
+                  echo "password = $TWINE_PYPI_TOKEN" >> ~/.pypirc
                   twine upload wheelhouse/*.whl
                   rm -f ~/.pypirc
                 '''
