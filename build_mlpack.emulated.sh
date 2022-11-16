@@ -37,12 +37,15 @@ rm -rf ensmallen-2.19.0/ ensmallen-2.19.0.tar.gz
 
 wget https://www.mlpack.org/files/stb.tar.gz
 tar -xvzpf stb.tar.gz
-cp stb/include/*.h /usr/include/
-rm -rf stb/ stb.tar.gz
+rm -rf stb.tar.gz
 
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
 cd build/
 rm -rf *
-cmake -DBUILD_PYTHON_BINDINGS=ON -DBUILD_CLI_EXECUTABLES=OFF ../
-make -j4
+cmake \
+    -DBUILD_PYTHON_BINDINGS=ON \
+    -DBUILD_CLI_EXECUTABLES=OFF \
+    -DSTB_IMAGE_INCLUDE_DIR=../../stb/include/ \
+    ../
+make
