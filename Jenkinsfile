@@ -98,16 +98,17 @@ pipeline
               // Set environment variables properly.
               script
               {
-                if (env.PYTHON_IMAGE == 'manylinux')
+                if (env.ARCH != 'x86_64' && env.ARCH != 'i686')
                 {
-                  if (env.ARCH == 'i686')
-                  {
-                    env.CIBW_BEFORE_BUILD = './build_mlpack.i686.sh'
-                  }
-                  else
-                  {
-                    env.CIBW_BEFORE_BUILD = './build_mlpack.sh'
-                  }
+                  env.CIBW_BEFORE_BUILD = './build_mlpack.emulated.sh'
+                }
+                else if (env.PYTHON_IMAGE == 'manylinux' && env.ARCH == 'x86_64')
+                {
+                  env.CIBW_BEFORE_BUILD = './build_mlpack.sh'
+                }
+                else if (env.PYTHON_IMAGE == 'manylinux' && env.ARCH == 'i686')
+                {
+                  env.CIBW_BEFORE_BUILD = './build_mlpack.i686.sh'
                 }
                 else
                 {
