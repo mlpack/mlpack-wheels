@@ -6,6 +6,7 @@ pipeline
   environment
   {
     MLPACK_VERSION = '4.0.0'
+    TWINE_PYPI_TOKEN = credentials('twine-pypi-token')
   }
 
   // We assume that the wheel-builder system already has cibuildwheel, twine,
@@ -129,6 +130,14 @@ pipeline
               always
               {
                 archiveArtifacts 'wheelhouse/*.whl'
+
+                sh '''
+                  echo "[pypi]" > ~/.pypirc
+                  echo "username = __token__" >> ~/.pypirc
+                  echo "password = $(TWINE_PYPI_TOKEN)" >> ~/.pypirc
+                  twine upload wheelhouse/*.whl
+                  rm -f ~/.pypirc
+                '''
               }
             }
           }
