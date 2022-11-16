@@ -34,14 +34,8 @@ rem The tests cannot be run correctly by cibuildwheel because libopenblas.dll
 rem must be in the right directory; so, we copy libopenblas.dll to the right
 rem place and manually run a simple test here to ensure that everything is
 rem working.
-cd src\mlpack\bindings\python
+cd src\mlpack\bindings\python\mlpack
 cp %OPENBLAS_DLL% .
-
-rem Debugging information...
-dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\bin\"
-dir mlpack\
-rem This will only work for one build...
-"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x86\dumpbin.exe" /DEPENDENTS mlpack\approx_kfn.*.pyd
-
 set PYTHONPATH=%PYTHONPATH%;%rootdir%\mlpack\build\src\mlpack\bindings\python
+cd ..
 python -c "import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)"
