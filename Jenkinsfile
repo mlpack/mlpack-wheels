@@ -22,6 +22,11 @@ pipeline
           git clone https://github.com/mlpack/mlpack
           cd mlpack/
           git checkout $MLPACK_VERSION
+
+          # Temporary patch: increment build number.
+          sed -i.bk 's/${PACKAGE_VERSION}/${PACKAGE_VERSION}.post1/g' src/mlpack/bindings/python/setup.py.in
+          rm -f src/mlpack/bindings/python/setup.py.in.bk
+
           mkdir build/
           cd build/
           cmake -DBUILD_PYTHON_BINDINGS=ON ../
