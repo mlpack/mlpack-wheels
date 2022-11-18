@@ -4,6 +4,8 @@
 # Note that this script is not currently used, because the musllinux builds seem
 # to get OOM-killed.
 
+set -e -u -o pipefail
+
 # Enable the community repository.
 apk add openblas-dev
 pip install cython numpy pandas

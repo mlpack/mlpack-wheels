@@ -2,6 +2,8 @@
 #
 # Build mlpack's Python bindings inside the cibuildwheel environment.
 
+set -e -u -o pipefail
+
 # RHEL7 on other architectures does not have openblas-devel; so, we use
 # atlas-devel instead.  Armadillo and ensmallen must both be installed by hand.
 yum install -y atlas-devel lapack-devel wget
