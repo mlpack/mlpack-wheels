@@ -43,8 +43,9 @@ rm -f stb.tar.gz
 
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
+rm -rf build/
+mkdir build/
 cd build/
-rm -rf *
 cmake \
     -DBUILD_PYTHON_BINDINGS=ON \
     -DBUILD_CLI_EXECUTABLES=OFF \

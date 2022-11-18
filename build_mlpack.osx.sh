@@ -47,8 +47,9 @@ rm -rf stb.tar.gz
 cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
 patch -p1 < ../osx-accelerate.patch
+rm -rf build/
+mkdir build.
 cd build/
-rm -rf *
 # _LIBCPP_DISABLE_AVAILABILITY is required to avoid compilation errors claiming
 # that any_cast is not available.
 cmake \
