@@ -50,7 +50,7 @@ cd mlpack/
 patch -p1 < ../reduce-lib-size.patch
 patch -p1 < ../osx-accelerate.patch
 rm -rf build/
-mkdir build.
+mkdir build
 cd build/
 # _LIBCPP_DISABLE_AVAILABILITY is required to avoid compilation errors claiming
 # that any_cast is not available.
