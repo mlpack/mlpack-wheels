@@ -104,7 +104,11 @@ pipeline
               // Set environment variables properly.
               script
               {
-                if (env.ARCH != 'x86_64' && env.ARCH != 'i686')
+                if (env.PYTHON_IMAGE == 'musllinux')
+                {
+                  env.CIBW_BEFORE_BUILD = './build_mlpack.musl.sh'
+                }
+                else if (env.ARCH != 'x86_64' && env.ARCH != 'i686')
                 {
                   env.CIBW_BEFORE_BUILD = './build_mlpack.emulated.sh'
                 }
@@ -115,10 +119,6 @@ pipeline
                 else if (env.PYTHON_IMAGE == 'manylinux' && env.ARCH == 'i686')
                 {
                   env.CIBW_BEFORE_BUILD = './build_mlpack.i686.sh'
-                }
-                else
-                {
-                  env.CIBW_BEFORE_BUILD = './build_mlpack.musl.sh'
                 }
 
                 env.CIBW_ARCHS_LINUX = env.ARCH
