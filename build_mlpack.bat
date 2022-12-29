@@ -5,10 +5,8 @@ pip install cython numpy pandas delvewheel
 rem This is needed later for copying libopenblas.dll to the right place.
 set rootdir=%cd%
 
-rem Patch the code, clean any old build directory.
+rem Clean any old build directory.
 cd mlpack/
-patch -p1 < ../reduce-lib-size.patch
-patch -p1 < ../static-binding-linking.patch
 rmdir /s /q build
 mkdir build
 cd build/

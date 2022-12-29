@@ -43,8 +43,6 @@ tar -xvzpf stb.tar.gz
 rm -f stb.tar.gz
 
 cd mlpack/
-patch -p1 < ../reduce-lib-size.patch
-patch -p1 < ../i686-binding-fix.patch
 rm -rf build/
 mkdir build/
 cd build/

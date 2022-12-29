@@ -44,7 +44,6 @@ tar -xvzpf stb.tar.gz
 rm -f stb.tar.gz
 
 cd mlpack/
-patch -p1 < ../reduce-lib-size.patch
 rm -rf build/
 mkdir build/
 cd build/
