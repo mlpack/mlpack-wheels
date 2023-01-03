@@ -87,3 +87,6 @@ find src/mlpack/bindings/python/ -iname '*.so' -exec \
     install_name_tool -change "@rpath/libarmadillo.11.dylib" \
                               "$rootdir/armadillo-11.4.1/libarmadillo.11.dylib" \
                               \{\} \;
+
+# Revert to a version of packaging that is sufficient for delocate-wheel.
+pip install "packaging>=20.9"
