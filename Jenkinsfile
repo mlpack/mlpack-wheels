@@ -122,6 +122,7 @@ pipeline
               }
 
               sh '''
+                echo "CIBW_BUILD: $CIBW_BUILD"
                 cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
               '''
             }
