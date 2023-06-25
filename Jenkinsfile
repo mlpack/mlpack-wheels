@@ -42,23 +42,20 @@ pipeline
           axis
           {
             name 'PYTHON_VERSION'
-            //values 'cp36', 'cp37', 'cp38', 'cp39', 'cp310', 'cp311', 'pp37',
-            //       'pp38', 'pp39'
-            values 'cp39'
+            values 'cp36', 'cp37', 'cp38', 'cp39', 'cp310', 'cp311', 'pp37',
+                   'pp38', 'pp39'
           }
 
           axis
           {
             name 'ARCH'
-            //values 'x86_64', 'i686', 'aarch64', 's390x', 'ppc64le'
-            values 'aarch64'
+            values 'x86_64', 'i686', 'aarch64', 's390x', 'ppc64le'
           }
 
           axis
           {
             name 'PYTHON_IMAGE'
-            //values 'manylinux', 'musllinux'
-            values 'musllinux'
+            values 'manylinux', 'musllinux'
           }
         }
 
