@@ -5,7 +5,7 @@ pipeline
 
   environment
   {
-    MLPACK_VERSION = '4.2.0'
+    MLPACK_VERSION = '4.2.1'
     TWINE_PYPI_TOKEN = credentials('twine-pypi-token')
   }
 

@@ -3,7 +3,7 @@ name: Build Windows ARM64 wheels
 on: [push]
 
 env:
-  MLPACK_COMMIT: 4.2.0
+  MLPACK_COMMIT: 4.2.1
   CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
 
 jobs:
