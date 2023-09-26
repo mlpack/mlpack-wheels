@@ -74,6 +74,7 @@ jobs:
         BUILD_SCRIPT: build_mlpack.bat
         WIN_ARCH: "Win32"
         OPENBLAS_ARCH: "x86"
+        PANDAS_VER: 1.1.5
       cp37-win_amd64:
         CIBW_BUILD: cp37-win_amd64
         BUILD_SCRIPT: build_mlpack.bat
@@ -84,6 +85,7 @@ jobs:
         BUILD_SCRIPT: build_mlpack.bat
         WIN_ARCH: "Win32"
         OPENBLAS_ARCH: "x86"
+        PANDAS_VER: 1.3.5
       cp38-win_amd64:
         CIBW_BUILD: cp38-win_amd64
         BUILD_SCRIPT: build_mlpack.bat
@@ -94,6 +96,7 @@ jobs:
         BUILD_SCRIPT: build_mlpack.bat
         WIN_ARCH: "Win32"
         OPENBLAS_ARCH: "x86"
+        PANDAS_VER: 2.0.3
       cp39-win_amd64:
         CIBW_BUILD: cp39-win_amd64
         BUILD_SCRIPT: build_mlpack.bat
@@ -104,6 +107,7 @@ jobs:
         BUILD_SCRIPT: build_mlpack.bat
         WIN_ARCH: "Win32"
         OPENBLAS_ARCH: "x86"
+        PANDAS_VER: 2.0.3
       cp310-win_amd64:
         CIBW_BUILD: cp310-win_amd64
         BUILD_SCRIPT: build_mlpack.bat
@@ -114,6 +118,7 @@ jobs:
         BUILD_SCRIPT: build_mlpack.bat
         WIN_ARCH: "Win32"
         OPENBLAS_ARCH: "x86"
+        PANDAS_VER: 2.0.3
       cp311-win_amd64:
         CIBW_BUILD: cp311-win_amd64
         BUILD_SCRIPT: build_mlpack.bat
@@ -124,6 +129,7 @@ jobs:
         BUILD_SCRIPT: build_mlpack.bat
         WIN_ARCH: "Win32"
         OPENBLAS_ARCH: "x86"
+        PANDAS_VER: 2.0.3
       pp38-win_amd64:
         CIBW_BUILD: pp38-win_amd64
         BUILD_SCRIPT: build_mlpack.bat
