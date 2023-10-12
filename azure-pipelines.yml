@@ -42,6 +42,14 @@ jobs:
         CIBW_BUILD: cp311-macosx_arm64
         BUILD_SCRIPT: build_mlpack.osx.sh
         CIBW_ARCHS_MACOS: "arm64"
+      cp312-macosx_x86_64:
+        CIBW_BUILD: cp312-macosx_x86_64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+        CIBW_ARCHS_MACOS: "x86_64"
+      cp312-macosx_arm64:
+        CIBW_BUILD: cp312-macosx_arm64
+        BUILD_SCRIPT: build_mlpack.osx.sh
+        CIBW_ARCHS_MACOS: "arm64"
       pp38-macosx_x86_64:
         CIBW_BUILD: pp38-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.osx.sh
@@ -126,6 +134,17 @@ jobs:
         OPENBLAS_ARCH: "x64"
       cp311-win32:
         CIBW_BUILD: cp311-win32
+        BUILD_SCRIPT: build_mlpack.bat
+        WIN_ARCH: "Win32"
+        OPENBLAS_ARCH: "x86"
+        PANDAS_VER: 2.0.3
+      cp312-win_amd64:
+        CIBW_BUILD: cp312-win_amd64
+        BUILD_SCRIPT: build_mlpack.bat
+        WIN_ARCH: "x64"
+        OPENBLAS_ARCH: "x64"
+      cp312-win32:
+        CIBW_BUILD: cp312-win32
         BUILD_SCRIPT: build_mlpack.bat
         WIN_ARCH: "Win32"
         OPENBLAS_ARCH: "x86"
