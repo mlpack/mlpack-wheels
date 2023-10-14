@@ -56,7 +56,8 @@ pipeline
           axis
           {
             name 'PYTHON_IMAGE'
-            values 'manylinux', 'musllinux'
+//            values 'manylinux', 'musllinux'
+            values 'manylinux'
           }
         }
 
