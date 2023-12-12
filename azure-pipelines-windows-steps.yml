@@ -53,6 +53,11 @@ steps:
       git clone https://github.com/mlpack/mlpack
       cd mlpack
       git checkout $(MLPACK_VERSION)
+
+      # Apply patches to install Python headers.
+      cp ../ConfigureFileOnly.cmake CMake/
+      cp ../mlpack.pc.in src/mlpack/bindings/python/
+      patch -p1 < ../python-install-headers.patch
     displayName: Clone mlpack
 
   - powershell: |
