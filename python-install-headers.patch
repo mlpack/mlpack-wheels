@@ -17,7 +17,7 @@
        install_requires=['cython>=0.24', 'numpy', 'pandas'],
        package_dir={ '': '.' }, # Might be superfluous.
        packages=['mlpack'],
-+      package_data={ '': include_files + ['share/pkgconfig/mlpack.pc'] },
++      package_data={ 'mlpack': include_files + ['../share/pkgconfig/mlpack.pc'] },
 +      include_package_data=True,
        cmdclass={ 'build_ext': build_ext },
        ext_modules = modules,
