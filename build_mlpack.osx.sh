@@ -77,6 +77,7 @@ then
   cp ../py-old/*.pyx src/mlpack/bindings/python/mlpack/
   cp ../py-old/*.py src/mlpack/bindings/python/mlpack/
   cd src/mlpack/bindings/python
+  cat setup.py # debugging
   python setup.py build_ext
   cd ../../../..
 fi
