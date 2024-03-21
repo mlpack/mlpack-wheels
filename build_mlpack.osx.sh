@@ -73,7 +73,7 @@ make -j4
 # and we will then call setup.py build_ext again to build all the Cython
 # modules.
 ls ../py-old/*.pyx
-cat setup.py # debugging
+cat src/mlpack/bindings/python/setup.py # debugging
 if [ "$CIBW_ARCHS_MACOS" == "arm64" ];
 then
   cp ../py-old/*.pyx src/mlpack/bindings/python/mlpack/
