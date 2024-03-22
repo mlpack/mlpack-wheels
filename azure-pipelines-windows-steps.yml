@@ -58,10 +58,11 @@ steps:
       sed -i.bk 's/${PACKAGE_VERSION}/${PACKAGE_VERSION}.post1/g' src/mlpack/bindings/python/setup.py.in
       rm -f src/mlpack/bindings/python/setup.py.in.bk
 
-      # Apply patches to install Python headers.
+      # Apply patches to install Python headers and fix STB detection.
       cp ../ConfigureFileOnly.cmake CMake/
       cp ../mlpack.pc.in src/mlpack/bindings/python/
       patch -p1 < ../python-install-headers.patch
+      patch -p1 < ../stb-cmake-fix.patch
     displayName: Clone mlpack
 
   - powershell: |

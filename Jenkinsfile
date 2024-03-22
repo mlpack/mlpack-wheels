@@ -31,6 +31,7 @@ pipeline
           cp ../ConfigureFileOnly.cmake CMake/
           cp ../mlpack.pc.in src/mlpack/bindings/python/
           patch -p1 < ../python-install-headers.patch
+          patch -p1 < ../stb-cmake-fix.patch
 
           mkdir build/
           cd build/

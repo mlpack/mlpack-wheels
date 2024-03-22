@@ -1,0 +1,19 @@
+--- mlpack-4.3.0/CMakeLists.txt	2023-11-27 13:27:20.000000000 -0500
++++ mlpack-4.3.0-mod/CMakeLists.txt	2024-03-22 11:41:28.569175709 -0400
+@@ -312,14 +312,14 @@
+   find_package(StbImage)
+ else()
+   find_package(StbImage)
+-  if (NOT STB_IMAGE_FOUND)
++  if (NOT StbImage_FOUND)
+     get_deps(https://mlpack.org/files/stb.tar.gz stb stb.tar.gz)
+     set(STB_IMAGE_INCLUDE_DIR ${GENERIC_INCLUDE_DIR})
+     find_package(StbImage REQUIRED)
+   endif()
+ endif()
+ 
+-if (STB_IMAGE_FOUND)
++if (StbImage_FOUND)
+   set(STB_AVAILABLE "1")
+   set(MLPACK_INCLUDE_DIRS ${MLPACK_INCLUDE_DIRS} "${STB_IMAGE_INCLUDE_DIR}")
+ 
