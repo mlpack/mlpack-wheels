@@ -50,6 +50,10 @@ cd mlpack/
 rm -rf build/
 mkdir build
 cd build/
+# Crappy half-patch to try and print errors
+cat ../CMake/TestStaticSTB.cmake | sed 's/correctly... fail/correctly...fail: ${out}/' > ../CMake/TestStaticSTB.cmake.tmp;
+mv ../CMake/TestStaticSTB.cmake.tmp ../CMake/TestStaticSTB.cmake;
+
 # _LIBCPP_DISABLE_AVAILABILITY is required to avoid compilation errors claiming
 # that any_cast is not available.
 cmake \
