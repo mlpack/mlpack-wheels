@@ -50,6 +50,6 @@ cd build/
 cmake \
     -DBUILD_PYTHON_BINDINGS=ON \
     -DBUILD_CLI_EXECUTABLES=OFF \
-    -DSTB_IMAGE_INCLUDE_DIR=../../stb/include/ \
+    -DSTB_IMAGE_INCLUDE_DIR="$PWD/../../stb/include/" \
     ../
 make

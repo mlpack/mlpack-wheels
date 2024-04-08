@@ -61,11 +61,11 @@ cmake \
   -DCMAKE_OSX_ARCHITECTURES="$CIBW_ARCHS_MACOS" \
   -DCMAKE_CXX_FLAGS="-D_LIBCPP_DISABLE_AVAILABILITY" \
   -DBUILD_CLI_EXECUTABLES=OFF \
-  -DARMADILLO_LIBRARY=../../armadillo-11.4.1/libarmadillo.dylib \
-  -DARMADILLO_INCLUDE_DIR=../../armadillo-11.4.1/tmp/include/ \
-  -DENSMALLEN_INCLUDE_DIR=../../ensmallen-2.19.0/include/ \
-  -DSTB_IMAGE_INCLUDE_DIR=../../stb/include/ \
-  -DCMAKE_INSTALL_PREFIX=../install \
+  -DARMADILLO_LIBRARY="$PWD/../../armadillo-11.4.1/libarmadillo.dylib" \
+  -DARMADILLO_INCLUDE_DIR="$PWD/../../armadillo-11.4.1/tmp/include/" \
+  -DENSMALLEN_INCLUDE_DIR="$PWD/../../ensmallen-2.19.0/include/" \
+  -DSTB_IMAGE_INCLUDE_DIR="$PWD/../../stb/include/" \
+  -DCMAKE_INSTALL_PREFIX="$PWD/../install" \
   ../
 make -j4
 
