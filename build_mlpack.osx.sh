@@ -50,9 +50,6 @@ cd mlpack/
 rm -rf build/
 mkdir build
 cd build/
-# Crappy half-patch to try and print errors
-cat ../CMake/TestStaticSTB.cmake | sed 's/correctly... fail/correctly...fail: ${out}/' > ../CMake/TestStaticSTB.cmake.tmp;
-mv ../CMake/TestStaticSTB.cmake.tmp ../CMake/TestStaticSTB.cmake;
 
 # _LIBCPP_DISABLE_AVAILABILITY is required to avoid compilation errors claiming
 # that any_cast is not available.
@@ -76,8 +73,6 @@ make -j4
 # files and stored them off to the side.  So, we will put them back into place,
 # and we will then call setup.py build_ext again to build all the Cython
 # modules.
-ls ../py-old/*.pyx
-cat src/mlpack/bindings/python/setup.py # debugging
 if [ "$CIBW_ARCHS_MACOS" == "arm64" ];
 then
   cp ../py-old/*.pyx src/mlpack/bindings/python/mlpack/
