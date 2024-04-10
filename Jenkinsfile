@@ -24,7 +24,7 @@ pipeline
           git checkout $MLPACK_VERSION
 
           # Temporary patch: increment build number.
-          sed -i.bk 's/${PACKAGE_VERSION}/${PACKAGE_VERSION}.post1/g' src/mlpack/bindings/python/setup.py.in
+          sed -i.bk 's/${PACKAGE_VERSION}/${PACKAGE_VERSION}.post2/g' src/mlpack/bindings/python/setup.py.in
           rm -f src/mlpack/bindings/python/setup.py.in.bk
 
           # Apply patches.
@@ -52,23 +52,20 @@ pipeline
           axis
           {
             name 'PYTHON_VERSION'
-//            values 'cp36', 'cp37', 'cp38', 'cp39', 'cp310', 'cp311', 'cp312',
-//                   'pp37', 'pp38', 'pp39'
-            values 'cp38', 'cp37'
+            values 'cp36', 'cp37', 'cp38', 'cp39', 'cp310', 'cp311', 'cp312',
+                   'pp37', 'pp38', 'pp39'
           }
 
           axis
           {
             name 'ARCH'
-//            values 'x86_64', 'i686', 'aarch64', 's390x', 'ppc64le'
-            values 'aarch64'
+            values 'x86_64', 'i686', 'aarch64', 's390x', 'ppc64le'
           }
 
           axis
           {
             name 'PYTHON_IMAGE'
-//            values 'manylinux', 'musllinux'
-            values 'musllinux'
+            values 'manylinux', 'musllinux'
           }
         }
 
