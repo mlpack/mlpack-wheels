@@ -3,7 +3,7 @@ name: Build Windows ARM64 wheels
 on: [push]
 
 env:
-  MLPACK_COMMIT: 4.3.0
+  MLPACK_COMMIT: 4.4.0
   CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
 
 jobs:
@@ -87,11 +87,6 @@ jobs:
           git clone https://github.com/mlpack/mlpack
           cd mlpack
           git checkout $MLPACK_VERSION
-          # Apply patches to install Python headers and fix STB detection.
-          cp ../ConfigureFileOnly.cmake CMake/
-          cp ../mlpack.pc.in src/mlpack/bindings/python/
-          patch -p1 < ../python-install-headers.patch
-          patch -p1 < ../stb-cmake-fix.patch
 
       - name: Generate setup.py
         shell: powershell

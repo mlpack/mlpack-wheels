@@ -5,7 +5,7 @@ pipeline
 
   environment
   {
-    MLPACK_VERSION = '4.3.0'
+    MLPACK_VERSION = '4.4.0'
     TWINE_PYPI_TOKEN = credentials('twine-pypi-token')
   }
 
@@ -22,16 +22,6 @@ pipeline
           git clone https://github.com/mlpack/mlpack
           cd mlpack/
           git checkout $MLPACK_VERSION
-
-          # Temporary patch: increment build number.
-          sed -i.bk 's/${PACKAGE_VERSION}/${PACKAGE_VERSION}.post2/g' src/mlpack/bindings/python/setup.py.in
-          rm -f src/mlpack/bindings/python/setup.py.in.bk
-
-          # Apply patches.
-          cp ../ConfigureFileOnly.cmake CMake/
-          cp ../mlpack.pc.in src/mlpack/bindings/python/
-          patch -p1 < ../python-install-headers.patch
-          patch -p1 < ../stb-cmake-fix.patch
 
           mkdir build/
           cd build/
@@ -52,23 +42,20 @@ pipeline
           axis
           {
             name 'PYTHON_VERSION'
-//            values 'cp36', 'cp37', 'cp38', 'cp39', 'cp310', 'cp311', 'cp312',
-//                   'pp37', 'pp38', 'pp39'
-            values 'cp38', 'cp39'
+            values 'cp36', 'cp37', 'cp38', 'cp39', 'cp310', 'cp311', 'cp312',
+                   'pp37', 'pp38', 'pp39'
           }
 
           axis
           {
             name 'ARCH'
-//            values 'x86_64', 'i686', 'aarch64', 's390x', 'ppc64le'
-            values 'x86_64'
+            values 'x86_64', 'i686', 'aarch64', 's390x', 'ppc64le'
           }
 
           axis
           {
             name 'PYTHON_IMAGE'
-//            values 'manylinux', 'musllinux'
-            values 'manylinux'
+            values 'manylinux', 'musllinux'
           }
         }
 
