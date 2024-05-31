@@ -1,6 +1,6 @@
 rem Build mlpack's Python bindings on a Windows system.
 
-pip install cython numpy delvewheel
+pip install cython numpy delvewheel wheel
 rem Pandas 2.1.0 and newer aren't supported on Win32 anymore, so we use an old version.
 if "%WIN_ARCH%" == "Win32" pip install pandas==%PANDAS_VER%
 if not "%WIN_ARCH%" == "Win32" pip install pandas

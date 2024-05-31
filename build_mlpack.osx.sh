@@ -5,7 +5,7 @@
 set -e -u -o pipefail
 
 brew install --force cereal gcc cmake hdf5 tree
-pip install cython numpy pandas
+pip install cython numpy pandas wheel
 pip install packaging==20.5
 
 export rootdir=`pwd`

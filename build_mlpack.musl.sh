@@ -8,7 +8,7 @@ set -e -u -o pipefail
 
 # Enable the community repository.
 apk add openblas-dev
-pip install cython numpy pandas
+pip install cython numpy pandas wheel
 
 # Armadillo must be built by hand.
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz

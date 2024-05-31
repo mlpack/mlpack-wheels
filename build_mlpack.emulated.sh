@@ -7,7 +7,7 @@ set -e -u -o pipefail
 # RHEL7 on other architectures does not have openblas-devel; so, we use
 # atlas-devel instead.  Armadillo and ensmallen must both be installed by hand.
 yum install -y atlas-devel lapack-devel wget
-pip install cython numpy pandas
+pip install cython numpy pandas wheel
 
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
 tar -xvzpf armadillo-11.4.1.tar.gz
