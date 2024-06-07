@@ -4,7 +4,7 @@
 
 set -e -u -o pipefail
 
-brew install --force cereal gcc cmake hdf5 tree
+brew install --force cereal gcc cmake
 pip install cython numpy pandas wheel setuptools
 pip install packaging==20.5
 
@@ -21,6 +21,7 @@ if [ "$CIBW_ARCHS_MACOS" == "x86_64" ];
 then
   cmake \
     -DCMAKE_OSX_ARCHITECTURES="$CIBW_ARCHS_MACOS" \
+    -DDETECT_HDF5=OFF \
     .
 elif [ "$CIBW_ARCHS_MACOS" == "arm64" ];
 then
