@@ -1,0 +1,14 @@
+--- mlpack-4.4.0/src/mlpack/bindings/python/mlpack/matrix_utils.py	2024-05-28 16:08:34.000000000 -0400
++++ mlpack/src/mlpack/bindings/python/mlpack/matrix_utils.py	2024-07-24 17:22:50.872603391 -0400
+@@ -160,7 +160,10 @@
+       dims = len(x)
+ 
+     d = np.zeros([dims])
+-    out = np.array(x, dtype=dtype, copy=copy) # Try to avoid copy...
++    if np.lib.NumpyVersion(np.__version__) >= '2.0.0b1':
++      out = np.array(x, dtype=dtype, copy=(True if copy else None))
++    else:
++      out = np.array(x, dtype=dtype, copy=copy)
+ 
+     # Since we don't have a great way to check if these are using the same
+     # memory location, we will probe manually (ugh).
