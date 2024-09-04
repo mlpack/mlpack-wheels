@@ -5,6 +5,8 @@ rem Pandas 2.1.0 and newer aren't supported on Win32 anymore, so we use an old v
 if "%WIN_ARCH%" == "Win32" pip install pandas==%PANDAS_VER%
 if not "%WIN_ARCH%" == "Win32" pip install pandas
 
+python -c "import pandas; print(pandas.__version__)"
+
 rem This is needed later for copying libopenblas.dll to the right place.
 set rootdir=%cd%
 
