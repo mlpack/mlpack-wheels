@@ -60,7 +60,7 @@ jobs:
         CIBW_ARCHS_MACOS: "x86_64"
 
   timeoutInMinutes: 0 # No limit for build time.
-  pool: {vmImage: 'macOS-11'}
+  pool: {vmImage: 'macOS-14'}
   variables:
     MLPACK_VERSION: 4.4.0
     CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
