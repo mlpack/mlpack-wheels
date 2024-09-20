@@ -5,7 +5,7 @@ pipeline
 
   environment
   {
-    MLPACK_VERSION = '4.4.0'
+    MLPACK_VERSION = '4.5.0'
     TWINE_PYPI_TOKEN = credentials('twine-pypi-token')
   }
 
@@ -22,12 +22,6 @@ pipeline
           git clone https://github.com/mlpack/mlpack
           cd mlpack/
           git checkout $MLPACK_VERSION
-
-          # Temporary patch: increment build number.
-          sed -i.bk 's/${PACKAGE_VERSION}/${PACKAGE_VERSION}.post1/g' src/mlpack/bindings/python/setup.py.in
-          rm -f src/mlpack/bindings/python/setup.py.in.bk
-          # Apply patches.
-          patch -p1 < ../numpy2.patch
 
           mkdir build/
           cd build/

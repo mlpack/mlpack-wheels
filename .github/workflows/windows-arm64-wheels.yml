@@ -3,7 +3,7 @@ name: Build Windows ARM64 wheels
 on: [push]
 
 env:
-  MLPACK_COMMIT: 4.4.0
+  MLPACK_COMMIT: 4.5.0
   CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
 
 jobs:
@@ -87,9 +87,6 @@ jobs:
           git clone https://github.com/mlpack/mlpack
           cd mlpack
           git checkout $MLPACK_VERSION
-          sed -i.bk 's/${PACKAGE_VERSION}/${PACKAGE_VERSION}.post1/g' src/mlpack/bindings/python/setup.py.in
-          rm -f src/mlpack/bindings/python/setup.py.in.bk
-          patch -p1 < ../numpy2.patch
 
       - name: Generate setup.py
         shell: powershell
