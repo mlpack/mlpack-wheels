@@ -2,14 +2,6 @@ jobs:
 - job: macos
   strategy:
     matrix:
-      cp36-macosx_x86_64:
-        CIBW_BUILD: cp36-macosx_x86_64
-        BUILD_SCRIPT: build_mlpack.osx.sh
-        CIBW_ARCHS_MACOS: "x86_64"
-      cp37-macosx_x86_64:
-        CIBW_BUILD: cp37-macosx_x86_64
-        BUILD_SCRIPT: build_mlpack.osx.sh
-        CIBW_ARCHS_MACOS: "x86_64"
       cp38-macosx_x86_64:
         CIBW_BUILD: cp38-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.osx.sh
@@ -50,19 +42,19 @@ jobs:
         CIBW_BUILD: cp312-macosx_arm64
         BUILD_SCRIPT: build_mlpack.osx.sh
         CIBW_ARCHS_MACOS: "arm64"
-      pp38-macosx_x86_64:
-        CIBW_BUILD: pp38-macosx_x86_64
+      cp313-macosx_x86_64:
+        CIBW_BUILD: cp313-macosx_x86_64
         BUILD_SCRIPT: build_mlpack.osx.sh
         CIBW_ARCHS_MACOS: "x86_64"
-      pp39-macosx_x86_64:
-        CIBW_BUILD: pp39-macosx_x86_64
+      cp313-macosx_arm64:
+        CIBW_BUILD: cp313-macosx_arm64
         BUILD_SCRIPT: build_mlpack.osx.sh
-        CIBW_ARCHS_MACOS: "x86_64"
+        CIBW_ARCHS_MACOS: "arm64"
 
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'macOS-14'}
   variables:
-    MLPACK_VERSION: 4.5.0
+    MLPACK_VERSION: 4.5.1
     CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
     # The PYPI_TOKEN variable is automatically set by Azure Pipelines.
     TWINE_PYPI_TOKEN: $(PYPI_TOKEN)
@@ -72,28 +64,6 @@ jobs:
 - job: windows
   strategy:
     matrix:
-      cp36-win_amd64:
-        CIBW_BUILD: cp36-win_amd64
-        BUILD_SCRIPT: build_mlpack.bat
-        WIN_ARCH: "x64"
-        OPENBLAS_ARCH: "x64"
-      cp36-win32:
-        CIBW_BUILD: cp36-win32
-        BUILD_SCRIPT: build_mlpack.bat
-        WIN_ARCH: "Win32"
-        OPENBLAS_ARCH: "x86"
-        PANDAS_VER: 1.1.5
-      cp37-win_amd64:
-        CIBW_BUILD: cp37-win_amd64
-        BUILD_SCRIPT: build_mlpack.bat
-        WIN_ARCH: "x64"
-        OPENBLAS_ARCH: "x64"
-      cp37-win32:
-        CIBW_BUILD: cp37-win32
-        BUILD_SCRIPT: build_mlpack.bat
-        WIN_ARCH: "Win32"
-        OPENBLAS_ARCH: "x86"
-        PANDAS_VER: 1.3.5
       cp38-win_amd64:
         CIBW_BUILD: cp38-win_amd64
         BUILD_SCRIPT: build_mlpack.bat
@@ -149,6 +119,17 @@ jobs:
         WIN_ARCH: "Win32"
         OPENBLAS_ARCH: "x86"
         PANDAS_VER: 2.0.3
+      cp313-win_amd64:
+        CIBW_BUILD: cp313-win_amd64
+        BUILD_SCRIPT: build_mlpack.bat
+        WIN_ARCH: "x64"
+        OPENBLAS_ARCH: "x64"
+      cp313-win32:
+        CIBW_BUILD: cp313-win32
+        BUILD_SCRIPT: build_mlpack.bat
+        WIN_ARCH: "Win32"
+        OPENBLAS_ARCH: "x86"
+        PANDAS_VER: 2.0.3
       pp38-win_amd64:
         CIBW_BUILD: pp38-win_amd64
         BUILD_SCRIPT: build_mlpack.bat
@@ -163,7 +144,7 @@ jobs:
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'windows-2019'}
   variables:
-    MLPACK_VERSION: 4.5.0
+    MLPACK_VERSION: 4.5.1
     # The PYPI_TOKEN variable is automatically set by Azure Pipelines.
     TWINE_PYPI_TOKEN: $(PYPI_TOKEN)
   steps:
