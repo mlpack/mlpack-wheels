@@ -49,7 +49,7 @@ pipeline
           axis
           {
             name 'ARCH'
-            values 'x86_64', 'i686', 'aarch64', 's390x', 'ppc64le'
+            values 'x86_64', 'i686'
           }
 
           axis
