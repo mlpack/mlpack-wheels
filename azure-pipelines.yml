@@ -54,7 +54,7 @@ jobs:
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'macOS-14'}
   variables:
-    MLPACK_VERSION: 4.5.1
+    MLPACK_VERSION: 4.6.0
     CIBW_TEST_COMMAND: python -c 'import mlpack; import numpy as np; x = np.random.rand(100, 10); o = mlpack.pca(input_=x, new_dimensionality=5, verbose=True)'
     # The PYPI_TOKEN variable is automatically set by Azure Pipelines.
     TWINE_PYPI_TOKEN: $(PYPI_TOKEN)
@@ -144,7 +144,7 @@ jobs:
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'windows-2019'}
   variables:
-    MLPACK_VERSION: 4.5.1
+    MLPACK_VERSION: 4.6.0
     # The PYPI_TOKEN variable is automatically set by Azure Pipelines.
     TWINE_PYPI_TOKEN: $(PYPI_TOKEN)
   steps:
