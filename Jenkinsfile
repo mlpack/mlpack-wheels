@@ -20,7 +20,7 @@ pipeline
       {
         sh '''
           python3 -m venv venv/
-          source venv/bin/activate
+          . venv/bin/activate
           pip3 install numpy pandas cython setuptools twine cibuildwheel
 
           git clone https://github.com/mlpack/mlpack
@@ -128,7 +128,7 @@ pipeline
 
               sh '''
                 echo "CIBW_BUILD: $CIBW_BUILD"
-                source venv/bin/activate
+                . venv/bin/activate
                 cibuildwheel --output-dir wheelhouse mlpack/build/src/mlpack/bindings/python/
               '''
             }
@@ -140,7 +140,7 @@ pipeline
                 archiveArtifacts 'wheelhouse/*.whl'
 
                 sh '''
-                  source venv/bin/activate
+                  . venv/bin/activate
                   echo "[pypi]" > ~/.pypirc
                   echo "username = __token__" >> ~/.pypirc
                   echo "password = $TWINE_PYPI_TOKEN" >> ~/.pypirc
