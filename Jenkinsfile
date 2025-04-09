@@ -21,7 +21,7 @@ pipeline
         sh '''
           python3 -m venv venv/
           . venv/bin/activate
-          pip3 install numpy pandas cython setuptools twine cibuildwheel
+          pip3 install numpy pandas cython setuptools wheel twine cibuildwheel
 
           git clone https://github.com/mlpack/mlpack
           cd mlpack/
