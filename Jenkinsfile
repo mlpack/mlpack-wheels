@@ -34,6 +34,7 @@ pipeline
           make python_configured
         '''
         stash includes: 'mlpack/**', name: 'mlpack-configured'
+        stash includes: 'venv/**', name: 'venv'
       }
     }
 
@@ -101,6 +102,7 @@ pipeline
             steps
             {
               unstash 'mlpack-configured'
+              unstash 'venv'
 
               // Set environment variables properly.
               script
@@ -138,6 +140,8 @@ pipeline
               always
               {
                 archiveArtifacts 'wheelhouse/*.whl'
+
+                unstash 'venv'
 
                 sh '''
                   . venv/bin/activate
