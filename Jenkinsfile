@@ -5,7 +5,7 @@ pipeline
 
   environment
   {
-    MLPACK_VERSION = '4.6.0'
+    MLPACK_VERSION = '4.6.1'
     TWINE_PYPI_TOKEN = credentials('twine-pypi-token')
   }
 
@@ -26,7 +26,6 @@ pipeline
           git clone https://github.com/mlpack/mlpack
           cd mlpack/
           git checkout $MLPACK_VERSION
-          patch -p1 < ../cmake_stb_available.patch
 
           mkdir build/
           cd build/
