@@ -1,0 +1,80 @@
+--- mlpack-4.6.1/src/mlpack/core/data/utilities.hpp	2025-05-14 14:48:05.000000000 -0400
++++ mlpack-4.6.1-new/src/mlpack/core/data/utilities.hpp	2025-05-15 09:59:41.590371158 -0400
+@@ -134,6 +134,7 @@
+ template<typename MatType, typename DataOptionsType>
+ bool SaveMatrix(const MatType& matrix,
+                 const DataOptionsType& opts,
++                const std::string& filename,
+                 std::fstream& stream)
+ {
+   bool success = false;
+--- mlpack-4.6.1/src/mlpack/core/data/save_impl.hpp	2025-05-14 14:48:05.000000000 -0400
++++ mlpack-4.6.1-new/src/mlpack/core/data/save_impl.hpp	2025-05-15 09:59:41.590371158 -0400
+@@ -135,21 +135,21 @@
+     TextOptions txtOpts(std::move(opts));
+     if constexpr (IsSparseMat<MatType>::value)
+     {
+-      success = SaveSparse(matrix, txtOpts, stream);
++      success = SaveSparse(matrix, txtOpts, filename, stream);
+     }
+     else if constexpr (IsCol<MatType>::value)
+     {
+       opts.NoTranspose() = true;
+-      success = SaveDense(matrix, txtOpts, stream);
++      success = SaveDense(matrix, txtOpts, filename, stream);
+     }
+     else if constexpr (IsRow<MatType>::value)
+     {
+       opts.NoTranspose() = false;
+-      success = SaveDense(matrix, txtOpts, stream);
++      success = SaveDense(matrix, txtOpts, filename, stream);
+     }
+     else if constexpr (IsDense<MatType>::value)
+     {
+-      success = SaveDense(matrix, txtOpts, stream);
++      success = SaveDense(matrix, txtOpts, filename, stream);
+     }
+     opts = std::move(txtOpts);
+   }
+@@ -183,6 +183,7 @@
+ template<typename eT>
+ bool SaveDense(const arma::Mat<eT>& matrix,
+                TextOptions& opts,
++               const std::string& filename,
+                std::fstream& stream)
+ {
+   bool success = false;
+@@ -191,10 +192,10 @@
+   if (!opts.NoTranspose())
+   {
+     tmp = trans(matrix);
+-    success = SaveMatrix(tmp, opts, stream);
++    success = SaveMatrix(tmp, opts, filename, stream);
+   }
+   else
+-    success = SaveMatrix(matrix, opts, stream);
++    success = SaveMatrix(matrix, opts, filename, stream);
+ 
+   return success;
+ }
+@@ -203,6 +204,7 @@
+ template<typename eT>
+ bool SaveSparse(const arma::SpMat<eT>& matrix,
+                 TextOptions& opts,
++                const std::string& filename,
+                 std::fstream& stream)
+ {
+   bool success = false;
+@@ -212,10 +214,10 @@
+   if (!opts.NoTranspose())
+   {
+     arma::SpMat<eT> tmp = trans(matrix);
+-    success = SaveMatrix(tmp, opts, stream);
++    success = SaveMatrix(tmp, opts, filename, stream);
+   }
+   else
+-    success = SaveMatrix(matrix, opts, stream);
++    success = SaveMatrix(matrix, opts, filename, stream);
+ 
+   return success;
+ }

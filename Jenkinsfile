@@ -26,6 +26,7 @@ pipeline
           git clone https://github.com/mlpack/mlpack
           cd mlpack/
           git checkout $MLPACK_VERSION
+          patch -p1 < ../hdf5_filename.patch
 
           mkdir build/
           cd build/
