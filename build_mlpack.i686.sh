@@ -13,7 +13,9 @@ pip install cython numpy pandas wheel setuptools
 wget https://files.mlpack.org/armadillo-11.4.1.tar.gz
 tar -xvzpf armadillo-11.4.1.tar.gz
 cd armadillo-11.4.1/
-cmake -DCMAKE_INSTALL_PREFIX=/usr .
+cmake \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .
 make
 make install
 cd ../

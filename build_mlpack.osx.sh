@@ -19,12 +19,14 @@ cd armadillo-11.4.1/
 if [ "$CIBW_ARCHS_MACOS" == "x86_64" ];
 then
   cmake \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -DCMAKE_OSX_ARCHITECTURES="$CIBW_ARCHS_MACOS" \
     -DDETECT_HDF5=OFF \
     .
 elif [ "$CIBW_ARCHS_MACOS" == "arm64" ];
 then
   cmake \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -DCMAKE_OSX_ARCHITECTURES="$CIBW_ARCHS_MACOS" \
     -DDETECT_HDF5=OFF \
     .
