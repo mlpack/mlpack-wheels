@@ -106,7 +106,7 @@ jobs:
         OPENBLAS_ARCH: "x64"
 
   timeoutInMinutes: 0 # No limit for build time.
-  pool: {vmImage: 'windows-2019'}
+  pool: {vmImage: 'windows-2022'}
   variables:
     MLPACK_VERSION: 4.7.0
     # The PYPI_TOKEN variable is automatically set by Azure Pipelines.
