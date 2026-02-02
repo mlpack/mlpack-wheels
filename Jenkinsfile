@@ -26,6 +26,7 @@ pipeline
           git clone https://github.com/mlpack/mlpack
           cd mlpack/
           git checkout $MLPACK_VERSION
+          patch -p1 < ../py_ccache_fix.patch
 
           mkdir build/
           cd build/
