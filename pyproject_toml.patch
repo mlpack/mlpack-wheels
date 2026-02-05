@@ -1,0 +1,43 @@
+From ef86609f9fc4ce269efd97e0f9dec8540f1f0fd9 Mon Sep 17 00:00:00 2001
+From: Ryan Curtin <ryan@ratml.org>
+Date: Thu, 5 Feb 2026 11:51:41 -0500
+Subject: [PATCH] Add skeleton pyproject.toml to specify build-time
+ dependencies.
+
+---
+ src/mlpack/bindings/python/CMakeLists.txt | 4 ++++
+ src/mlpack/bindings/python/pyproject.toml | 7 +++++++
+ 2 files changed, 11 insertions(+)
+ create mode 100644 src/mlpack/bindings/python/pyproject.toml
+
+diff --git a/src/mlpack/bindings/python/CMakeLists.txt b/src/mlpack/bindings/python/CMakeLists.txt
+index c79048bc76..e4fcc886d9 100644
+--- a/src/mlpack/bindings/python/CMakeLists.txt
++++ b/src/mlpack/bindings/python/CMakeLists.txt
+@@ -163,6 +163,10 @@ add_custom_command(TARGET python_copy PRE_BUILD
+     COMMAND ${CMAKE_COMMAND} ARGS -E copy
+         ${CMAKE_CURRENT_SOURCE_DIR}/setup_readme.md
+         ${CMAKE_BINARY_DIR}/src/mlpack/bindings/python/)
++add_custom_command(TARGET python_copy PRE_BUILD
++    COMMAND ${CMAKE_COMMAND} ARGS -E copy
++        ${CMAKE_CURRENT_SOURCE_DIR}/pyproject.toml
++        ${CMAKE_BINARY_DIR}/src/mlpack/bindings/python/)
+ 
+ # Copy all mlpack headers for inclusion in the package, but remove the bindings/
+ # and tests/ directories as they should not be included.
+diff --git a/src/mlpack/bindings/python/pyproject.toml b/src/mlpack/bindings/python/pyproject.toml
+new file mode 100644
+index 0000000000..4ab17f05c0
+--- /dev/null
++++ b/src/mlpack/bindings/python/pyproject.toml
+@@ -0,0 +1,7 @@
++[build-system]
++requires = [
++  "setuptools",
++  "cython",
++  "numpy",
++  "pandas"
++]
+-- 
+2.51.0
+

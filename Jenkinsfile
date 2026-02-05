@@ -28,6 +28,7 @@ pipeline
           git checkout $MLPACK_VERSION
           patch -p1 < ../py_ccache_fix.patch
           patch -p1 < ../py_setup_requirements.patch
+          patch -p1 < ../pyproject_toml.patch
 
           mkdir build/
           cd build/
