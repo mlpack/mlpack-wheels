@@ -86,10 +86,16 @@ fi
 
 # Manually change the @rpath/libarmadillo.11.dylib to a direct reference.
 # This allows delocate-wheel to know exactly where libarmadillo is.
+echo "fixing rpaths!"
+find src/mlpack/bindings/python/
+echo "now find .so"
+find src/mlpack/bindings/python/ -iname '*.so'
+echo "now install_name_tool"
 find src/mlpack/bindings/python/ -iname '*.so' -exec \
     install_name_tool -change "@rpath/libarmadillo.11.dylib" \
                               "$rootdir/armadillo-11.4.1/libarmadillo.11.dylib" \
                               \{\} \;
+echo "done with that!"
 
 # Revert to a version of packaging that is sufficient for delocate-wheel.
 pip install "packaging>=20.9"

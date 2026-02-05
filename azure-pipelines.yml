@@ -94,16 +94,6 @@ jobs:
         BUILD_SCRIPT: build_mlpack.bat
         WIN_ARCH: "x64"
         OPENBLAS_ARCH: "x64"
-      pp38-win_amd64:
-        CIBW_BUILD: pp38-win_amd64
-        BUILD_SCRIPT: build_mlpack.bat
-        WIN_ARCH: "x64"
-        OPENBLAS_ARCH: "x64"
-      pp39-win_amd64:
-        CIBW_BUILD: pp39-win_amd64
-        BUILD_SCRIPT: build_mlpack.bat
-        WIN_ARCH: "x64"
-        OPENBLAS_ARCH: "x64"
 
   timeoutInMinutes: 0 # No limit for build time.
   pool: {vmImage: 'windows-2022'}
