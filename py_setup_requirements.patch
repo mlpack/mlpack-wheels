@@ -1,0 +1,25 @@
+From 741adb36f197b5b23a4f2d123ce77550256baa1f Mon Sep 17 00:00:00 2001
+From: Ryan Curtin <ryan@ratml.org>
+Date: Thu, 5 Feb 2026 09:07:17 -0500
+Subject: [PATCH] Fix setup requirements (hopefully).
+
+---
+ src/mlpack/bindings/python/setup.py.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/mlpack/bindings/python/setup.py.in b/src/mlpack/bindings/python/setup.py.in
+index 326fbc47ce..dc547f8e97 100644
+--- a/src/mlpack/bindings/python/setup.py.in
++++ b/src/mlpack/bindings/python/setup.py.in
+@@ -158,7 +158,7 @@ setup(name='mlpack',
+       include_package_data=True,
+       cmdclass={ 'build_ext': build_ext },
+       ext_modules = modules,
+-      setup_requires=['cython'],
++      setup_requires=['cython', 'numpy', 'pandas'],
+       extras_require={
+           "tests": ['pytest>3;python_version>"3.4"', 'pytest>3,<=4.6;python_version<="3.4"'],
+       },
+-- 
+2.51.0
+
