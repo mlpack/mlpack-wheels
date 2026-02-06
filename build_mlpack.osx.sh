@@ -36,6 +36,7 @@ else
 fi
 
 make
+sudo make install # So that libarmadillo.dylib is available in the search path.
 cd ../
 rm -f armadillo-11.4.1.tar.gz
 
@@ -60,43 +61,13 @@ cmake \
   -DCMAKE_OSX_ARCHITECTURES="$CIBW_ARCHS_MACOS" \
   -DCMAKE_CXX_FLAGS="-D_LIBCPP_DISABLE_AVAILABILITY" \
   -DBUILD_CLI_EXECUTABLES=OFF \
-  -DARMADILLO_LIBRARY="$PWD/../../armadillo-11.4.1/libarmadillo.dylib" \
-  -DARMADILLO_INCLUDE_DIR="$PWD/../../armadillo-11.4.1/tmp/include/" \
+#  -DARMADILLO_LIBRARY="/libarmadillo.dylib" \
+#  -DARMADILLO_INCLUDE_DIR="$PWD/../../armadillo-11.4.1/tmp/include/" \
   -DENSMALLEN_INCLUDE_DIR="$PWD/../../ensmallen-2.19.0/include/" \
   -DSTB_IMAGE_INCLUDE_DIR="$PWD/../../stb/include/" \
   -DCMAKE_INSTALL_PREFIX="$PWD/../install" \
   ../
 make -j4
-
-# If we are building for ARM64, then all generation of .pyx files will have
-# failed because we cannot run any programs compiled for ARM64 (which includes
-# the `generate_pyx_*` targets that make the .pyx files).  But, we have a way
-# out: earlier in the build, before we started emulating, we built all the .pyx
-# files and stored them off to the side.  So, we will put them back into place,
-# and we will then call setup.py build_ext again to build all the Cython
-# modules.
-if [ "$CIBW_ARCHS_MACOS" == "arm64" ];
-then
-  cp ../py-old/*.pyx src/mlpack/bindings/python/mlpack/
-  cp ../py-old/*.py src/mlpack/bindings/python/mlpack/
-  cd src/mlpack/bindings/python
-  python setup.py build_ext
-  cd ../../../..
-fi
-
-# Manually change the @rpath/libarmadillo.11.dylib to a direct reference.
-# This allows delocate-wheel to know exactly where libarmadillo is.
-echo "now find .so"
-find src/mlpack/bindings/python/ -iname '*.so'
-echo "now install_name_tool"
-find src/mlpack/bindings/python/ -iname '*.so' -exec \
-    install_name_tool -change "@rpath/libarmadillo.11.dylib" \
-                              "$rootdir/armadillo-11.4.1/libarmadillo.11.dylib" \
-                              \{\} \;
-echo "done with that!"
-find src/mlpack/bindings/python/ -iname '*.so' -exec \
-    otool -l \{\} \;
-echo "otool done";
 
 # Revert to a version of packaging that is sufficient for delocate-wheel.
 pip install "packaging>=20.9"
