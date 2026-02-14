@@ -37,7 +37,7 @@ tar -xvzpf ensmallen-2.19.0.tar.gz
 cd ensmallen-2.19.0/
 mkdir build/
 cd build/
-cmake -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/usr ../
+cmake -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ../
 make install
 cd ../../
 rm -rf ensmallen-2.19.0 ensmallen-2.19.0.tar.gz
@@ -53,6 +53,7 @@ cd build/
 cmake \
     -DBUILD_PYTHON_BINDINGS=ON \
     -DBUILD_CLI_EXECUTABLES=OFF \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -DSTB_IMAGE_INCLUDE_DIR="$PWD/../../stb/include/" \
     ../
 make
