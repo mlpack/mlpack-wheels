@@ -50,7 +50,7 @@ pipeline
           axis
           {
             name 'PYTHON_VERSION'
-            values 'cp38', 'cp39', 'cp310', 'cp311', 'cp312', 'cp313',
+            values 'cp39', 'cp310', 'cp311', 'cp312', 'cp313', 'cp314',
                    'pp37', 'pp38', 'pp39'
           }
 
